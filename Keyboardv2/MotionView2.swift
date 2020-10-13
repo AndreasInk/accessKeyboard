@@ -223,6 +223,7 @@ struct MotionView2: View {
                 .padding()
                     Color(.white)
                         .frame(width: screenSize.width/1.1, height: 50)
+                        .padding(.bottom, 82)
                         .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
                             text += " "
                         })
@@ -376,7 +377,7 @@ struct MotionView2: View {
             }
             
            
-        } .frame(height: 200)
+        } //.frame(height: 200)
         if wait {
             Color(.white)
         }

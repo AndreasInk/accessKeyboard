@@ -39,7 +39,7 @@ struct MotionView: View {
     ]
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
            // LineChartView(data: z, title: "Title", legend: "Legendary")
             HStack {
             MultiLineChartView(data: [(z, GradientColors.green), (keysMistyped, GradientColors.purple)], title: "Z")
@@ -69,20 +69,20 @@ struct MotionView: View {
                 }
             }
             
-            VStack {
+            VStack(alignment: .center) {
                 Spacer(minLength: screenSize.height/2.5)
                 
                 TextField("Type", text: $text)
                     .padding()
-                ZStack {
+                ZStack(alignment: .center) {
                     
                     BlurView(style: .systemChromeMaterialLight)
                   
-                    VStack {
+                    VStack(alignment: .center) {
                         
                     LazyVGrid(columns: columns, spacing: 0) {
                         ForEach(data, id: \.self) { item in
-                            ZStack {
+                            ZStack(alignment: .center) {
                                 
                                 if item != "backspace" {
                                     if item != "space" {
@@ -94,7 +94,7 @@ struct MotionView: View {
                                 }
                                 if item == "backspace" {
                                     Color(.white)
-                                        .frame(width: screenSize.width/9, height: screenSize.width/8, alignment: .center)
+                                        .frame(width: screenSize.height/15, height: screenSize.height/14, alignment: .center)
                                         .padding(.leading)
                                 }
                                
@@ -159,6 +159,7 @@ struct MotionView: View {
                         
                        
                     }
+                    
                     .padding()
                         Color(.white)
                             .frame(width: screenSize.width/1.1, height: 50)
@@ -167,7 +168,8 @@ struct MotionView: View {
                             })
                            
                     }
-                } .padding(.bottom, 62)
+                } .padding(.bottom, 82)
+               
                 
     }
         }
@@ -177,5 +179,28 @@ struct MotionView: View {
 struct MotionView_Previews: PreviewProvider {
     static var previews: some View {
         MotionView()
+    }
+}
+struct GridStack<Content: View>: View {
+    let rows: Int
+    let columns: Int
+    let content: (Int, Int) -> Content
+
+    var body: some View {
+        VStack {
+            ForEach(0 ..< rows, id: \.self) { row in
+                HStack {
+                    ForEach(0 ..< self.columns, id: \.self) { column in
+                        self.content(row, column)
+                    }
+                }
+            }
+        }
+    }
+
+    init(rows: Int, columns: Int, @ViewBuilder content: @escaping (Int, Int) -> Content) {
+        self.rows = rows
+        self.columns = columns
+        self.content = content
     }
 }
