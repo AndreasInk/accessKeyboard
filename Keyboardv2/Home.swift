@@ -171,7 +171,7 @@ struct Home: View {
             if isKeyboardOpen {
                 VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2)
+                    MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped)
                     .ignoresSafeArea()
                 }
             

@@ -22,7 +22,7 @@ struct MotionView: View {
     
     @State var keyMistyped: Int = 0
     @State var step: Int = 0
-    @State var keysMistyped = [Double]()
+   
     
     @State var averageZ = 0.0
     
@@ -45,7 +45,8 @@ struct MotionView: View {
     @Binding var isKeyboardOpen: Bool
     
     @Binding var keyNum: Int
-    @Binding var keyNum2: Int 
+    @Binding var keyNum2: Int
+    @Binding var keysMistyped: [Double]
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -63,6 +64,7 @@ struct MotionView: View {
                     y.append(motionManager.y)
                     //up and down
                     z.append(motionManager.z)
+                    
                     keysMistyped.append(0)
                     
                   //  print(motionManager.z)

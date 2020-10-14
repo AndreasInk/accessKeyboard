@@ -20,7 +20,7 @@ struct Keyboardv2App: App {
     var body: some Scene {
         WindowGroup {
     
-            Home()
+            Admin()
                 .environmentObject(UserData.shared)
         }
     }
