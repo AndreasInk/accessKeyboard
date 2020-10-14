@@ -7,61 +7,45 @@
 
 import SwiftUI
 import SwiftUICharts
+import Firebase
 struct Admin: View {
     @State var data = [IndividualData]()
-    
+    let screenSize = UIScreen.main.bounds
     var body: some View {
         ZStack {
             Color(.white)
                 .onAppear() {
-                    self.loadData(){ userData in
-                        //Get completion handler data results from loadData function and set it as the recentPeople local variable
-                        data = userData
-                        
-                    }
+                    getItems()
                 }
-        ScrollView {
+            ScrollView(.horizontal) {
+               
         HStack {
             ForEach(data){ user in
+                Spacer(minLength: screenSize.width/2)
                 ChartView(x: user.x, y: user.y, z: user.z, keysMistyped: user.keysMistyped)
+                Spacer(minLength: screenSize.width/2)
+                Divider()
             }
         }
         }
     }
     }
-    func loadData(performAction: @escaping ([IndividualData]) -> Void){
-        let db = Firestore.firestore()
-        let docRef = db.collection("groups")
-        var userList:[IndividualData] = []
-        //Get every single document under collection users
-        let queryParameter = docRef//.whereField("members", arrayContains: userData.userID)
-        queryParameter.getDocuments{ (querySnapshot, error) in
-            for document in querySnapshot!.documents{
-                let result = Result {
-                    try document.data(as: IndividualData.self)
-                }
-                switch result {
-                    case .success(let user):
-                        if let user = user {
-                            userList.append(user)
-                 
-                        } else {
-                            
-                            print("Document does not exist")
-                        }
-                    case .failure(let error):
-                        print("Error decoding user: \(error)")
-                    }
-                
-              
-            }
-              performAction(userList)
-        }
-        
-        
-    }
-}
+    func getItems() {
 
+       
+        let db = Firestore.firestore()
+      
+        db.collection("interactions").getDocuments { (documents, error) in
+            if documents?.count ?? -1 > -1 {
+            for document in documents!.documents{
+                data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: 0.0, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
+                
+            }
+            }
+        }
+    }
+
+}
 struct Admin_Previews: PreviewProvider {
     static var previews: some View {
         Admin()

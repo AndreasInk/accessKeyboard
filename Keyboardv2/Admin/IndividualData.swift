@@ -6,12 +6,13 @@
 //
 import SwiftUI
 
-struct IndividualData: Identifiable, Codable {
-    var id: UUID
+struct IndividualData: Identifiable, Codable, Hashable  {
+    var id: String
     var x: [Double]
     var y: [Double]
     var z: [Double]
     var keysMistyped: [Double]
-    var time: [Double]
+    var time: Double
     var type: String
+    var keysMistyped2: [String]
 }

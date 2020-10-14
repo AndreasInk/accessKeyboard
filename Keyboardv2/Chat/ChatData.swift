@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ChatData: Identifiable {
+struct ChatData: Identifiable, Hashable {
     
     var id: String
     

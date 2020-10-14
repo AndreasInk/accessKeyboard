@@ -21,22 +21,22 @@ struct ChatPermission: View {
     @State var didTap1 = false
     
     @State var didTap2 = false
-    
+    @Binding var isKeyboardOpen: Bool
     let motionManager = CMMotionManager()
     var body: some View {
         ZStack {
             BlurView(style: .systemChromeMaterial)
             VStack(alignment: .leading) {
-                ScrollView {
+             
                 Text(title)
                     .font(.headline).fontWeight(.bold)
                     .multilineTextAlignment(.leading)
-                }
-                ScrollView {
+                
+              
                 Text(message)
                     .font(.body).fontWeight(.bold)
                     .multilineTextAlignment(.leading)
-                }
+                
                 
                 HStack {
                     
@@ -47,15 +47,18 @@ struct ChatPermission: View {
                             
                         } else if self.action == "Tap" {
                             self.userData.canRememberTap.toggle()
+                           
                         } else if self.action == "Convo" {
                             self.userData.canRememberConvo.toggle()
+                            
                         } else if self.action == "Motion" {
-                           
+                            
                           
                         }
                         
                         
-                        self.userData.step =  self.userData.step + 1
+                        self.userData.step += 1
+                        print(self.userData.step )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             if self.userData.step == 1 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Would it be alright if I remember where you tap within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember where you've tapped?", step: 1))
@@ -78,6 +81,7 @@ struct ChatPermission: View {
                     } .frame(height: 50)
                     Button(action: {
                          self.didTap2.toggle()
+                        isKeyboardOpen = false
                         self.userData.step =  self.userData.step + 1
                     }) {
                         ZStack {
@@ -94,8 +98,3 @@ struct ChatPermission: View {
     }
 }
 
-struct ChatPermission_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatPermission()
-    }
-}

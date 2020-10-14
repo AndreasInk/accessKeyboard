@@ -7,30 +7,32 @@
 
 import SwiftUI
 import SwiftUICharts
+import Firebase
 struct MotionView: View {
     
-    @State var x = [Double]()
+    @Binding var x: [Double]
     
-    @State var y = [Double]()
+    @Binding var y: [Double]
     
-    @State var z = [Double]()
+    @Binding var z: [Double]
     
     @ObservedObject var motionManager = MotionManager()
     
     @State var time: Double = 0.0
     
     @State var keyMistyped: Int = 0
+    @State var step: Int = 0
     @State var keysMistyped = [Double]()
     
     @State var averageZ = 0.0
-    @State var keyNum: Int = 0
-
+    
+    @EnvironmentObject var userData: UserData
     let data = (["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
     @State var horizontal1 = (["q", "p", "l", "w", "a", "z","e", "s", "x" ]).map { "\($0)" }
     @State var horizontal2 = (["r", "d", "c", "t", "f", "v", "y", "g", "b"]).map { "\($0)" }
     @State var horizontal3 = (["u", "h", "n", "i", "j", "m", "o", "k", "backspace"]).map { "\($0)" }
     let screenSize = UIScreen.main.bounds
-    @State var text: String = ""
+    @Binding var text: String 
     let columns = [
         GridItem(.adaptive(minimum: 30))
     ]
@@ -38,15 +40,20 @@ struct MotionView: View {
         GridItem(.adaptive(minimum: 80))
     ]
     
+    @State var keyTime = [Double]()
+    
+    @Binding var isKeyboardOpen: Bool
+    
+    @Binding var keyNum: Int
+    @Binding var keyNum2: Int 
     var body: some View {
-        VStack(alignment: .center) {
-           // LineChartView(data: z, title: "Title", legend: "Legendary")
-            HStack {
-            MultiLineChartView(data: [(z, GradientColors.green), (keysMistyped, GradientColors.purple)], title: "Z")
-                
-            MultiLineChartView(data: [(x, GradientColors.blu), (keysMistyped, GradientColors.purple)], title: "X")
-            }
-                .offset(y: 200)
+        ZStack(alignment: .top) {
+            Color(.white)
+                .onTapGesture {
+                    isKeyboardOpen = false
+                    text = "Type Here"
+                }
+        
             .onAppear() {
                 let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                     time += 0.1
@@ -58,7 +65,7 @@ struct MotionView: View {
                     z.append(motionManager.z)
                     keysMistyped.append(0)
                     
-                    print(motionManager.z)
+                  //  print(motionManager.z)
                     if time == 10 {
                         let sumArray = z.reduce(0, +)
 
@@ -70,10 +77,8 @@ struct MotionView: View {
             }
             
             VStack(alignment: .center) {
-                Spacer(minLength: screenSize.height/2.5)
-                
-                TextField("Type", text: $text)
-                    .padding()
+                //
+               
                 ZStack(alignment: .center) {
                     
                     BlurView(style: .systemChromeMaterialLight)
@@ -99,59 +104,18 @@ struct MotionView: View {
                                 }
                                
                             }  .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                text += item
-                                keyNum += 1
                                 
-                                if keyNum == 1 {
-                                if item != "s" {
-                                    
-                                    keysMistyped.append(0.5)
-                                    
+                               
+                                if item == "backspace" {
+                                    if text.count > 0 {
+                                text.removeLast()
+                                        keyNum -= 1
+                                    }
+                                } else {
+                                    text += item
+                                    keyNum += 1
                                 }
-                                }
-                                if keyNum == 2 {
-                                if item != "t" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                if keyNum == 3 {
-                                if item != "e" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                if keyNum == 4 {
-                                if item != "v" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                if keyNum == 5 {
-                                if item != "e" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                if keyNum == 6 {
-                                if item != "i" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                if keyNum == 7 {
-                                if item != "n" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                if keyNum == 8 {
-                                if item != "k" {
-                                    
-                                    keysMistyped.append(0.5)
-                                }
-                                }
-                                
+                              
                             })
                             .padding()
                         }
@@ -168,7 +132,7 @@ struct MotionView: View {
                             })
                            
                     }
-                } .padding(.bottom, 82)
+                } .padding(.bottom, 22)
                
                 
     }
@@ -176,11 +140,7 @@ struct MotionView: View {
     }
 }
 
-struct MotionView_Previews: PreviewProvider {
-    static var previews: some View {
-        MotionView()
-    }
-}
+
 struct GridStack<Content: View>: View {
     let rows: Int
     let columns: Int

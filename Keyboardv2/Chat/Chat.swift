@@ -18,7 +18,7 @@ struct ChatView: View {
     
     @State var scrollOffset = 0
     
-    @State var stepCount = 0
+    @State var stepCount = -1
     
     @State var nextStep = false
     
@@ -29,6 +29,8 @@ struct ChatView: View {
     @Binding var z: [Double]
     
     @Binding var keyTime: [Double]
+    
+    @Binding var isKeyboardOpen: Bool
     var body: some View {
         ZStack {
             Color(.white)
@@ -36,7 +38,10 @@ struct ChatView: View {
             
                 Spacer()
 
-            ReverseScrollView(scrollOffset: CGFloat(self.scrollOffset), currentOffset: CGFloat(self.currentOffset)) {
+          //  ReverseScrollView(scrollOffset: CGFloat(self.scrollOffset), currentOffset: CGFloat(self.currentOffset)) {
+            ScrollView {
+                        ScrollViewReader { value in
+                            
                 VStack {
                     
                     ForEach(self.userData.chat, id: \.id) { chatting in
@@ -45,7 +50,7 @@ struct ChatView: View {
                         
                         Group {
                           
-                       
+                            
                             
                          
                        
@@ -53,18 +58,19 @@ struct ChatView: View {
                             if chatting.isView {
                                 VStack {
                                     ChatV2Cell2(name: chatting.name, message: chatting.message)
+                                        .id(chatting)
                                     
-                                    
-                                   // ChatPermission(title: chatting.viewTitle, message: chatting.viewMessage)
-                                    
+                                    ChatPermission(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
+                                        
                                    // MultiLineChartView(data: [(x, GradientColors.green), (y, GradientColors.purple), (z, GradientColors.orngPink), (keyTime, GradientColors.blu)], title: "X: g, Y: p, Z: o, keys: b")
                                     
-                                    LineChartView(data: z, title: "Title", legend: "Legendary")
+                                  //  LineChartView(data: z, title: "Title", legend: "Legendary")
                                 }
                             } else {
                             if !chatting.isMe {
                                 HStack {
                                     ChatV2Cell2(name: chatting.name, message: chatting.message)
+                                        .id(chatting)
                                    Spacer()
                                 }
                                 
@@ -73,22 +79,32 @@ struct ChatView: View {
                                 HStack {
                                     Spacer()
                                     ChatV2Cell(name: chatting.name, message: chatting.message)
+                                        .id(chatting)
                                 }
                                 
                                     }
 
                             }
                         }
-                        }
-                        } .onAppear() {
+                        .onAppear() {
                             self.stepCount += 1
+                          //  print(stepCount)
+                            withAnimation() {
+                                
+                            value.scrollTo(chatting, anchor: .top)
+                        
+                            }
+                        }
+                        
+                       
                         }
                     
-                       
+                        } 
+                }
                 }
             
             
-        }
+        } 
         
             
     }

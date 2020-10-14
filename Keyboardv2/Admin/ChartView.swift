@@ -17,10 +17,11 @@ struct ChartView: View {
     @State var keysMistyped = [Double]()
     
     var body: some View {
-        HStack {
+        VStack {
         MultiLineChartView(data: [(x, GradientColors.green), (keysMistyped, GradientColors.purple)], title: "X")
             MultiLineChartView(data: [(y, GradientColors.blu), (keysMistyped, GradientColors.purple)], title: "Y")
             MultiLineChartView(data: [(z, GradientColors.orngPink), (keysMistyped, GradientColors.purple)], title: "Z")
+           
     }
     }
 }
