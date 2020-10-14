@@ -48,11 +48,20 @@ struct MotionView2: View {
     @State var keys = [String]()
    
     @State var wait: Bool = true
+    
+    @State var calibrate: Bool = false
     var body: some View {
         ZStack {
+            if wait {
+                CalibrateView(wait: $wait, time: $time, x: $x, y: $y, z: $z, averageZ: $averageZ)
+                
+            } else {
+         
+                Color(.white)
         VStack {
             Spacer(minLength: screenSize.height/1.7)
                 .onAppear() {
+                  
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                         time += 0.1
                        //left and right
@@ -64,19 +73,10 @@ struct MotionView2: View {
                         keysMistyped.append(0)
                         
                         print(motionManager.z)
-                        if time > 5 {
-                            if time < 6 {
-                            print("ready")
-                                wait = false
-                            let sumArray = z.reduce(0, +)
-
-                            averageZ = sumArray / Double(z.count)
-                            
-                            
-                        }
-                        }
+                      
                     }
                 }
+                
                 
             TextField("Type", text: $text)
                 .padding()
@@ -152,8 +152,8 @@ struct MotionView2: View {
                           let yPos = dragGesture.location.y
                             let first = x.last
                             let second = motionManager.x
-                            let startNumber = averageZ - 0.2
-                            let endNumber = averageZ + 0.2
+                            let startNumber = averageZ - 0.12
+                            let endNumber = averageZ + 0.12
                             let numberRange = startNumber...endNumber
                        print(yPos)
                             if yPos < screenSize.height * 8/9 {
@@ -282,7 +282,7 @@ struct MotionView2: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 62)
+                } .padding(.bottom, 102)
             }
             if zoom2 {
                 Color(.blue)
@@ -306,7 +306,7 @@ struct MotionView2: View {
                             } .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
                                 text += item
                                
-                                text += item
+                               
                                
                                 x.append(motionManager.x)
                                 y.append(motionManager.y)
@@ -324,7 +324,7 @@ struct MotionView2: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 62)
+                } .padding(.bottom, 102)
             }
             if zoom3 {
                 Color(.blue)
@@ -356,7 +356,7 @@ struct MotionView2: View {
                                 }
                                 
                                 text += item
-                                zoom1.toggle()
+                                
                                 x.append(motionManager.x)
                                 y.append(motionManager.y)
                                 z.append(motionManager.z)
@@ -373,13 +373,12 @@ struct MotionView2: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 62)
+                } .padding(.bottom, 102)
             }
             
-           
-        } //.frame(height: 200)
-        if wait {
-            Color(.white)
-        }
+         //.frame(height: 200)
+       
     }
+}
+}
 }
