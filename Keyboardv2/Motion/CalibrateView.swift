@@ -46,7 +46,7 @@ struct CalibrateView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
                             .frame(height: 60)
-                            .foregroundColor(Color(.systemBlue))
+                            .foregroundColor(Color(.systemPink))
                         Text("Calibrate")
                             .font(.headline)
                             .foregroundColor(.white)
@@ -61,6 +61,7 @@ struct CalibrateView: View {
                 Text("Hold your phone in the position you normally do until this message disappears.")
                     .multilineTextAlignment(.center)
                     .font(.headline)
+                    .padding()
                 .onAppear() {
                   
                     let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in

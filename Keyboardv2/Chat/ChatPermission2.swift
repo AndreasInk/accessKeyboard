@@ -1,14 +1,14 @@
 //
-//  ChatPermission.swift
-//  Keyboard
+//  ChatPermission2.swift
+//  Keyboardv2
 //
-//  Created by Andreas Ink on 7/30/20.
-//  Copyright © 2020 2020. All rights reserved.
+//  Created by Andreas Ink on 10/14/20.
 //
 
 import SwiftUI
 import CoreMotion
-struct ChatPermission: View {
+
+struct ChatPermission2: View {
     
     @EnvironmentObject var userData: UserData
     
@@ -23,7 +23,6 @@ struct ChatPermission: View {
     @Binding var didTap1: Bool
     
     @Binding var didTap2: Bool
-    @Binding var text: String
     let motionManager = CMMotionManager()
     var body: some View {
         ZStack {
@@ -45,14 +44,13 @@ struct ChatPermission: View {
                     Button(action: {
                        
                      
-                        text = "Type Here"
-                        self.userData.canRememberConvo = true
+                        self.userData.canRememberMotion = true
+                      
                         self.userData.step += 1
                         print(self.userData.step )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             if self.userData.step == 1 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data within the app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember where you've tapped?", step: 1))
-                                
                                 
                                
                             }
@@ -80,21 +78,18 @@ struct ChatPermission: View {
                         }
                         if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
                             userData.demoKeyboards = true
-                            isKeyboardOpen = false
-                            text = "Type Here"
                         }
                     }) {
                         ZStack {
-                            Color(userData.canRememberConvo ? .systemPink : .white)
+                            Color(userData.canRememberMotion  ? .systemPink : .white)
                             Text("Yes")
-                                .foregroundColor(userData.canRememberConvo ? .white : .black)
+                                .foregroundColor(userData.canRememberMotion  ? .white : .black)
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)
                     Button(action: {
-                        userData.canRememberConvo = false
+                        userData.canRememberMotion = false
                         isKeyboardOpen = false
-                    text = "Type Here"
                         self.userData.step =  self.userData.step + 1
                     }) {
                         ZStack {

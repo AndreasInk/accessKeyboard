@@ -14,7 +14,7 @@
 		E14B3F76253674E700D2173B /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F75253674E700D2173B /* ChartView.swift */; };
 		E14B3F7A253675A400D2173B /* IndividualData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F79253675A400D2173B /* IndividualData.swift */; };
 		E159FF34252941D400F7511C /* Keyboardv2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159FF33252941D400F7511C /* Keyboardv2App.swift */; };
-		E159FF36252941D400F7511C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159FF35252941D400F7511C /* ContentView.swift */; };
+		E159FF36252941D400F7511C /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159FF35252941D400F7511C /* ContentView2.swift */; };
 		E159FF38252941D600F7511C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E159FF37252941D600F7511C /* Assets.xcassets */; };
 		E159FF3B252941D600F7511C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E159FF3A252941D600F7511C /* Preview Assets.xcassets */; };
 		E159FF4A252941FD00F7511C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159FF49252941FD00F7511C /* KeyboardViewController.swift */; };
@@ -35,7 +35,16 @@
 		E193E7012535D7FE00BE865A /* MotionView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E193E7002535D7FE00BE865A /* MotionView2.swift */; };
 		E1ABD7792534FF1C0067C3C4 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = E1ABD7782534FF1C0067C3C4 /* SwiftUICharts */; };
 		E1ABD77D253512460067C3C4 /* MotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ABD77C253512460067C3C4 /* MotionView.swift */; };
+		E1AF329E2537531300147E15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF329D2537531300147E15 /* ContentView.swift */; };
+		E1AF32A425377C6600147E15 /* Home2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF32A325377C6600147E15 /* Home2.swift */; };
+		E1AF32A82537854800147E15 /* ChatPermission2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF32A72537854800147E15 /* ChatPermission2.swift */; };
+		E1AF32AC253786D600147E15 /* ChatPermission3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF32AB253786D600147E15 /* ChatPermission3.swift */; };
+		E1AF32B025378E7200147E15 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF32AF25378E7200147E15 /* Survey.swift */; };
+		E1AF32B92537A73E00147E15 /* SurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF32B82537A73E00147E15 /* SurveyQuestion.swift */; };
 		E1B453F825367F0100670BE3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B453F725367F0100670BE3 /* GoogleService-Info.plist */; };
+		E1B4540125374F9F00670BE3 /* Ob2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B453FD25374F9E00670BE3 /* Ob2.swift */; };
+		E1B4540325374F9F00670BE3 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B453FF25374F9E00670BE3 /* Onboarding.swift */; };
+		E1B4540425374F9F00670BE3 /* Ob1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B4540025374F9E00670BE3 /* Ob1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +83,7 @@
 		E14B3F79253675A400D2173B /* IndividualData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualData.swift; sourceTree = "<group>"; };
 		E159FF30252941D400F7511C /* Keyboardv2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keyboardv2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E159FF33252941D400F7511C /* Keyboardv2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboardv2App.swift; sourceTree = "<group>"; };
-		E159FF35252941D400F7511C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E159FF35252941D400F7511C /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		E159FF37252941D600F7511C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E159FF3A252941D600F7511C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E159FF3C252941D600F7511C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,7 +105,16 @@
 		E18D1011252E062C00F347DA /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E193E7002535D7FE00BE865A /* MotionView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionView2.swift; sourceTree = "<group>"; };
 		E1ABD77C253512460067C3C4 /* MotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionView.swift; sourceTree = "<group>"; };
+		E1AF329D2537531300147E15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E1AF32A325377C6600147E15 /* Home2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home2.swift; sourceTree = "<group>"; };
+		E1AF32A72537854800147E15 /* ChatPermission2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPermission2.swift; sourceTree = "<group>"; };
+		E1AF32AB253786D600147E15 /* ChatPermission3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPermission3.swift; sourceTree = "<group>"; };
+		E1AF32AF25378E7200147E15 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		E1AF32B82537A73E00147E15 /* SurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestion.swift; sourceTree = "<group>"; };
 		E1B453F725367F0100670BE3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E1B453FD25374F9E00670BE3 /* Ob2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ob2.swift; sourceTree = "<group>"; };
+		E1B453FF25374F9E00670BE3 /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		E1B4540025374F9E00670BE3 /* Ob1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ob1.swift; sourceTree = "<group>"; };
 		FC365860786445BA92F976DE /* Pods-Keyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keyboard.release.xcconfig"; path = "Target Support Files/Pods-Keyboard/Pods-Keyboard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,7 +183,11 @@
 			isa = PBXGroup;
 			children = (
 				E159FF33252941D400F7511C /* Keyboardv2App.swift */,
+				E1AF329D2537531300147E15 /* ContentView.swift */,
 				E18D1011252E062C00F347DA /* Home.swift */,
+				E1AF32A325377C6600147E15 /* Home2.swift */,
+				E1AF32B32537A18300147E15 /* Survey */,
+				E1B4540A25374FAB00670BE3 /* Onboarding */,
 				E1B453DC25367BD600670BE3 /* Data */,
 				E1B453D725367B8F00670BE3 /* Keyboards */,
 				E1B453CE25367B7B00670BE3 /* Motion */,
@@ -205,9 +227,21 @@
 				E18D1000252E05DF00F347DA /* Chat.swift */,
 				E18D0FFF252E05DF00F347DA /* ChatCells.swift */,
 				E18D0FFE252E05DF00F347DA /* ChatPermission.swift */,
+				E1AF32A72537854800147E15 /* ChatPermission2.swift */,
+				E1AF32AB253786D600147E15 /* ChatPermission3.swift */,
 				E18D1007252E05EB00F347DA /* ChatData.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		E1AF32B32537A18300147E15 /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				E1AF32AF25378E7200147E15 /* Survey.swift */,
+				E18D1008252E05EB00F347DA /* SurveyData.swift */,
+				E1AF32B82537A73E00147E15 /* SurveyQuestion.swift */,
+			);
+			path = Survey;
 			sourceTree = "<group>";
 		};
 		E1B453CB25367B6F00670BE3 /* Admin */ = {
@@ -216,7 +250,6 @@
 				E14B3F712536743200D2173B /* Admin.swift */,
 				E14B3F79253675A400D2173B /* IndividualData.swift */,
 				E14B3F75253674E700D2173B /* ChartView.swift */,
-				E18D1008252E05EB00F347DA /* SurveyData.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -235,7 +268,7 @@
 		E1B453D725367B8F00670BE3 /* Keyboards */ = {
 			isa = PBXGroup;
 			children = (
-				E159FF35252941D400F7511C /* ContentView.swift */,
+				E159FF35252941D400F7511C /* ContentView2.swift */,
 				E18D0FF6252D304B00F347DA /* Hybrid.swift */,
 				E18D0FF2252D2A6A00F347DA /* Keyboard2.swift */,
 			);
@@ -250,6 +283,16 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		E1B4540A25374FAB00670BE3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				E1B453FF25374F9E00670BE3 /* Onboarding.swift */,
+				E1B4540025374F9E00670BE3 /* Ob1.swift */,
+				E1B453FD25374F9E00670BE3 /* Ob2.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -262,7 +305,7 @@
 				E159FF2D252941D400F7511C /* Frameworks */,
 				E159FF2E252941D400F7511C /* Resources */,
 				E159FF52252941FD00F7511C /* Embed App Extensions */,
-				96DCCCAA4FB0AA23EBE207D8 /* [CP] Embed Pods Frameworks */,
+				891792205E5CBB51A46A9A1A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,7 +420,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		96DCCCAA4FB0AA23EBE207D8 /* [CP] Embed Pods Frameworks */ = {
+		891792205E5CBB51A46A9A1A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -425,14 +468,21 @@
 			files = (
 				E18D1002252E05DF00F347DA /* ChatCells.swift in Sources */,
 				E18D1001252E05DF00F347DA /* ChatPermission.swift in Sources */,
-				E159FF36252941D400F7511C /* ContentView.swift in Sources */,
+				E159FF36252941D400F7511C /* ContentView2.swift in Sources */,
+				E1AF32A82537854800147E15 /* ChatPermission2.swift in Sources */,
+				E1B4540325374F9F00670BE3 /* Onboarding.swift in Sources */,
 				E18D100A252E05EB00F347DA /* ChatData.swift in Sources */,
 				E18D0FF7252D304B00F347DA /* Hybrid.swift in Sources */,
+				E1B4540125374F9F00670BE3 /* Ob2.swift in Sources */,
 				E193E7012535D7FE00BE865A /* MotionView2.swift in Sources */,
 				E18D100B252E05EB00F347DA /* SurveyData.swift in Sources */,
 				E1817824252F9A0200724F23 /* UserData.swift in Sources */,
+				E1AF32A425377C6600147E15 /* Home2.swift in Sources */,
 				E18D0FFB252D375D00F347DA /* CoreMotion.swift in Sources */,
+				E1AF32B92537A73E00147E15 /* SurveyQuestion.swift in Sources */,
+				E1AF32B025378E7200147E15 /* Survey.swift in Sources */,
 				E18D1003252E05DF00F347DA /* Chat.swift in Sources */,
+				E1AF329E2537531300147E15 /* ContentView.swift in Sources */,
 				E14B3F76253674E700D2173B /* ChartView.swift in Sources */,
 				E1ABD77D253512460067C3C4 /* MotionView.swift in Sources */,
 				E18D0FF3252D2A6A00F347DA /* Keyboard2.swift in Sources */,
@@ -440,6 +490,8 @@
 				E14B3F7A253675A400D2173B /* IndividualData.swift in Sources */,
 				E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */,
 				E159FF34252941D400F7511C /* Keyboardv2App.swift in Sources */,
+				E1AF32AC253786D600147E15 /* ChatPermission3.swift in Sources */,
+				E1B4540425374F9F00670BE3 /* Ob1.swift in Sources */,
 				E14B3F722536743200D2173B /* Admin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

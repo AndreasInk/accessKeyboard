@@ -37,10 +37,13 @@ final class UserData: ObservableObject {
     var isKeyboardOpen: Bool = false
     
     @Published(key: "canRememberConvo")
-    var canRememberConvo: Bool = true
+    var canRememberConvo: Bool = false
     
      @Published(key: "canRememberTap")
-    var canRememberTap: Bool = true
+    var canRememberTap: Bool = false
+    
+    @Published(key: "canRememberMotion")
+   var canRememberMotion: Bool = false
     
      @Published
     var chat = [ChatData(id: "\(UUID())", name: "Bot_Name", message: "Hey, I'm Bot_Name! What's your name?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: -1) ]
@@ -50,6 +53,9 @@ final class UserData: ObservableObject {
     
     @Published
     var hasData: Bool = false
+    
+    @Published
+    var demoKeyboards: Bool = false
     
     @Published
     var intentedWord: String = ""

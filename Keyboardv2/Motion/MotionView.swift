@@ -48,17 +48,21 @@ struct MotionView: View {
     @Binding var keyNum2: Int
     @Binding var keysMistyped: [Double]
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .bottom) {
             Color(.white)
                 .onTapGesture {
                     isKeyboardOpen = false
                     text = "Type Here"
                 }
-        
+            if userData.canRememberMotion {
+                Color(.white)
             .onAppear() {
-                let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                
+                _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                   
                     time += 0.1
                    //left and right
+                    
                     x.append(motionManager.x)
                     //diagonal
                     y.append(motionManager.y)
@@ -67,7 +71,7 @@ struct MotionView: View {
                     
                     keysMistyped.append(0)
                     
-                  //  print(motionManager.z)
+                    print(motionManager.z)
                     if time == 10 {
                         let sumArray = z.reduce(0, +)
 
@@ -76,15 +80,25 @@ struct MotionView: View {
                         
                     }
                 }
+                }
+            } else {
+                Color(.white)
+            .onAppear() {
+                
+               print("NOPE")
+                }
             }
+        
+            
             
             VStack(alignment: .center) {
                 //
                
-                ZStack(alignment: .center) {
+                ZStack(alignment: .bottom) {
                     
-                    BlurView(style: .systemChromeMaterialLight)
-                  
+                    BlurView(style: .systemThickMaterial)
+                        .frame(width: screenSize.width, height: screenSize.height/2, alignment: .center)
+                   
                     VStack(alignment: .center) {
                         
                     LazyVGrid(columns: columns, spacing: 0) {
@@ -132,9 +146,9 @@ struct MotionView: View {
                             .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
                                 text += " "
                             })
-                           
+                            .padding(.bottom, 22)
                     }
-                } .padding(.bottom, 22)
+                } 
                
                 
     }

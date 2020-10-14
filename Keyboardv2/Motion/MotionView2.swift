@@ -11,78 +11,94 @@ import SwiftUI
 import CoreMotion
 
 struct MotionView2: View {
-    let data = (["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
-    @State var horizontal1 = (["q", "p", "l", "w", "a", "z","e", "s", "x" ]).map { "\($0)" }
-    @State var horizontal2 = (["r", "d", "c", "t", "f", "v", "y", "g", "b"]).map { "\($0)" }
-    @State var horizontal3 = (["u", "h", "n", "i", "j", "m", "o", "k", "backspace"]).map { "\($0)" }
+    
+    @Binding var x: [Double]
+    
+    @Binding var y: [Double]
+    
+    @Binding var z: [Double]
+    
+    @ObservedObject var motionManager = MotionManager()
+    
+    @State var time: Double = 0.0
+    
+    @State var keyMistyped: Int = 0
+    @State var step: Int = 0
+   
+    
+    @State var averageZ = 0.0
+    
+    @EnvironmentObject var userData: UserData
+   
     let screenSize = UIScreen.main.bounds
+    @Binding var text: String
     let columns = [
         GridItem(.adaptive(minimum: 30))
     ]
     let columns1 = [
-        GridItem(.adaptive(minimum: 80))
+        GridItem(.adaptive(minimum: 100))
     ]
+    
+    @State var keyTime = [Double]()
+    
+    @Binding var isKeyboardOpen: Bool
+    
+    @Binding var keyNum: Int
+    @Binding var keyNum2: Int
+    @Binding var keysMistyped: [Double]
+    
+    let data = (["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
+    @State var horizontal1 = (["q", "p", "l", "w", "a", "z","e", "s", "x" ]).map { "\($0)" }
+    @State var horizontal2 = (["r", "d", "c", "t", "f", "v", "y", "g", "b"]).map { "\($0)" }
+    @State var horizontal3 = (["u", "h", "n", "i", "j", "m", "o", "k", "backspace"]).map { "\($0)" }
+
     @State var zoom1: Bool = false
     @State var zoom2: Bool = false
     @State var zoom3: Bool = false
-    @State var text: String = ""
+  
     @State var key: String = ""
-    @State var time: Double = 0.0
-    
-    @State var x = [Double]()
-    
-    @State var y = [Double]()
-    
-    @State var z = [Double]()
-    
-    @ObservedObject var motionManager = MotionManager()
-    
-    
-    
-    @State var keyMistyped: Int = 0
-    @State var keysMistyped = [Double]()
-    
-    @State var averageZ = 0.0
-    @State var keyNum: Int = 0
+
+   
     
     @State var keys = [String]()
    
-    @State var wait: Bool = true
+    @Binding var wait: Bool 
     
     @State var calibrate: Bool = false
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             if wait {
                 CalibrateView(wait: $wait, time: $time, x: $x, y: $y, z: $z, averageZ: $averageZ)
                 
             } else {
          
                 Color(.white)
-        VStack {
-            Spacer(minLength: screenSize.height/1.7)
-                .onAppear() {
-                  
-                    let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                        time += 0.1
-                       //left and right
-                        x.append(motionManager.x)
-                        //diagonal
-                        y.append(motionManager.y)
-                        //up and down
-                        z.append(motionManager.z)
-                        keysMistyped.append(0)
-                        
-                        print(motionManager.z)
-                      
+                    .onAppear() {
+                       
+                        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                            time += 0.1
+                           //left and right
+                            x.append(motionManager.x)
+                            //diagonal
+                            y.append(motionManager.y)
+                            //up and down
+                            z.append(motionManager.z)
+                            keysMistyped.append(0)
+                            
+                            print(motionManager.z)
+                          
+                        }
                     }
-                }
+        VStack {
+          //  Spacer(minLength: screenSize.height/1.7)
                 
                 
-            TextField("Type", text: $text)
-                .padding()
-            ZStack {
+        
+            ZStack(alignment: .bottom) {
                 
-                BlurView(style: .systemChromeMaterialLight)
+                BlurView(style: .systemThickMaterial)
+                    .frame(width: screenSize.width, height: screenSize.height/2.3, alignment: .center)
+               
                     .simultaneousGesture( DragGesture(minimumDistance: 0, coordinateSpace: .global).onEnded { dragGesture in
                        
                        let xPos = dragGesture.location.x
@@ -223,13 +239,13 @@ struct MotionView2: View {
                 .padding()
                     Color(.white)
                         .frame(width: screenSize.width/1.1, height: 50)
-                        .padding(.bottom, 82)
+                       
                         .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
                             text += " "
                         })
                        
                 }
-            } .padding(.bottom, 62)
+            } .padding(.bottom, 22)
             .onTapGesture {
                 let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                     time += 0.1
@@ -245,7 +261,9 @@ struct MotionView2: View {
               
             }
             if zoom1 {
-                Color(.blue)
+                Image("background")
+                    
+                    .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
                     .onTapGesture() {
                         zoom1.toggle()
                     }
@@ -282,10 +300,12 @@ struct MotionView2: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 102)
+                } .padding(.bottom, 200)
             }
             if zoom2 {
-                Color(.blue)
+                Image("background")
+                    
+                    .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
                     .onTapGesture() {
                         zoom2.toggle()
                     }
@@ -324,10 +344,12 @@ struct MotionView2: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 102)
+                } .padding(.bottom, 200)
             }
             if zoom3 {
-                Color(.blue)
+                Image("background")
+                    
+                    .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
                     .onTapGesture() {
                         zoom3.toggle()
                     }
@@ -373,7 +395,7 @@ struct MotionView2: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 102)
+                } .padding(.bottom, 200)
             }
             
          //.frame(height: 200)

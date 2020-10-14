@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreMotion
-struct ContentView: View {
+struct ContentView2: View {
     @EnvironmentObject var userData: UserData
     
     let data = (["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
@@ -424,7 +424,7 @@ struct VibrancyView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<VibrancyView>) {
     }
 }
-struct ContentView2: View {
+struct ContentView3: View {
     
     @State var x = ""
     

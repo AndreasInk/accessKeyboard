@@ -1,14 +1,13 @@
 //
-//  Home.swift
+//  Home2.swift
 //  Keyboardv2
 //
-//  Created by Andreas Ink on 10/7/20.
+//  Created by Andreas Ink on 10/14/20.
 //
 
 import SwiftUI
 import Firebase
-
-struct Home: View {
+struct Home2: View {
     let screenSize = UIScreen.main.bounds
     @State var zoomed: Bool = false
     @State var isKeyboardOpen: Bool = false
@@ -36,6 +35,7 @@ struct Home: View {
     @State var intentedKeys = [String]()
     @State var keyNum: Int = 0
     @State var keyNum2: Int = 0
+    @State var wait: Bool = true
     
     @Binding var didTap1: Bool
     
@@ -52,7 +52,9 @@ struct Home: View {
                      timeReg = defaults.double(forKey: "timeReg")
                 }
                 .onAppear() {
-                   
+                    self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
+                    self.userData.intentedWord = "hello"
+                    self.userData.step = 9
             }
            
             VStack {
@@ -130,43 +132,29 @@ struct Home: View {
                                 
                         }
                                             
-                            
+                        
                         self.userData.step =  self.userData.step + 1
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            if self.userData.step == 1 {
-                                isKeyboardOpen = false
-                               // self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "", isMe: false, isView: true, viewMessage: "keys: \(keys) " + "new \(timeNew) " + "reg \(timeReg) ", viewTitle: " x: \(x) " + "y: \(y) " + "z: \(z) ", step: 2))
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Would it be alright if I remember where you tap?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember where you've tapped?", step: 1))
-                                
-                            }
-                            if self.userData.step == 2 {
+                            if self.userData.step == 9 {
                                
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember this conversation so we can improve?", isMe: false, isView: true, viewMessage: "We do this to see how accurate you type.", viewTitle: "Allow ChatBot_Name to remember this conversation?", step: 2))
-                            }
-                            if self.userData.step == 3 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
-                                self.userData.intentedWord = "hello"
-                            }
-                            if self.userData.step == 4 {
+                                
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
-                                self.userData.intentedWord = "where are you"
+                                self.userData.intentedWord = "Where are you"
                             }
-                            if self.userData.step == 5 {
+                            if self.userData.step == 10 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  i will be there in ten mins", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 5))
                                 self.userData.intentedWord = "i will be there in ten mins"
                             }
-                            if self.userData.step == 6 {
+                            if self.userData.step == 11 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "how are you"
                             }
-                            if self.userData.step == 7 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                            if self.userData.step == 12 {
+                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  Thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "thanks"
                             }
-                            if self.userData.step == 8 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: true, viewMessage: "", viewTitle: "Try out demo keyboards?", step: 6))
-                                self.userData.intentedWord = "thanks"
-                            }
+                           
 
                         }
                         if isKeyboardOpen {
@@ -179,48 +167,20 @@ struct Home: View {
                 }
             if isKeyboardOpen {
                
-               
+                   
+                VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped)
+                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }
             
             }
-              
+               
             }
             }
          
         
            
         }
-
-
-
-
-extension String {
-
-    var length: Int {
-        return count
     }
-
-    subscript (i: Int) -> String {
-        return self[i ..< i + 1]
-    }
-
-    func substring(fromIndex: Int) -> String {
-        return self[min(fromIndex, length) ..< length]
-    }
-
-    func substring(toIndex: Int) -> String {
-        return self[0 ..< max(0, toIndex)]
-    }
-
-    subscript (r: Range<Int>) -> String {
-        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
-                                            upper: min(length, max(0, r.upperBound))))
-        let start = index(startIndex, offsetBy: range.lowerBound)
-        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return String(self[start ..< end])
-    }
-}

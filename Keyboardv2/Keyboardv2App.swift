@@ -17,11 +17,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct Keyboardv2App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
-    
-            Admin()
-                .environmentObject(UserData.shared)
+            Survey()
+            .environmentObject(UserData.shared)
         }
     }
 }
