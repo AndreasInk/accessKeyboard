@@ -83,6 +83,9 @@ struct ChatPermission: View {
                             isKeyboardOpen = false
                             text = "Type Here"
                         }
+                        if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
+                            userData.survey = true
+                        }
                     }) {
                         ZStack {
                             Color(userData.canRememberConvo ? .systemPink : .white)

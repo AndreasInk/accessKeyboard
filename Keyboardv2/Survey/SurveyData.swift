@@ -8,16 +8,18 @@
 
 import SwiftUI
 
-struct SurveyData: Identifiable, Codable, Hashable  {
+struct SurveyData: Identifiable  {
     var id: String
     var questions: [String]
     var ratings: [Int]
+    
     
 }
 struct Row: Identifiable  {
     var id: String
     var rating: Int
     var isRated: Bool
+    var num: Int
    
     
 }

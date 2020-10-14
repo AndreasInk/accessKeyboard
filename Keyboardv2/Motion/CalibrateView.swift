@@ -33,7 +33,7 @@ struct CalibrateView: View {
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .padding()
-                Text("Hold your phone in the position you normally do.")
+                Text("Hold your phone in the position you normally do.  When finished if you tremor when tapping on a key the keyboard will zoom in on the section of the keyboard you tapped.")
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
                     .padding()

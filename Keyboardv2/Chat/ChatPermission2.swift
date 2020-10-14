@@ -79,6 +79,9 @@ struct ChatPermission2: View {
                         if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
                             userData.demoKeyboards = true
                         }
+                        if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
+                            userData.survey = true
+                        }
                     }) {
                         ZStack {
                             Color(userData.canRememberMotion  ? .systemPink : .white)
@@ -93,9 +96,9 @@ struct ChatPermission2: View {
                         self.userData.step =  self.userData.step + 1
                     }) {
                         ZStack {
-                            Color( userData.canRememberConvo ? .white : .systemPink)
+                            Color( userData.canRememberMotion ? .white : .systemPink)
                             Text("No")
-                                .foregroundColor( userData.canRememberConvo ? .black : .white)
+                                .foregroundColor( userData.canRememberMotion ? .black : .white)
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)

@@ -62,6 +62,9 @@ final class UserData: ObservableObject {
 
     @Published
     var timeStamp: String = ""
+    
+    @Published
+    var survey: Bool = false
 }
 
 import Foundation

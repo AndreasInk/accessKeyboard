@@ -15,13 +15,11 @@ struct Survey: View {
     @State var complete: Bool = false
     @State var animate: Bool = false
     @EnvironmentObject var userData: UserData
-    @State var surveyData = [SurveyData]()
+    @State var surveyData = SurveyData(id: UUID().uuidString, questions: ["How would you rate your overall experience with this app?", "How would you rate your experience with the first keyboard?", "How would you rate your experience with the second/zoom keyboard?"], ratings: [0])
     var body: some View {
         ZStack {
             Color(.white)
-                .onAppear() {
-                    surveyData.append()
-                }
+                
         if next == 0 {
             SurveyQuestion(next: $next)
                
@@ -30,6 +28,16 @@ struct Survey: View {
             SurveyQuestion(next: $next)
                 
         } else if next == 2 {
+            SurveyQuestion(next: $next)
+                
+        } else if next == 3 {
+            SurveyQuestion(next: $next)
+                
+        }
+         else if next == 4 {
+            SurveyQuestion(next: $next)
+                
+        } else if next == 5 {
             SurveyQuestion(next: $next)
                 
         }

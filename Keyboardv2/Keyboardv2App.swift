@@ -20,7 +20,7 @@ struct Keyboardv2App: App {
     
     var body: some Scene {
         WindowGroup {
-            Survey()
+            ResultsView()
             .environmentObject(UserData.shared)
         }
     }

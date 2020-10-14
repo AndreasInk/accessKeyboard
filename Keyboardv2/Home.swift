@@ -162,10 +162,12 @@ struct Home: View {
                             if self.userData.step == 7 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "thanks"
+                               
                             }
                             if self.userData.step == 8 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: true, viewMessage: "", viewTitle: "Try out demo keyboards?", step: 6))
                                 self.userData.intentedWord = "thanks"
+                                isKeyboardOpen = false
                             }
 
                         }

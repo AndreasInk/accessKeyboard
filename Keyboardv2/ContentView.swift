@@ -52,14 +52,10 @@ struct ContentView: View {
         Onboarding()
             .environmentObject(UserData.shared)
     }
-          
-           
+            if userData.survey {
+           Survey()
     }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
 }

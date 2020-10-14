@@ -79,6 +79,9 @@ struct ChatPermission3: View {
                         if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
                             userData.demoKeyboards = true
                         }
+                        if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
+                            userData.survey = true
+                        }
                     }) {
                         ZStack {
                             Color(userData.demoKeyboards  ? .systemPink : .white)

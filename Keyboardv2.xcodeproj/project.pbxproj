@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		65817576B58C2FEF8E7AA5A0 /* Pods_Keyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F94CF27B8166D79441D0634 /* Pods_Keyboard.framework */; };
 		822D9DDCE7516470939E9F7A /* Pods_Keyboardv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A81A36E230206B006E5E0FC /* Pods_Keyboardv2.framework */; };
+		E10A64522537BF8B00069640 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64512537BF8B00069640 /* ResultsView.swift */; };
+		E10A645F2537BFBE00069640 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64552537BFBE00069640 /* Helpers.swift */; };
+		E10A64602537BFBE00069640 /* IndicatorPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64572537BFBE00069640 /* IndicatorPoint.swift */; };
+		E10A64612537BFBE00069640 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64582537BFBE00069640 /* LineView.swift */; };
+		E10A64622537BFBE00069640 /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64592537BFBE00069640 /* Legend.swift */; };
+		E10A64632537BFBE00069640 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645A2537BFBE00069640 /* LineChartView.swift */; };
+		E10A64642537BFBE00069640 /* MagnifierRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645B2537BFBE00069640 /* MagnifierRect.swift */; };
+		E10A64652537BFBE00069640 /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645C2537BFBE00069640 /* Path+QuadCurve.swift */; };
+		E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645D2537BFBE00069640 /* MultiLineChartView.swift */; };
+		E10A64672537BFBE00069640 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645E2537BFBE00069640 /* Line.swift */; };
 		E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F6D2536248B00D2173B /* CalibrateView.swift */; };
 		E14B3F722536743200D2173B /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F712536743200D2173B /* Admin.swift */; };
 		E14B3F76253674E700D2173B /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F75253674E700D2173B /* ChartView.swift */; };
@@ -77,6 +87,16 @@
 		3BF95FDB472506E1043957CE /* Pods-Keyboardv2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keyboardv2.debug.xcconfig"; path = "Target Support Files/Pods-Keyboardv2/Pods-Keyboardv2.debug.xcconfig"; sourceTree = "<group>"; };
 		553004EDAE6255BE62DFD2DC /* Pods-Keyboardv2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keyboardv2.release.xcconfig"; path = "Target Support Files/Pods-Keyboardv2/Pods-Keyboardv2.release.xcconfig"; sourceTree = "<group>"; };
 		DB36E228A51435BB415DB4D9 /* Pods-Keyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keyboard.debug.xcconfig"; path = "Target Support Files/Pods-Keyboard/Pods-Keyboard.debug.xcconfig"; sourceTree = "<group>"; };
+		E10A64512537BF8B00069640 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		E10A64552537BFBE00069640 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		E10A64572537BFBE00069640 /* IndicatorPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorPoint.swift; sourceTree = "<group>"; };
+		E10A64582537BFBE00069640 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		E10A64592537BFBE00069640 /* Legend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
+		E10A645A2537BFBE00069640 /* LineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		E10A645B2537BFBE00069640 /* MagnifierRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnifierRect.swift; sourceTree = "<group>"; };
+		E10A645C2537BFBE00069640 /* Path+QuadCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
+		E10A645D2537BFBE00069640 /* MultiLineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
+		E10A645E2537BFBE00069640 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		E14B3F6D2536248B00D2173B /* CalibrateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateView.swift; sourceTree = "<group>"; };
 		E14B3F712536743200D2173B /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		E14B3F75253674E700D2173B /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -159,6 +179,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E10A64562537BFBE00069640 /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				E10A64552537BFBE00069640 /* Helpers.swift */,
+				E10A64572537BFBE00069640 /* IndicatorPoint.swift */,
+				E10A64582537BFBE00069640 /* LineView.swift */,
+				E10A64592537BFBE00069640 /* Legend.swift */,
+				E10A645A2537BFBE00069640 /* LineChartView.swift */,
+				E10A645B2537BFBE00069640 /* MagnifierRect.swift */,
+				E10A645C2537BFBE00069640 /* Path+QuadCurve.swift */,
+				E10A645D2537BFBE00069640 /* MultiLineChartView.swift */,
+				E10A645E2537BFBE00069640 /* Line.swift */,
+			);
+			path = LineChart;
+			sourceTree = "<group>";
+		};
 		E159FF27252941D400F7511C = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +222,7 @@
 				E1AF329D2537531300147E15 /* ContentView.swift */,
 				E18D1011252E062C00F347DA /* Home.swift */,
 				E1AF32A325377C6600147E15 /* Home2.swift */,
+				E10A64562537BFBE00069640 /* LineChart */,
 				E1AF32B32537A18300147E15 /* Survey */,
 				E1B4540A25374FAB00670BE3 /* Onboarding */,
 				E1B453DC25367BD600670BE3 /* Data */,
@@ -240,6 +277,7 @@
 				E1AF32AF25378E7200147E15 /* Survey.swift */,
 				E18D1008252E05EB00F347DA /* SurveyData.swift */,
 				E1AF32B82537A73E00147E15 /* SurveyQuestion.swift */,
+				E10A64512537BF8B00069640 /* ResultsView.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -468,29 +506,39 @@
 			files = (
 				E18D1002252E05DF00F347DA /* ChatCells.swift in Sources */,
 				E18D1001252E05DF00F347DA /* ChatPermission.swift in Sources */,
+				E10A64632537BFBE00069640 /* LineChartView.swift in Sources */,
 				E159FF36252941D400F7511C /* ContentView2.swift in Sources */,
 				E1AF32A82537854800147E15 /* ChatPermission2.swift in Sources */,
 				E1B4540325374F9F00670BE3 /* Onboarding.swift in Sources */,
+				E10A64642537BFBE00069640 /* MagnifierRect.swift in Sources */,
+				E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */,
 				E18D100A252E05EB00F347DA /* ChatData.swift in Sources */,
 				E18D0FF7252D304B00F347DA /* Hybrid.swift in Sources */,
 				E1B4540125374F9F00670BE3 /* Ob2.swift in Sources */,
+				E10A645F2537BFBE00069640 /* Helpers.swift in Sources */,
 				E193E7012535D7FE00BE865A /* MotionView2.swift in Sources */,
 				E18D100B252E05EB00F347DA /* SurveyData.swift in Sources */,
 				E1817824252F9A0200724F23 /* UserData.swift in Sources */,
 				E1AF32A425377C6600147E15 /* Home2.swift in Sources */,
+				E10A64612537BFBE00069640 /* LineView.swift in Sources */,
 				E18D0FFB252D375D00F347DA /* CoreMotion.swift in Sources */,
+				E10A64602537BFBE00069640 /* IndicatorPoint.swift in Sources */,
 				E1AF32B92537A73E00147E15 /* SurveyQuestion.swift in Sources */,
 				E1AF32B025378E7200147E15 /* Survey.swift in Sources */,
 				E18D1003252E05DF00F347DA /* Chat.swift in Sources */,
 				E1AF329E2537531300147E15 /* ContentView.swift in Sources */,
 				E14B3F76253674E700D2173B /* ChartView.swift in Sources */,
 				E1ABD77D253512460067C3C4 /* MotionView.swift in Sources */,
+				E10A64622537BFBE00069640 /* Legend.swift in Sources */,
+				E10A64652537BFBE00069640 /* Path+QuadCurve.swift in Sources */,
 				E18D0FF3252D2A6A00F347DA /* Keyboard2.swift in Sources */,
 				E18D1012252E062C00F347DA /* Home.swift in Sources */,
 				E14B3F7A253675A400D2173B /* IndividualData.swift in Sources */,
+				E10A64672537BFBE00069640 /* Line.swift in Sources */,
 				E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */,
 				E159FF34252941D400F7511C /* Keyboardv2App.swift in Sources */,
 				E1AF32AC253786D600147E15 /* ChatPermission3.swift in Sources */,
+				E10A64522537BF8B00069640 /* ResultsView.swift in Sources */,
 				E1B4540425374F9F00670BE3 /* Ob1.swift in Sources */,
 				E14B3F722536743200D2173B /* Admin.swift in Sources */,
 			);
