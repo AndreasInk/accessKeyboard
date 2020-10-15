@@ -38,7 +38,7 @@ struct ResultsView: View {
                     
                         
                 
-                        BarChartView(data: ChartData(values: [(keyStrings2[0], keyStringsCount[0]), (keyStrings2[1], keyStringsCount[1]), (keyStrings2[2], keyStringsCount[2]), (keyStrings2[3], keyStringsCount[3]),(keyStrings2[4], keyStringsCount[4])]), title: "Mistyped Keys", legend: "Quarterly", form: CGSize(width: 320, height: 320))
+                        BarChartView(data: ChartData(values: [(keyStrings2[0], keyStringsCount[0]), (keyStrings2[1], keyStringsCount[1]), (keyStrings2[2], keyStringsCount[2])]), title: "Mistyped Keys", legend: "Quarterly", form: CGSize(width: 320, height: 320))
                             .padding()
                         Text("Below are some of the community's accuracy data, the orange lines are the community's mistaps and the other lines are the x, y, and z accelerations")
                             .font(.headline)
@@ -46,10 +46,10 @@ struct ResultsView: View {
                             .padding()
                         ForEach(data){ data in
                             
-                            Text("Time: \(data.time)")
-                                .font(.subheadline)
-                            Text("Type: \(data.type)")
-                                .font(.subheadline)
+                           // Text("Time: \(data.time)")
+                               // .font(.subheadline)
+                          //  Text("Type: \(data.type)")
+                             //   .font(.subheadline)
                             MultiLineChartView(data: [(data.x, GradientColors.green), (data.keysMistyped, GradientColors.orngPink)], title: "X Acceleration")
                                 .padding()
                             MultiLineChartView(data: [(data.y, GradientColors.blu), (data.keysMistyped, GradientColors.orngPink)], title: "Y Acceleration")
@@ -64,7 +64,12 @@ struct ResultsView: View {
                         }
             }
                 }
-        }
+            } else {
+                Text("Insufficient data")
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
             } else {
                 VStack {
                 Text("Thank You!")
@@ -132,15 +137,16 @@ struct ResultsView: View {
                         
                             
                                 keyStringsCount.append(key.value)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                hasData = true
+                                }
                         }
                            
                         
                         }
                     print(keyStrings.freq())
                    
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                hasData = true
-                }
+              
                 
             }
                

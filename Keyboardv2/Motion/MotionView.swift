@@ -104,6 +104,19 @@ struct MotionView: View {
                         
                     LazyVGrid(columns: columns, spacing: 0) {
                         ForEach(data, id: \.self) { item in
+                            Button(action: {
+                                
+                                 if item == "backspace" {
+                                     if text.count > 0 {
+                                 text.removeLast()
+                                         keyNum -= 1
+                                     }
+                                 } else {
+                                     text += item
+                                     keyNum += 1
+                                 }
+                            }) {
+                               
                             ZStack(alignment: .center) {
                                 
                                 if item != "backspace" {
@@ -112,28 +125,17 @@ struct MotionView: View {
                                             .frame(width: screenSize.width/11, height: screenSize.width/8, alignment: .center)
                                         Text(item)
                                             .font(.headline)
+                                            
+                                    .foregroundColor(.black)
                                     }
                                 }
                                 if item == "backspace" {
-                                    Color(.white)
-                                        .frame(width: screenSize.height/15, height: screenSize.height/14, alignment: .center)
-                                        .padding(.leading)
+                                   // Color(.white)
+                                       // .frame(width: screenSize.height/15, height: screenSize.height/14, alignment: .center)
+                                        //.padding(.leading)
                                 }
-                               
-                            }  .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                
-                               
-                                if item == "backspace" {
-                                    if text.count > 0 {
-                                text.removeLast()
-                                        keyNum -= 1
-                                    }
-                                } else {
-                                    text += item
-                                    keyNum += 1
-                                }
-                              
-                            })
+                            }
+                            }
                             .padding()
                         }
                         
@@ -142,16 +144,18 @@ struct MotionView: View {
                     }
                     
                     .padding()
+                        Button(action: {
+                            text += " "
+                        }) {
                         Color(.white)
                             .frame(width: screenSize.width/1.1, height: 50)
-                            .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                text += " "
-                            })
+
                             .padding(.bottom, 22)
+                                
                     }
                 } 
                
-                
+                }
     }
         }
     }

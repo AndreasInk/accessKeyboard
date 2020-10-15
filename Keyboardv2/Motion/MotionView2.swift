@@ -145,6 +145,9 @@ struct MotionView2: View {
                     
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(data, id: \.self) { item in
+                        Button(action: {
+                            print(item)
+                        }) {
                         ZStack {
                             
                             if item != "backspace" {
@@ -153,14 +156,16 @@ struct MotionView2: View {
                                         .frame(width: screenSize.width/11, height: screenSize.width/8, alignment: .center)
                                     Text(item)
                                         .font(.headline)
+                                        .foregroundColor(.black)
                                 }
                             }
                             if item == "backspace" {
-                                Color(.white)
-                                    .frame(width: screenSize.width/9, height: screenSize.width/8, alignment: .center)
-                                    .padding(.leading)
+                              //  Color(.white)
+                                 //   .frame(width: screenSize.width/9, height: screenSize.width/8, alignment: .center)
+                                   // .padding(.leading)
                             }
                            
+                        }
                         }
                         
                         .simultaneousGesture( DragGesture(minimumDistance: 0, coordinateSpace: .global).onEnded { dragGesture in
@@ -238,13 +243,16 @@ struct MotionView2: View {
                    
                 }
                 .padding()
+                    Button(action: {
+                        text += " "
+                    }) {
                     Color(.white)
                         .frame(width: screenSize.width/1.1, height: 50)
                        
                         .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                            text += " "
+                          
                         })
-                       
+                    }
                 }
             } .padding(.bottom, 22)
             .onTapGesture {
@@ -273,16 +281,7 @@ struct MotionView2: View {
                        
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal1, id: \.self) { item in
-                            ZStack {
-                                
-                                    Color(.white)
-                                        .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
-                                    Text(item)
-                                        .font(.title)
-                                        .foregroundColor(.black)
-                                
-                                
-                            } .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
+                            Button(action: {
                                 text += item
                                 
                                 x.append(motionManager.x)
@@ -292,7 +291,18 @@ struct MotionView2: View {
                                 print(keys)
                                 print(x)
                                 zoom1.toggle()
-                            })
+                            }) {
+                            ZStack {
+                                
+                                    Color(.white)
+                                        .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                    Text(item)
+                                        .font(.title)
+                                        .foregroundColor(.black)
+                                
+                                
+                            }
+                            
                             .padding()
                         }
                         
@@ -302,6 +312,7 @@ struct MotionView2: View {
                 .padding()
                    
                 } .padding(.bottom, 200)
+            }
             }
             if zoom2 {
                 Image("background")
@@ -315,16 +326,7 @@ struct MotionView2: View {
                        
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal2, id: \.self) { item in
-                            ZStack {
-                               
-                                    Color(.white)
-                                        .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
-                                    Text(item)
-                                        .font(.title)
-                                        .foregroundColor(.black)
-                                
-                                
-                            } .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
+                            Button(action: {
                                 text += item
                                
                                
@@ -336,7 +338,20 @@ struct MotionView2: View {
                                 print(keys)
                                 print(x)
                                 zoom2.toggle()
-                            })
+                            }) {
+                            ZStack {
+                               
+                                    Color(.white)
+                                        .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                    Text(item)
+                                        .font(.title)
+                                        .foregroundColor(.black)
+                                
+                                
+                            }
+                            }
+                                
+                            
                             .padding()
                         }
                         
@@ -347,6 +362,7 @@ struct MotionView2: View {
                    
                 } .padding(.bottom, 200)
             }
+            
             if zoom3 {
                 Image("background")
                     
@@ -359,6 +375,25 @@ struct MotionView2: View {
                        
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal3, id: \.self) { item in
+                            Button(action: {
+                                if item == "backspace" {
+                                    if text.count > 0 {
+                                text.removeLast()
+                                    }
+                                } else {
+                                    text += item
+                                }
+                                
+                                
+                                
+                                x.append(motionManager.x)
+                                y.append(motionManager.y)
+                                z.append(motionManager.z)
+                                keys.append(item)
+                                print(keys)
+                                print(x)
+                                zoom3.toggle()
+                            }) {
                             ZStack {
                                
                                     Color(.white)
@@ -369,25 +404,9 @@ struct MotionView2: View {
                                 
                                 
                                 
-                            } .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                if item == "backspace" {
-                                    if text.count > 0 {
-                                text.removeLast()
-                                    }
-                                } else {
-                                    text += item
-                                }
+                            }
                                 
-                                text += item
-                                
-                                x.append(motionManager.x)
-                                y.append(motionManager.y)
-                                z.append(motionManager.z)
-                                keys.append(item)
-                                print(keys)
-                                print(x)
-                                zoom3.toggle()
-                            })
+                            }
                             .padding()
                         }
                         
@@ -403,5 +422,6 @@ struct MotionView2: View {
        
     }
 }
+
 }
 }

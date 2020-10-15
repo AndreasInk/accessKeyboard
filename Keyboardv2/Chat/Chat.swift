@@ -40,6 +40,8 @@ struct ChatView: View {
     var body: some View {
         ZStack {
             Color(.white)
+            
+           
         VStack {
             
                 Spacer()
@@ -55,8 +57,8 @@ struct ChatView: View {
                         
                         
                         Group {
-                          
                             
+                           
                             
                          
                        
@@ -111,9 +113,16 @@ struct ChatView: View {
                         
                             
                         }
-                        
-                       
+                        if isKeyboardOpen {
+                            Color(.white)
+                                .onAppear() {
+                                    value.scrollTo(userData.chat.last, anchor: .top)
+                                    text = ""
+                                }
                         }
+                       
+                        
+                    }
                     
                         } 
                 }

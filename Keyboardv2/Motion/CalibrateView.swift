@@ -30,7 +30,7 @@ struct CalibrateView: View {
             VStack {
                 Spacer()
                 Text("Calibrate Your Keyboard")
-                    .font(.title)
+                    .font(.headline)
                     .multilineTextAlignment(.center)
                     .padding()
                 Text("Hold your phone in the position you normally do.  When finished if you tremor when tapping on a key the keyboard will zoom in on the section of the keyboard you tapped.")

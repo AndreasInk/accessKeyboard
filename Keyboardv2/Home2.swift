@@ -68,19 +68,24 @@ struct Home2: View {
               Spacer()
                 Divider()
                 HStack {
+                    ZStack {
+                        Color(.white)
+                            .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                        
+                        
                 Text(text)
                     
                     .font(.headline)
-                    .padding()
-                    .frame(width: screenSize.width/1.5, height: 90, alignment: .leading)
-                    .onTapGesture {
-                       isKeyboardOpen.toggle()
-                        if text == "Type Here" {
-                       text = ""
-                        } else {
-                            text = "Type Here"
-                        }
-                   }
+                    .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                                        
+                   } .onTapGesture {
+                    isKeyboardOpen.toggle()
+                     if text == "Type Here" {
+                    text = ""
+                     } else {
+                         text = "Type Here"
+                     }
+                 }
                     ZStack {
                         Ellipse()
                             .foregroundColor(Color(.systemPink))
