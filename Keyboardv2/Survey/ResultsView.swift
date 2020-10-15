@@ -26,7 +26,7 @@ struct ResultsView: View {
                     VStack {
                     
                         
-                        Text("Below is the community's accuracy data, the orange lines are the community's mistaps and the other lines are the x, y, and z accelerations")
+                        Text("Below are some of the community's accuracy data, the orange lines are the community's mistaps and the other lines are the x, y, and z accelerations")
                             .font(.headline)
                             .multilineTextAlignment(.center)
                             .padding()
@@ -38,6 +38,9 @@ struct ResultsView: View {
                                 .padding()
                             MultiLineChartView(data: [(data.z, GradientColors.purple), (data.keysMistyped, GradientColors.orngPink)], title: "Z Acceleration")
                                 .padding()
+                            Divider()
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
                         }
             }
                 }
@@ -87,7 +90,7 @@ struct ResultsView: View {
         let db = Firestore.firestore()
       
         db.collection("interactions").whereField("keysMistyped", arrayContains: 0.5)
-            .limit(to: 20).getDocuments { (documents, error) in
+            .limit(to: 10).getDocuments { (documents, error) in
             if documents?.count ?? -1 > -1 {
             for document in documents!.documents{
                 data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: 0.0, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))

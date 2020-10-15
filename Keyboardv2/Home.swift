@@ -136,7 +136,7 @@ struct Home: View {
                             if self.userData.step == 1 {
                                 isKeyboardOpen = false
                                // self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "", isMe: false, isView: true, viewMessage: "keys: \(keys) " + "new \(timeNew) " + "reg \(timeReg) ", viewTitle: " x: \(x) " + "y: \(y) " + "z: \(z) ", step: 2))
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Would it be alright if I remember where you tap?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember where you've tapped?", step: 1))
+                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to rememberyour acceleration data?", step: 1))
                                 
                             }
                             if self.userData.step == 2 {
