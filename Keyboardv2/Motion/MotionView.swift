@@ -48,6 +48,7 @@ struct MotionView: View {
     @Binding var keyNum2: Int
     @Binding var keysMistyped: [Double]
     @Binding var time: Double
+    @Binding var timeOn: Bool
     var body: some View {
         ZStack(alignment: .bottom) {
             Color(.white)
@@ -61,9 +62,11 @@ struct MotionView: View {
                 
                 _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
                    
-                    time += 0.1
+                  
                    //left and right
-                    
+                    if timeOn {
+                        
+                        time += 0.1
                     x.append(motionManager.x)
                     //diagonal
                     y.append(motionManager.y)
@@ -80,6 +83,7 @@ struct MotionView: View {
                         
                         
                     }
+                }
                 }
                 }
             } else {
@@ -105,7 +109,8 @@ struct MotionView: View {
                     LazyVGrid(columns: columns, spacing: 0) {
                         ForEach(data, id: \.self) { item in
                             Button(action: {
-                                
+                                timeOn = true
+                               
                                  if item == "backspace" {
                                      if text.count > 0 {
                                  text.removeLast()

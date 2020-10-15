@@ -40,6 +40,8 @@ struct Home: View {
     @Binding var didTap1: Bool
     
     @Binding var didTap2: Bool
+    
+    @State var timeOn: Bool = false
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -95,7 +97,7 @@ struct Home: View {
                             .fontWeight(.bold)
                            
                     }  .onTapGesture {
-                        
+                        timeOn = false
                         
                         if text != "" {
                         if text != "Type Here" {
@@ -120,7 +122,7 @@ struct Home: View {
                                 if "\(key)" != String(userData.intentedWord[index]) {
                             
                             keysMistyped.append(0.5)
-                                    keysMistyped2.append("\(key)")
+                                    keysMistyped2.append("\(String(userData.intentedWord[index]))")
                            print("mistype")
                         
                         
@@ -136,7 +138,14 @@ struct Home: View {
                                 let db = Firestore.firestore()
 
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
-                                
+                            time = 0.0
+                            x.removeAll()
+                            y.removeAll()
+                            z.removeAll()
+                            intentedKeys.removeAll()
+                            keysMistyped.removeAll()
+                            keysMistyped2.removeAll()
+                            keyTime.removeAll()
                         }
                                             
                         if text != "" {
@@ -149,35 +158,28 @@ struct Home: View {
                             if self.userData.step == 1 {
                                 isKeyboardOpen = false
                                // self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "", isMe: false, isView: true, viewMessage: "keys: \(keys) " + "new \(timeNew) " + "reg \(timeReg) ", viewTitle: " x: \(x) " + "y: \(y) " + "z: \(z) ", step: 2))
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember your acceleration data?", step: 1))
+                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data and remember our conversation within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember your acceleration data and this conversation?", step: 1))
                                 
                             }
+                           
                             if self.userData.step == 2 {
-                               
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember this conversation so we can improve?", isMe: false, isView: true, viewMessage: "We do this to see how accurate you type.", viewTitle: "Allow ChatBot_Name to remember this conversation?", step: 2))
-                            }
-                            if self.userData.step == 3 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
                                 self.userData.intentedWord = "hello"
                             }
-                            if self.userData.step == 4 {
+                            if self.userData.step == 3 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
                                 self.userData.intentedWord = "where are you"
                             }
-                            if self.userData.step == 5 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  i will be there in ten mins", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 5))
-                                self.userData.intentedWord = "i will be there in ten mins"
-                            }
-                            if self.userData.step == 6 {
+                            if self.userData.step == 4 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "how are you"
                             }
-                            if self.userData.step == 7 {
+                            if self.userData.step == 5 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "thanks"
                                
                             }
-                            if self.userData.step == 8 {
+                            if self.userData.step == 6 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: true, viewMessage: "", viewTitle: "Try out demo keyboards?", step: 6))
                                 self.userData.intentedWord = "thanks"
                                 isKeyboardOpen = false
@@ -189,14 +191,15 @@ struct Home: View {
                         } else {
                             text = "Type Here"
                         }
-                
+                        
+                        
                 }
                 } .padding()
             if isKeyboardOpen {
                
                
                // Spacer(minLength: screenSize.height/2.5)
-                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time)
+                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }

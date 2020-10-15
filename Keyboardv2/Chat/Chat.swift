@@ -65,19 +65,18 @@ struct ChatView: View {
                                
                             if chatting.isView {
                                 VStack {
-                                    if userData.chat.last?.viewTitle == "Allow ChatBot_Name to remember where you've tapped?" {
-                                        ChatPermission2(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2)
-                                    } else if userData.chat.last?.viewTitle == "Allow ChatBot_Name to remember this conversation?" {
-                                        ChatPermission(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2, text: $text)
+                                    if userData.chat.last?.viewTitle == "Allow ChatBot_Name to remember your acceleration data and this conversation?" {
+                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
+                                    
                                     } else if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
-                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2)
+                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
                                     } else if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
-                                            ChatPermission4(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2)
+                                            ChatPermission4(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
                                     } else {
                                     ChatV2Cell2(name: chatting.name, message: chatting.message)
                                         .id(chatting)
                                     
-                                        ChatPermission(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2, text: $text)
+                                        ChatPermission(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
                                         
                                    // MultiLineChartView(data: [(x, GradientColors.green), (y, GradientColors.purple), (z, GradientColors.orngPink), (keyTime, GradientColors.blu)], title: "X: g, Y: p, Z: o, keys: b")
                                     

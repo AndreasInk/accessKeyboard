@@ -20,10 +20,11 @@ struct ChatPermission4: View {
     
    
     @Binding var isKeyboardOpen: Bool
-    @Binding var didTap1: Bool
-    
-    @Binding var didTap2: Bool
+   
     let motionManager = CMMotionManager()
+    @State var didTap1: Bool = false
+    
+    @State var didTap2: Bool = false
     var body: some View {
         ZStack {
             BlurView(style: .systemChromeMaterial)
@@ -82,15 +83,17 @@ struct ChatPermission4: View {
                         if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
                             userData.survey = true
                         }
+                        didTap1.toggle()
                     }) {
                         ZStack {
-                            Color(userData.demoKeyboards  ? .systemPink : .white)
+                            Color(didTap1  ? .systemPink : .white)
                             Text("Yes")
-                                .foregroundColor(userData.demoKeyboards  ? .white : .black)
+                                .foregroundColor(didTap1  ? .white : .black)
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)
                     Button(action: {
+                        didTap2.toggle()
                         userData.demoKeyboards = false
                         isKeyboardOpen = false
                         self.userData.step =  self.userData.step + 1
@@ -99,9 +102,9 @@ struct ChatPermission4: View {
                         }
                     }) {
                         ZStack {
-                            Color( userData.demoKeyboards ? .white : .systemPink)
+                            Color( didTap2 ? .systemPink : .white)
                             Text("No")
-                                .foregroundColor( userData.demoKeyboards ? .black : .white)
+                                .foregroundColor( didTap2 ? .white : .black)
                                 .fontWeight(.bold)
                             
                            

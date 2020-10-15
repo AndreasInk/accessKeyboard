@@ -40,6 +40,8 @@ struct Home2: View {
     @Binding var didTap1: Bool
     
     @Binding var didTap2: Bool
+    
+    @State var timeOn: Bool = false
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -97,7 +99,7 @@ struct Home2: View {
                             .fontWeight(.bold)
                            
                     }  .onTapGesture {
-                        
+                        timeOn = false
                         if text != "" {
                         if text != "Type Here" {
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
@@ -107,29 +109,49 @@ struct Home2: View {
                         let db = Firestore.firestore()
                        
                         if userData.canRememberConvo {
+
                                 
-                            if userData.intentedWord != "" {
-                                
+                            let keys = Array(text)
+                            print(userData.intentedWord)
+                            intentedKeys = Array(arrayLiteral: userData.intentedWord)
+                            for key in keys {
+                               
+                                //print(iKey)
+                                print(keyNum2)
+                        
+                              //  if keyNum == keyNum2 {
                                 if keyNum2 >= userData.intentedWord.count {
                                     keyNum2 = 0
                                 }
+                                if userData.intentedWord != "" {
+                                    let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
+                                    
+                                    if "\(key)" != String(userData.intentedWord[index]) {
                                 
-                                let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
-                                
-                                if "\(key)" != String(userData.intentedWord[index]) {
+                                keysMistyped.append(0.5)
+                                        keysMistyped2.append("\(String(userData.intentedWord[index]))")
+                               print("mistype")
                             
-                            keysMistyped.append(0.5)
-                                    keysMistyped2.append("\(key)")
-                           print("mistype")
-                        
-                        
+                            
+                                }
+                                    keyNum2 += 1
+                                    
                             }
-                                keyNum2 += 1
-                              
+                                
+                            }
                         }
+                    
                             if userData.canRememberConvo {
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
-                                
+                                time = 0.0
+                                x.removeAll()
+                                y.removeAll()
+                                z.removeAll()
+                                intentedKeys.removeAll()
+                                keysMistyped.removeAll()
+                                keysMistyped2.removeAll()
+                                keys.removeAll()
+                                keyTime.removeAll()
                             }
                                             
                         
@@ -141,102 +163,68 @@ struct Home2: View {
                                 
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
                                 self.userData.intentedWord = "where are you"
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
+                               
                             }
+                          
                             if self.userData.step == 10 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  i will be there in ten mins", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 5))
-                                self.userData.intentedWord = "i will be there in ten mins"
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
-                            }
-                            if self.userData.step == 11 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "how are you"
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
+                         
+                            }
+                            if self.userData.step == 11 {
+                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                self.userData.intentedWord = "thanks"
+                               
                             }
                             if self.userData.step == 12 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  Thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
-                                self.userData.intentedWord = "thanks"
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
-                            }
-                            if self.userData.step == 13 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What apps do you use most frequently?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = ""
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
+                              
                             }
-                            if self.userData.step == 14 {
+                            if self.userData.step == 13 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What issues do you face when you type?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                
                                 db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
+                               
                             }
-                            if self.userData.step == 15 {
+                            if self.userData.step == 14 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What specific keys do you have trouble tapping?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                 
                                 db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
                             }
-                            if self.userData.step == 16 {
+                            if self.userData.step == 15 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "How can we make your keyboard optimized to you?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                 db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
                                 
-                                if isKeyboardOpen {
-                               text = ""
-                                } else {
-                                    text = "Type Here"
-                                }
+                               
                             }
-                            if self.userData.step == 17 {
+                            if self.userData.step == 16 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Take an additional survey to help us build a helpful keyboard?", isMe: false, isView: true, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                 db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "How can we make your keyboard optimized to you?" : self.text])
                                 isKeyboardOpen = false
                             }
                           
                         }
+                        
+                        
                             if text != "" {
                             if text != "Type Here" {
                             self.userData.step =  self.userData.step + 1
                             }
                             }
+                       
                 }
                         
                     }
                     
-                    }
+                    
                     
             if isKeyboardOpen {
                
                    
                 VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time)
+                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }

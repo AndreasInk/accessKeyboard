@@ -66,6 +66,7 @@ struct MotionView2: View {
     
     @State var calibrate: Bool = false
     @Binding var time: Double
+    @Binding var timeOn: Bool
     var body: some View {
         ZStack(alignment: .bottom) {
             if wait {
@@ -77,8 +78,9 @@ struct MotionView2: View {
                     .onAppear() {
                        
                         let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                            time += 0.1
+                            if timeOn {
                            //left and right
+                                time += 0.1
                             x.append(motionManager.x)
                             //diagonal
                             y.append(motionManager.y)
@@ -87,7 +89,7 @@ struct MotionView2: View {
                             keysMistyped.append(0)
                             
                             print(motionManager.z)
-                          
+                            }
                         }
                     }
         VStack {
@@ -101,7 +103,9 @@ struct MotionView2: View {
                     .frame(width: screenSize.width, height: screenSize.height/2.3, alignment: .center)
                
                     .simultaneousGesture( DragGesture(minimumDistance: 0, coordinateSpace: .global).onEnded { dragGesture in
-                       
+                        timeOn = true
+                        
+                            
                        let xPos = dragGesture.location.x
                       let yPos = dragGesture.location.y
                         let startNumber = averageZ - 0.17
@@ -146,7 +150,7 @@ struct MotionView2: View {
                 LazyVGrid(columns: columns, spacing: 0) {
                     ForEach(data, id: \.self) { item in
                         Button(action: {
-                            print(item)
+                            timeOn = true
                         }) {
                         ZStack {
                             
@@ -169,6 +173,7 @@ struct MotionView2: View {
                         }
                         
                         .simultaneousGesture( DragGesture(minimumDistance: 0, coordinateSpace: .global).onEnded { dragGesture in
+                            timeOn = true
                            
                            let xPos = dragGesture.location.x
                           let yPos = dragGesture.location.y
@@ -249,9 +254,7 @@ struct MotionView2: View {
                     Color(.white)
                         .frame(width: screenSize.width/1.1, height: 50)
                        
-                        .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                          
-                        })
+                       
                     }
                 }
             } .padding(.bottom, 22)

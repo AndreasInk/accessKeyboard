@@ -20,10 +20,11 @@ struct ChatPermission2: View {
     
    
     @Binding var isKeyboardOpen: Bool
-    @Binding var didTap1: Bool
-    
-    @Binding var didTap2: Bool
+   
     let motionManager = CMMotionManager()
+    @State var didTap1: Bool = false
+    
+    @State var didTap2: Bool = false
     var body: some View {
         ZStack {
             BlurView(style: .systemChromeMaterial)

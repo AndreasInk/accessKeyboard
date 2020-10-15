@@ -74,7 +74,7 @@ struct CalibrateView: View {
                         z.append(motionManager.z)
                         keysMistyped.append(0)
                         
-                        print(motionManager.z)
+                       // print(motionManager.z)
                         if time > 5 {
                             if time < 6 {
                             print("ready")
@@ -83,7 +83,8 @@ struct CalibrateView: View {
 
                             averageZ = sumArray / Double(z.count)
                             
-                            
+                            time = 0
+                                timer.invalidate()
                         }
                         }
                     }

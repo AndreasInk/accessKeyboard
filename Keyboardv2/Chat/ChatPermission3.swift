@@ -20,10 +20,11 @@ struct ChatPermission3: View {
     
    
     @Binding var isKeyboardOpen: Bool
-    @Binding var didTap1: Bool
-    
-    @Binding var didTap2: Bool
+   
     let motionManager = CMMotionManager()
+    @State var didTap1: Bool = false
+    
+    @State var didTap2: Bool = false
     var body: some View {
         ZStack {
             BlurView(style: .systemChromeMaterial)
@@ -35,7 +36,7 @@ struct ChatPermission3: View {
                     .padding()
               
                 Text(message)
-                    .font(.body).fontWeight(.bold)
+                    .font(.body)
                     .multilineTextAlignment(.leading)
                     .padding()
                 
@@ -45,7 +46,8 @@ struct ChatPermission3: View {
                        
                      
                         self.userData.canRememberMotion = true
-                      
+                        self.userData.canRememberConvo = true
+                        didTap1.toggle()
                         self.userData.step += 1
                         print(self.userData.step )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -54,11 +56,8 @@ struct ChatPermission3: View {
                                 
                                
                             }
+                         
                             if self.userData.step == 2 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember this conversation so we can improve?", isMe: false, isView: true, viewMessage: "We do this to see how accurate you type.", viewTitle: "Allow ChatBot_Name to remember this conversation?", step: 2))
-                                
-                            }
-                            if self.userData.step == 3 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word: hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
                                 self.userData.intentedWord = "hello"
                             }
@@ -84,24 +83,25 @@ struct ChatPermission3: View {
                         }
                     }) {
                         ZStack {
-                            Color(userData.demoKeyboards  ? .systemPink : .white)
+                            Color(didTap1  ? .systemPink : .white)
                             Text("Yes")
-                                .foregroundColor(userData.demoKeyboards  ? .white : .black)
+                                .foregroundColor(didTap1  ? .white : .black)
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)
                     Button(action: {
                         userData.demoKeyboards = false
                         isKeyboardOpen = false
+                        didTap2.toggle()
                         self.userData.step =  self.userData.step + 1
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Thank you for helping us make a difference!", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 1))
                         }
                     }) {
                         ZStack {
-                            Color( userData.demoKeyboards ? .white : .systemPink)
+                            Color( didTap2 ? .systemPink : .white)
                             Text("No")
-                                .foregroundColor( userData.demoKeyboards ? .black : .white)
+                                .foregroundColor(didTap2 ? .white : .black)
                                 .fontWeight(.bold)
                             
                            
@@ -110,7 +110,7 @@ struct ChatPermission3: View {
                 }
             }
         } .padding(12)
-            .frame(height: 300)
+            
     }
 }
 
