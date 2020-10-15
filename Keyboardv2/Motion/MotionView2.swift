@@ -20,7 +20,7 @@ struct MotionView2: View {
     
     @ObservedObject var motionManager = MotionManager()
     
-    @State var time: Double = 0.0
+    
     
     @State var keyMistyped: Int = 0
     @State var step: Int = 0
@@ -65,6 +65,7 @@ struct MotionView2: View {
     @Binding var wait: Bool 
     
     @State var calibrate: Bool = false
+    @Binding var time: Double
     var body: some View {
         ZStack(alignment: .bottom) {
             if wait {

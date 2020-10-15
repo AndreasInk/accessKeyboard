@@ -19,10 +19,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct Keyboardv2App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State var didTap1: Bool = false
     
+    @State var didTap2: Bool = false
     var body: some Scene {
         WindowGroup {
-            ResultsView()
+          ContentView()
             .environmentObject(UserData.shared)
         }
     }

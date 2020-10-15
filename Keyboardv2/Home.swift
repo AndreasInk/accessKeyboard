@@ -25,7 +25,7 @@ struct Home: View {
     
     @State var keys = [String]()
     @State var keyTime = [Double]()
-    @State var time = [String]()
+    @State var time = 0.0
     
     @State var timeNew = 0.0
     @State var timeReg = 0.0
@@ -66,19 +66,24 @@ struct Home: View {
               Spacer()
                 Divider()
                 HStack {
+                    ZStack {
+                        Color(.white)
+                            .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                        
+                        
                 Text(text)
                     
                     .font(.headline)
-                    .padding()
-                    .frame(width: screenSize.width/1.5, height: 90, alignment: .leading)
-                    .onTapGesture {
-                       isKeyboardOpen.toggle()
-                        if text == "Type Here" {
-                       text = ""
-                        } else {
-                            text = "Type Here"
-                        }
-                   }
+                    .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                                        
+                   } .onTapGesture {
+                    isKeyboardOpen.toggle()
+                     if text == "Type Here" {
+                    text = ""
+                     } else {
+                         text = "Type Here"
+                     }
+                 }
                     ZStack {
                         Ellipse()
                             .foregroundColor(Color(.systemPink))
@@ -92,9 +97,11 @@ struct Home: View {
                     }  .onTapGesture {
                         
                         
-                  
+                        if text != "" {
+                        if text != "Type Here" {
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
-                      
+                        }
+                        }
                         let keys = Array(text)
                         print(userData.intentedWord)
                         intentedKeys = Array(arrayLiteral: userData.intentedWord)
@@ -104,6 +111,9 @@ struct Home: View {
                             print(keyNum2)
                     
                           //  if keyNum == keyNum2 {
+                            if keyNum2 >= userData.intentedWord.count {
+                                keyNum2 = 0
+                            }
                             if userData.intentedWord != "" {
                                 let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
                                 
@@ -116,9 +126,7 @@ struct Home: View {
                         
                             }
                                 keyNum2 += 1
-                                if keyNum2 >= userData.intentedWord.count {
-                                    keyNum2 = 0
-                                }
+                                
                         }
                             
                         }
@@ -131,8 +139,12 @@ struct Home: View {
                                 
                         }
                                             
-                            
+                        if text != "" {
+                        if text != "Type Here" {
                         self.userData.step =  self.userData.step + 1
+                        }
+                        }
+                       
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             if self.userData.step == 1 {
                                 isKeyboardOpen = false
@@ -179,12 +191,12 @@ struct Home: View {
                         }
                 
                 }
-                }
+                } .padding()
             if isKeyboardOpen {
                
                
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped)
+                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }

@@ -96,12 +96,12 @@ struct ChatPermission: View {
                         userData.canRememberConvo = false
                         isKeyboardOpen = false
                     text = "Type Here"
-                        self.userData.step =  self.userData.step + 1
+                        //self.userData.step =  self.userData.step + 1
                     }) {
                         ZStack {
-                            Color( userData.canRememberConvo ? .white : .systemPink)
+                            Color(.white)
                             Text("No")
-                                .foregroundColor( userData.canRememberConvo ? .black : .white)
+                                .foregroundColor( .black )
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)

@@ -18,7 +18,7 @@ struct MotionView: View {
     
     @ObservedObject var motionManager = MotionManager()
     
-    @State var time: Double = 0.0
+    
     
     @State var keyMistyped: Int = 0
     @State var step: Int = 0
@@ -47,6 +47,7 @@ struct MotionView: View {
     @Binding var keyNum: Int
     @Binding var keyNum2: Int
     @Binding var keysMistyped: [Double]
+    @Binding var time: Double
     var body: some View {
         ZStack(alignment: .bottom) {
             Color(.white)

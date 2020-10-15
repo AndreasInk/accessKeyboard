@@ -21,9 +21,10 @@ struct ResultsView: View {
         
             Color(.white)
                 .onAppear() {
+                    //getItems2()
                     getItems()
                     
-                    
+                   
                   
                     
                     
@@ -44,12 +45,19 @@ struct ResultsView: View {
                             .multilineTextAlignment(.center)
                             .padding()
                         ForEach(data){ data in
+                            
+                            Text("Time: \(data.time)")
+                                .font(.subheadline)
+                            Text("Type: \(data.type)")
+                                .font(.subheadline)
                             MultiLineChartView(data: [(data.x, GradientColors.green), (data.keysMistyped, GradientColors.orngPink)], title: "X Acceleration")
                                 .padding()
                             MultiLineChartView(data: [(data.y, GradientColors.blu), (data.keysMistyped, GradientColors.orngPink)], title: "Y Acceleration")
                                 .padding()
                             MultiLineChartView(data: [(data.z, GradientColors.purple), (data.keysMistyped, GradientColors.orngPink)], title: "Z Acceleration")
                                 .padding()
+                            
+                            
                             Divider()
                                 .font(.largeTitle)
                                 .foregroundColor(.black)
@@ -101,12 +109,12 @@ struct ResultsView: View {
         
         let db = Firestore.firestore()
       
-        db.collection("interactions").whereField("keysMistyped", arrayContains: 0.5)
-            .limit(to: 3).getDocuments { (documents, error) in
+        db.collection("interactions")
+            .limit(to: 4).whereField("type", isEqualTo: "Reg").getDocuments { (documents, error) in
             if documents?.count ?? -1 > -1 {
             for document in documents!.documents{
                 print("add")
-                data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: 0.0, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
+                data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: document.get("time") as! Double, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
                 for data in data {
                     print(data)
                     for key in data.keysMistyped2 {
@@ -125,9 +133,52 @@ struct ResultsView: View {
                             
                                 keyStringsCount.append(key.value)
                         }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            hasData = true
-                            }
+                           
+                        
+                        }
+                    print(keyStrings.freq())
+                   
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                hasData = true
+                }
+                
+            }
+               
+               
+            }
+            }
+            
+        }
+    func getItems2() {
+        
+        
+        let db = Firestore.firestore()
+      
+        db.collection("interactions")
+            .limit(to: 2).whereField("type", isEqualTo: "Zoom").getDocuments { (documents, error) in
+            if documents?.count ?? -1 > -1 {
+            for document in documents!.documents{
+                print("add")
+                data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: document.get("time") as! Double, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
+                for data in data {
+                    print(data)
+                    for key in data.keysMistyped2 {
+                        
+                       
+                        keyStrings.append(key)
+                    }
+                }
+                        if self.data.count == documents?.count ?? -1 {
+                            let sortedDictByValue = keyStrings.freq().sorted{ $0.value > $1.value }
+                            print("sorted" + "\(sortedDictByValue)")
+                            print(keyStrings.freq().sorted { $0.1 < $1.1 })
+                            for key in sortedDictByValue {
+                                keyStrings2.append(key.key)
+                        
+                            
+                                keyStringsCount.append(key.value)
+                        }
+                           
                         
                         }
                     print(keyStrings.freq())

@@ -93,12 +93,12 @@ struct ChatPermission2: View {
                     Button(action: {
                         userData.canRememberMotion = false
                         isKeyboardOpen = false
-                        self.userData.step =  self.userData.step + 1
+                        //self.userData.step =  self.userData.step + 1
                     }) {
                         ZStack {
-                            Color( userData.canRememberMotion ? .white : .systemPink)
+                            Color( .white)
                             Text("No")
-                                .foregroundColor( userData.canRememberMotion ? .black : .white)
+                                .foregroundColor(.black )
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)

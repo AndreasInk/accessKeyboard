@@ -24,7 +24,7 @@ struct Home2: View {
     
     @State var keys = [String]()
     @State var keyTime = [Double]()
-    @State var time = [String]()
+    @State var time = 0.0
     
     @State var timeNew = 0.0
     @State var timeReg = 0.0
@@ -93,20 +93,39 @@ struct Home2: View {
                            
                     }  .onTapGesture {
                         
-                        
-                  
+                        if text != "" {
+                        if text != "Type Here" {
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
-                      
-                       
+                        }
+                        }
                         
                         let db = Firestore.firestore()
                        
                         if userData.canRememberConvo {
                                 
-
-                      //  db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
+                            if userData.intentedWord != "" {
                                 
+                                if keyNum2 >= userData.intentedWord.count {
+                                    keyNum2 = 0
+                                }
+                                
+                                let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
+                                
+                                if "\(key)" != String(userData.intentedWord[index]) {
+                            
+                            keysMistyped.append(0.5)
+                                    keysMistyped2.append("\(key)")
+                           print("mistype")
                         
+                        
+                            }
+                                keyNum2 += 1
+                              
+                        }
+                            if userData.canRememberConvo {
+                        db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
+                                
+                            }
                                             
                         
                        
@@ -116,7 +135,7 @@ struct Home2: View {
                                
                                 
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
-                                self.userData.intentedWord = "Where are you"
+                                self.userData.intentedWord = "where are you"
                                 if isKeyboardOpen {
                                text = ""
                                 } else {
@@ -152,7 +171,7 @@ struct Home2: View {
                             }
                             if self.userData.step == 13 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What apps do you use most frequently?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
-                                
+                                self.userData.intentedWord = ""
                                 if isKeyboardOpen {
                                text = ""
                                 } else {
@@ -196,8 +215,11 @@ struct Home2: View {
                             }
                           
                         }
+                            if text != "" {
+                            if text != "Type Here" {
                             self.userData.step =  self.userData.step + 1
-                
+                            }
+                            }
                 }
                         
                     }
@@ -209,7 +231,7 @@ struct Home2: View {
                    
                 VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait)
+                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }
