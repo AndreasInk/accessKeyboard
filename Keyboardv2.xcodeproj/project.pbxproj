@@ -20,6 +20,14 @@
 		E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645D2537BFBE00069640 /* MultiLineChartView.swift */; };
 		E10A64672537BFBE00069640 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645E2537BFBE00069640 /* Line.swift */; };
 		E10A646D2537CB2500069640 /* ChatPermission4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A646C2537CB2500069640 /* ChatPermission4.swift */; };
+		E10A64752537DE3800069640 /* PieChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64712537DE3800069640 /* PieChartRow.swift */; };
+		E10A64762537DE3800069640 /* PieChartHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64722537DE3800069640 /* PieChartHelpers.swift */; };
+		E10A64772537DE3800069640 /* PieChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64732537DE3800069640 /* PieChartCell.swift */; };
+		E10A64782537DE3800069640 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A64742537DE3800069640 /* PieChartView.swift */; };
+		E10A64802537DEF200069640 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A647C2537DEF200069640 /* BarChartView.swift */; };
+		E10A64812537DEF200069640 /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A647D2537DEF200069640 /* BarChartRow.swift */; };
+		E10A64822537DEF200069640 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A647E2537DEF200069640 /* LabelView.swift */; };
+		E10A64832537DEF200069640 /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A647F2537DEF200069640 /* BarChartCell.swift */; };
 		E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F6D2536248B00D2173B /* CalibrateView.swift */; };
 		E14B3F722536743200D2173B /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F712536743200D2173B /* Admin.swift */; };
 		E14B3F76253674E700D2173B /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F75253674E700D2173B /* ChartView.swift */; };
@@ -99,6 +107,14 @@
 		E10A645D2537BFBE00069640 /* MultiLineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
 		E10A645E2537BFBE00069640 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		E10A646C2537CB2500069640 /* ChatPermission4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPermission4.swift; sourceTree = "<group>"; };
+		E10A64712537DE3800069640 /* PieChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartRow.swift; sourceTree = "<group>"; };
+		E10A64722537DE3800069640 /* PieChartHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartHelpers.swift; sourceTree = "<group>"; };
+		E10A64732537DE3800069640 /* PieChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartCell.swift; sourceTree = "<group>"; };
+		E10A64742537DE3800069640 /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		E10A647C2537DEF200069640 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		E10A647D2537DEF200069640 /* BarChartRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
+		E10A647E2537DEF200069640 /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		E10A647F2537DEF200069640 /* BarChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		E14B3F6D2536248B00D2173B /* CalibrateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateView.swift; sourceTree = "<group>"; };
 		E14B3F712536743200D2173B /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		E14B3F75253674E700D2173B /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -197,6 +213,28 @@
 			path = LineChart;
 			sourceTree = "<group>";
 		};
+		E10A64702537DE3800069640 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				E10A64712537DE3800069640 /* PieChartRow.swift */,
+				E10A64722537DE3800069640 /* PieChartHelpers.swift */,
+				E10A64732537DE3800069640 /* PieChartCell.swift */,
+				E10A64742537DE3800069640 /* PieChartView.swift */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
+		E10A647B2537DEF200069640 /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+				E10A647C2537DEF200069640 /* BarChartView.swift */,
+				E10A647D2537DEF200069640 /* BarChartRow.swift */,
+				E10A647E2537DEF200069640 /* LabelView.swift */,
+				E10A647F2537DEF200069640 /* BarChartCell.swift */,
+			);
+			path = BarChart;
+			sourceTree = "<group>";
+		};
 		E159FF27252941D400F7511C = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +262,8 @@
 				E1AF329D2537531300147E15 /* ContentView.swift */,
 				E18D1011252E062C00F347DA /* Home.swift */,
 				E1AF32A325377C6600147E15 /* Home2.swift */,
+				E10A647B2537DEF200069640 /* BarChart */,
+				E10A64702537DE3800069640 /* PieChart */,
 				E10A64562537BFBE00069640 /* LineChart */,
 				E1AF32B32537A18300147E15 /* Survey */,
 				E1B4540A25374FAB00670BE3 /* Onboarding */,
@@ -281,6 +321,7 @@
 				E18D1008252E05EB00F347DA /* SurveyData.swift */,
 				E1AF32B82537A73E00147E15 /* SurveyQuestion.swift */,
 				E10A64512537BF8B00069640 /* ResultsView.swift */,
+				E14B3F79253675A400D2173B /* IndividualData.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -289,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				E14B3F712536743200D2173B /* Admin.swift */,
-				E14B3F79253675A400D2173B /* IndividualData.swift */,
 				E14B3F75253674E700D2173B /* ChartView.swift */,
 			);
 			path = Admin;
@@ -507,6 +547,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10A64832537DEF200069640 /* BarChartCell.swift in Sources */,
+				E10A64782537DE3800069640 /* PieChartView.swift in Sources */,
 				E18D1002252E05DF00F347DA /* ChatCells.swift in Sources */,
 				E18D1001252E05DF00F347DA /* ChatPermission.swift in Sources */,
 				E10A64632537BFBE00069640 /* LineChartView.swift in Sources */,
@@ -517,6 +559,7 @@
 				E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */,
 				E18D100A252E05EB00F347DA /* ChatData.swift in Sources */,
 				E10A646D2537CB2500069640 /* ChatPermission4.swift in Sources */,
+				E10A64772537DE3800069640 /* PieChartCell.swift in Sources */,
 				E18D0FF7252D304B00F347DA /* Hybrid.swift in Sources */,
 				E1B4540125374F9F00670BE3 /* Ob2.swift in Sources */,
 				E10A645F2537BFBE00069640 /* Helpers.swift in Sources */,
@@ -528,19 +571,24 @@
 				E18D0FFB252D375D00F347DA /* CoreMotion.swift in Sources */,
 				E10A64602537BFBE00069640 /* IndicatorPoint.swift in Sources */,
 				E1AF32B92537A73E00147E15 /* SurveyQuestion.swift in Sources */,
+				E10A64812537DEF200069640 /* BarChartRow.swift in Sources */,
 				E1AF32B025378E7200147E15 /* Survey.swift in Sources */,
 				E18D1003252E05DF00F347DA /* Chat.swift in Sources */,
 				E1AF329E2537531300147E15 /* ContentView.swift in Sources */,
 				E14B3F76253674E700D2173B /* ChartView.swift in Sources */,
 				E1ABD77D253512460067C3C4 /* MotionView.swift in Sources */,
+				E10A64822537DEF200069640 /* LabelView.swift in Sources */,
 				E10A64622537BFBE00069640 /* Legend.swift in Sources */,
 				E10A64652537BFBE00069640 /* Path+QuadCurve.swift in Sources */,
+				E10A64802537DEF200069640 /* BarChartView.swift in Sources */,
 				E18D0FF3252D2A6A00F347DA /* Keyboard2.swift in Sources */,
 				E18D1012252E062C00F347DA /* Home.swift in Sources */,
 				E14B3F7A253675A400D2173B /* IndividualData.swift in Sources */,
 				E10A64672537BFBE00069640 /* Line.swift in Sources */,
 				E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */,
+				E10A64752537DE3800069640 /* PieChartRow.swift in Sources */,
 				E159FF34252941D400F7511C /* Keyboardv2App.swift in Sources */,
+				E10A64762537DE3800069640 /* PieChartHelpers.swift in Sources */,
 				E1AF32AC253786D600147E15 /* ChatPermission3.swift in Sources */,
 				E10A64522537BF8B00069640 /* ResultsView.swift in Sources */,
 				E1B4540425374F9F00670BE3 /* Ob1.swift in Sources */,

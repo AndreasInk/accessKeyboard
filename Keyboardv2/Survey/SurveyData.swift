@@ -24,4 +24,11 @@ struct Row: Identifiable  {
     
 }
 
-
+struct Keys: Identifiable, Hashable  {
+    var id: String
+    var key: String
+    var count: Int
+    
+   
+    
+}

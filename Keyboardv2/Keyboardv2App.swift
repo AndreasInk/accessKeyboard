@@ -22,7 +22,7 @@ struct Keyboardv2App: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ResultsView()
             .environmentObject(UserData.shared)
         }
     }

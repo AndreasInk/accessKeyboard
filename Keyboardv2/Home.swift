@@ -110,6 +110,7 @@ struct Home: View {
                                 if "\(key)" != String(userData.intentedWord[index]) {
                             
                             keysMistyped.append(0.5)
+                                    keysMistyped2.append("\(key)")
                            print("mistype")
                         
                         

@@ -12,12 +12,22 @@ struct ResultsView: View {
     @State var data = [IndividualData]()
     @State var hasData: Bool = false
     @State var hasThanked: Bool = false
+    @State var keys = [Keys]()
+    @State var keyStrings = [String]()
+    @State var keyStrings2 = [String]()
+    @State var keyStringsCount = [Int]()
     var body: some View {
         ZStack {
+        
             Color(.white)
                 .onAppear() {
                     getItems()
-                    hasData = true
+                    
+                    
+                  
+                    
+                    
+                    
                 }
             if hasThanked {
             if hasData {
@@ -26,11 +36,13 @@ struct ResultsView: View {
                     VStack {
                     
                         
+                
+                        BarChartView(data: ChartData(values: [(keyStrings2[0], keyStringsCount[0]), (keyStrings2[1], keyStringsCount[1]), (keyStrings2[2], keyStringsCount[2]), (keyStrings2[3], keyStringsCount[3]),(keyStrings2[4], keyStringsCount[4])]), title: "Mistyped Keys", legend: "Quarterly", form: CGSize(width: 320, height: 320))
+                            .padding()
                         Text("Below are some of the community's accuracy data, the orange lines are the community's mistaps and the other lines are the x, y, and z accelerations")
                             .font(.headline)
                             .multilineTextAlignment(.center)
                             .padding()
-                        
                         ForEach(data){ data in
                             MultiLineChartView(data: [(data.x, GradientColors.green), (data.keysMistyped, GradientColors.orngPink)], title: "X Acceleration")
                                 .padding()
@@ -90,20 +102,56 @@ struct ResultsView: View {
         let db = Firestore.firestore()
       
         db.collection("interactions").whereField("keysMistyped", arrayContains: 0.5)
-            .limit(to: 5).getDocuments { (documents, error) in
+            .limit(to: 3).getDocuments { (documents, error) in
             if documents?.count ?? -1 > -1 {
             for document in documents!.documents{
+                print("add")
                 data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: 0.0, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
+                for data in data {
+                    print(data)
+                    for key in data.keysMistyped2 {
+                        
+                       
+                        keyStrings.append(key)
+                    }
+                }
+                        if self.data.count == documents?.count ?? -1 {
+                            let sortedDictByValue = keyStrings.freq().sorted{ $0.value > $1.value }
+                            print("sorted" + "\(sortedDictByValue)")
+                            print(keyStrings.freq().sorted { $0.1 < $1.1 })
+                            for key in sortedDictByValue {
+                                keyStrings2.append(key.key)
+                        
+                            
+                                keyStringsCount.append(key.value)
+                        }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            hasData = true
+                            }
+                        
+                        }
+                    print(keyStrings.freq())
+                   
+                    
                 
+            }
+               
+               
             }
             }
             
         }
     }
-}
 
-struct ResultsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ResultsView()
+
+extension Sequence where Self.Iterator.Element: Hashable {
+     typealias Element = Self.Iterator.Element
+
+    func freq() -> [Element: Int] {
+        return reduce([:]) { (accu: [Element: Int], element) in
+            var accu = accu
+            accu[element] = accu[element]?.advanced(by: 1) ?? 1
+            return accu
+        }
     }
 }

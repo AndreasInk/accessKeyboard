@@ -16,6 +16,7 @@ struct Survey: View {
     @State var animate: Bool = false
     @EnvironmentObject var userData: UserData
     @State var surveyData = SurveyData(id: UUID().uuidString, questions: ["How would you rate your overall experience with this app?", "How would you rate your experience with the first keyboard?", "How would you rate your experience with the second/zoom keyboard?"], ratings: [0])
+    @State var keys = Keys(id: UUID().uuidString, key: "",count: -1)
     var body: some View {
         ZStack {
             Color(.white)
