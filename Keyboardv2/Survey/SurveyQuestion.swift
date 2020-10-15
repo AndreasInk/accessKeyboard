@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SurveyQuestion: View {
     @State var question: String = "How would you rate your overall experience with this app?"
     @State var hasSelected: Bool = false
     @Binding var next: Int
+    @State var num = 0
+    @State var isRow1 = false
     @State private var row1 = [Row]()
     @State private var row2 = [Row]()
     @State var surveyData = SurveyData(id: UUID().uuidString, questions: ["How would you rate your overall experience with this app?", "How would you rate your experience with the first keyboard?", "How would you rate your experience with the second/zoom keyboard?", "How helpful would a sensitivity setting be for the second/zoom keyboard?", "How much does your energy fluctuate throughout the day?","How helpful would time based sensitivity be for the second/zoom keyboard?"], ratings: [0])
@@ -39,7 +42,8 @@ struct SurveyQuestion: View {
                 withAnimation(.easeInOut(duration: 1)) {
                     row1[number.num].isRated.toggle()
                     hasSelected.toggle()
-                    
+                    num = number.num
+                    isRow1 = true
                 }
                 
             }) {
@@ -58,9 +62,10 @@ struct SurveyQuestion: View {
             HStack {
                 ForEach(row2){ number in
                 Button(action:{
-                    withAnimation() {
+                    withAnimation(.easeInOut(duration: 1)) {
                         row2[number.num].isRated.toggle()
                         hasSelected.toggle()
+                        num = number.num
                     }
                         
                     
@@ -81,8 +86,14 @@ struct SurveyQuestion: View {
             
             if hasSelected {
             Button(action:{
-                
+                let db = Firestore.firestore()
+                if isRow1 {
+                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, surveyData.questions[next] : row1[num].rating])
                    next += 1
+                } else {
+                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, surveyData.questions[next] : row2[num].rating])
+                    next += 1
+                }
                 
             }) {
                 ZStack {

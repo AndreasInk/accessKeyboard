@@ -19,6 +19,7 @@
 		E10A64652537BFBE00069640 /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645C2537BFBE00069640 /* Path+QuadCurve.swift */; };
 		E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645D2537BFBE00069640 /* MultiLineChartView.swift */; };
 		E10A64672537BFBE00069640 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A645E2537BFBE00069640 /* Line.swift */; };
+		E10A646D2537CB2500069640 /* ChatPermission4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10A646C2537CB2500069640 /* ChatPermission4.swift */; };
 		E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F6D2536248B00D2173B /* CalibrateView.swift */; };
 		E14B3F722536743200D2173B /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F712536743200D2173B /* Admin.swift */; };
 		E14B3F76253674E700D2173B /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F75253674E700D2173B /* ChartView.swift */; };
@@ -97,6 +98,7 @@
 		E10A645C2537BFBE00069640 /* Path+QuadCurve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
 		E10A645D2537BFBE00069640 /* MultiLineChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
 		E10A645E2537BFBE00069640 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		E10A646C2537CB2500069640 /* ChatPermission4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPermission4.swift; sourceTree = "<group>"; };
 		E14B3F6D2536248B00D2173B /* CalibrateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateView.swift; sourceTree = "<group>"; };
 		E14B3F712536743200D2173B /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		E14B3F75253674E700D2173B /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				E18D0FFE252E05DF00F347DA /* ChatPermission.swift */,
 				E1AF32A72537854800147E15 /* ChatPermission2.swift */,
 				E1AF32AB253786D600147E15 /* ChatPermission3.swift */,
+				E10A646C2537CB2500069640 /* ChatPermission4.swift */,
 				E18D1007252E05EB00F347DA /* ChatData.swift */,
 			);
 			path = Chat;
@@ -513,6 +516,7 @@
 				E10A64642537BFBE00069640 /* MagnifierRect.swift in Sources */,
 				E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */,
 				E18D100A252E05EB00F347DA /* ChatData.swift in Sources */,
+				E10A646D2537CB2500069640 /* ChatPermission4.swift in Sources */,
 				E18D0FF7252D304B00F347DA /* Hybrid.swift in Sources */,
 				E1B4540125374F9F00670BE3 /* Ob2.swift in Sources */,
 				E10A645F2537BFBE00069640 /* Helpers.swift in Sources */,

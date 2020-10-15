@@ -38,7 +38,7 @@ struct Survey: View {
             SurveyQuestion(next: $next)
                 
         } else if next == 5 {
-            SurveyQuestion(next: $next)
+           ResultsView()
                 
         }
         }

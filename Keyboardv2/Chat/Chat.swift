@@ -69,6 +69,8 @@ struct ChatView: View {
                                         ChatPermission(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2, text: $text)
                                     } else if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
                                         ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2)
+                                    } else if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
+                                            ChatPermission4(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2)
                                     } else {
                                     ChatV2Cell2(name: chatting.name, message: chatting.message)
                                         .id(chatting)

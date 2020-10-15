@@ -97,32 +97,7 @@ struct Home2: View {
                   
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
                       
-                        let keys = Array(text)
-                        print(userData.intentedWord)
-                        intentedKeys = Array(arrayLiteral: userData.intentedWord)
-                        for key in keys {
-                           
-                            //print(iKey)
-                            print(keyNum2)
-                    
-                          //  if keyNum == keyNum2 {
-                            if userData.intentedWord != "" {
-                                let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
-                                
-                                if "\(key)" != String(userData.intentedWord[index]) {
-                            
-                            keysMistyped.append(0.5)
-                           print("mistype")
-                        
-                        
-                            }
-                                keyNum2 += 1
-                                if keyNum2 >= userData.intentedWord.count {
-                                    keyNum2 = 0
-                                }
-                        }
-                            
-                        }
+                       
                         
                         let db = Firestore.firestore()
                        
@@ -195,7 +170,7 @@ struct Home2: View {
                                 }
                             }
                             if self.userData.step == 15 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Take a survey to help us build a helpful keyboard?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What specific keys do you have trouble tapping?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                 
                                 db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
                                 if isKeyboardOpen {
