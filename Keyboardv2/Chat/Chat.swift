@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwiftUICharts
 struct ChatView: View {
     
     @State var chat = [ChatData(id: "\(UUID())", name: "Bot_Name", message: "Hey, I'm Bot_Name! What's your name?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: -1)]

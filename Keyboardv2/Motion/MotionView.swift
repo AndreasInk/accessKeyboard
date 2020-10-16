@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+
 import Firebase
+
 struct MotionView: View {
     
     @Binding var x: [Double]

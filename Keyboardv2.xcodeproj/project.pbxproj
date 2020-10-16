@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,7 +46,6 @@
 		E18D100B252E05EB00F347DA /* SurveyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1008252E05EB00F347DA /* SurveyData.swift */; };
 		E18D1012252E062C00F347DA /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1011252E062C00F347DA /* Home.swift */; };
 		E193E7012535D7FE00BE865A /* MotionView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E193E7002535D7FE00BE865A /* MotionView2.swift */; };
-		E1ABD7792534FF1C0067C3C4 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = E1ABD7782534FF1C0067C3C4 /* SwiftUICharts */; };
 		E1ABD77D253512460067C3C4 /* MotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ABD77C253512460067C3C4 /* MotionView.swift */; };
 		E1AF329E2537531300147E15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF329D2537531300147E15 /* ContentView.swift */; };
 		E1AF32A425377C6600147E15 /* Home2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AF32A325377C6600147E15 /* Home2.swift */; };
@@ -138,7 +137,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1ABD7792534FF1C0067C3C4 /* SwiftUICharts in Frameworks */,
 				822D9DDCE7516470939E9F7A /* Pods_Keyboardv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +347,6 @@
 			);
 			name = Keyboardv2;
 			packageProductDependencies = (
-				E1ABD7782534FF1C0067C3C4 /* SwiftUICharts */,
 			);
 			productName = Keyboardv2;
 			productReference = E159FF30252941D400F7511C /* Keyboardv2.app */;
@@ -379,7 +376,6 @@
 			);
 			mainGroup = E159FF27252941D400F7511C;
 			packageReferences = (
-				E1ABD7772534FF1C0067C3C4 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = E159FF31252941D400F7511C /* Products */;
 			projectDirPath = "";
@@ -688,25 +684,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E1ABD7772534FF1C0067C3C4 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E1ABD7782534FF1C0067C3C4 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E1ABD7772534FF1C0067C3C4 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E159FF28252941D400F7511C /* Project object */;
 }

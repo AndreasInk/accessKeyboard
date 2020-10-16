@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+
 import Firebase
 struct Admin: View {
     @State var data = [IndividualData]()

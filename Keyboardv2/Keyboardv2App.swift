@@ -24,7 +24,7 @@ struct Keyboardv2App: App {
     @State var didTap2: Bool = false
     var body: some Scene {
         WindowGroup {
-          Home2(didTap1: $didTap1, didTap2: $didTap2)
+          ContentView()
             .environmentObject(UserData.shared)
         }
     }

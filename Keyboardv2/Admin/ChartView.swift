@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftUICharts
+
 struct ChartView: View {
     @State var x = [Double]()
     
