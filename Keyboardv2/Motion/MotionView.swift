@@ -34,10 +34,8 @@ struct MotionView: View {
     @State var horizontal3 = (["u", "h", "n", "i", "j", "m", "o", "k", "backspace"]).map { "\($0)" }
     let screenSize = UIScreen.main.bounds
     @Binding var text: String 
-    let columns = [
-        GridItem(.adaptive(minimum: 30))
-    ]
-    let columns1 = [
+   @State var columns = [GridItem]()
+    var columns1 = [
         GridItem(.adaptive(minimum: 80))
     ]
     
@@ -53,6 +51,16 @@ struct MotionView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             Color(.white)
+                .onAppear() {
+                    print(screenSize.height)
+                    if screenSize.height > 812 {
+                    self.columns =  [GridItem(.adaptive(minimum: 35))]
+                       
+                      
+                    } else {
+                        self.columns =  [GridItem(.adaptive(minimum: 30))]
+                    }
+                }
                 .onTapGesture {
                     isKeyboardOpen = false
                     text = "Type Here"
