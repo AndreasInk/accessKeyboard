@@ -49,9 +49,7 @@ struct Home: View {
                 .onTapGesture {
                     isKeyboardOpen = false
                     text = "Type Here"
-                    let defaults = UserDefaults.standard
-                     timeNew = defaults.double(forKey: "timeNew")
-                     timeReg = defaults.double(forKey: "timeReg")
+                   
                 }
                 .onAppear() {
                    
@@ -81,7 +79,7 @@ struct Home: View {
                    } .onTapGesture {
                     isKeyboardOpen.toggle()
                      if text == "Type Here" {
-                    text = ""
+                    text = " "
                      } else {
                          text = "Type Here"
                      }
@@ -99,7 +97,7 @@ struct Home: View {
                     }  .onTapGesture {
                         timeOn = false
                         
-                        if text != "" {
+                        if text != " " {
                         if text != "Type Here" {
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
                         }
@@ -138,8 +136,19 @@ struct Home: View {
                             keysMistyped2.removeAll()
                             keyTime.removeAll()
                         }
-                        }
-                        if text != "" {
+                         } else {
+                            time = 0.0
+                            keyNum = 0
+                            keyNum2 = 0
+                            x.removeAll()
+                            y.removeAll()
+                            z.removeAll()
+                            intentedKeys.removeAll()
+                            keysMistyped.removeAll()
+                            keysMistyped2.removeAll()
+                            keyTime.removeAll()
+                         }
+                        if text != " " {
                         if text != "Type Here" {
                         self.userData.step =  self.userData.step + 1
                         }
@@ -178,7 +187,7 @@ struct Home: View {
 
                         }
                         if isKeyboardOpen {
-                       text = ""
+                       text = " "
                         } else {
                             text = "Type Here"
                         }

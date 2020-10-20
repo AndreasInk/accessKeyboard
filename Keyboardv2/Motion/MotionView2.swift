@@ -32,9 +32,7 @@ struct MotionView2: View {
    
     let screenSize = UIScreen.main.bounds
     @Binding var text: String
-    let columns = [
-        GridItem(.adaptive(minimum: 30))
-    ]
+    
     let columns1 = [
         GridItem(.adaptive(minimum: 100))
     ]
@@ -68,17 +66,32 @@ struct MotionView2: View {
     @Binding var time: Double
     @Binding var timeOn: Bool
     @Binding var keysMistyped2: [String]
+    
+    @State var columns = [GridItem]()
     var body: some View {
         ZStack(alignment: .bottom) {
             if wait {
                 CalibrateView(wait: $wait, time: $time, x: $x, y: $y, z: $z, averageZ: $averageZ)
+                    
                 
             } else {
          
                 Color(.white)
                     .onAppear() {
+                        if screenSize.height > 812 {
+                        self.columns =  [GridItem(.adaptive(minimum: 35))]
+                           
+                          
+                        } else {
+                            self.columns =  [GridItem(.adaptive(minimum: 30))]
+                        }
+                    }
+                    .onDisappear() {
+                        columns.removeAll()
+                    }
+                    .onAppear() {
                        
-                        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                        var timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
                             if timeOn {
                            //left and right
                                 time += 0.1
@@ -89,7 +102,11 @@ struct MotionView2: View {
                             z.append(motionManager.z)
                             keysMistyped.append(0)
                             
-                            print(motionManager.z)
+                         
+                               
+                            }
+                            if userData.step == 12 {
+                                timer.invalidate()
                             }
                         }
                     }
@@ -199,7 +216,7 @@ struct MotionView2: View {
                                } else {
                                 text += item
                                 
-                               if userData.step > 0 {
+                                if userData.step < 12 {
                                   print("\(userData.intentedWord[keyNum])")
                                   
                                    if "\(userData.intentedWord[keyNum])" != item {
@@ -237,7 +254,7 @@ struct MotionView2: View {
                                    } else {
                                     text += item
                                     
-                                   if userData.step > 0 {
+                                    if userData.step < 12 {
                                       print("\(userData.intentedWord[keyNum])")
                                       
                                        if "\(userData.intentedWord[keyNum])" != item {
@@ -275,7 +292,7 @@ struct MotionView2: View {
                                    } else {
                                     text += item
                                     
-                                   if userData.step > 0 {
+                                    if userData.step < 12 {
                                       print("\(userData.intentedWord[keyNum])")
                                       
                                        if "\(userData.intentedWord[keyNum])" != item {
@@ -313,7 +330,7 @@ struct MotionView2: View {
                     Button(action: {
                         text += " "
                         
-                       if userData.step > 0 {
+                        if userData.step < 12 {
                           print("\(userData.intentedWord[keyNum])")
                           
                            if "\(userData.intentedWord[keyNum])" != " " {
@@ -375,30 +392,30 @@ struct MotionView2: View {
                             Button(action: {
                                 text += item
                                 
-                               if userData.step > 0 {
-                                  print("\(userData.intentedWord[keyNum])")
-                                  
-                                   if "\(userData.intentedWord[keyNum])" != item {
-                                       keysMistyped.append(0.5)
-                                               keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                       
-                                       if keyNum > -1 {
-                                       text.removeLast()
-                                       text.append(userData.intentedWord[keyNum])
-                                       
-                                   }
-                                   }
+                                if userData.step < 12 {
+                                   print("\(userData.intentedWord[keyNum])")
                                    
-                                  
+                                    if "\(userData.intentedWord[keyNum])" != item {
+                                        keysMistyped.append(0.5)
+                                                keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                        
+                                        if keyNum > -1 {
+                                        text.removeLast()
+                                        text.append(userData.intentedWord[keyNum])
+                                        
+                                    }
+                                    }
+                                    
                                    
-                            }
-                               keyNum2 += 1
-                               keyNum += 1
+                                    
+                             }
+                                keyNum2 += 1
+                                keyNum += 1
                                 
                               
                                
                                 print(keys)
-                                print(x)
+                                
                                 zoom1.toggle()
                             }) {
                             ZStack {
@@ -461,7 +478,7 @@ struct MotionView2: View {
                             Button(action: {
                                 text += item
                                 
-                               if userData.step > 0 {
+                               if userData.step < 12 {
                                   print("\(userData.intentedWord[keyNum])")
                                   
                                    if "\(userData.intentedWord[keyNum])" != item {
@@ -485,8 +502,7 @@ struct MotionView2: View {
                                
                                
                            
-                                print(keys)
-                                print(x)
+                               
                                 zoom2.toggle()
                             }) {
                             ZStack {
@@ -556,7 +572,7 @@ struct MotionView2: View {
                                 } else {
                                     text += item
                                     
-                                   if userData.step > 0 {
+                                    if userData.step < 12 {
                                       print("\(userData.intentedWord[keyNum])")
                                       
                                        if "\(userData.intentedWord[keyNum])" != item {
@@ -581,8 +597,7 @@ struct MotionView2: View {
                                 
                                
                                
-                                print(keys)
-                                print(x)
+                               
                                 zoom3.toggle()
                             }) {
                             ZStack {

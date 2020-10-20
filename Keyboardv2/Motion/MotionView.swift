@@ -62,6 +62,10 @@ struct MotionView: View {
                         self.columns =  [GridItem(.adaptive(minimum: 30))]
                     }
                 }
+                
+                .onDisappear() {
+                    columns.removeAll()
+                }
                 .onTapGesture {
                     isKeyboardOpen = false
                     text = "Type Here"
@@ -70,8 +74,8 @@ struct MotionView: View {
                 Color(.white)
             .onAppear() {
                 
-                _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                   
+                _ = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
+                  
                   
                    //left and right
                     if timeOn {
@@ -93,7 +97,11 @@ struct MotionView: View {
                         
                         
                     }
+                       
                 }
+                    if userData.step == 6 {
+                        timer.invalidate()
+                    }
                 }
                 }
             } else {

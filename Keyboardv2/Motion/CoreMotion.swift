@@ -23,7 +23,7 @@ class MotionManager: ObservableObject {
 
     init() {
         self.motionManager = CMMotionManager()
-        self.motionManager.magnetometerUpdateInterval = 1/60
+        self.motionManager.accelerometerUpdateInterval = 1.0 / 60.0
         self.motionManager.startAccelerometerUpdates(to: .main) { (magnetometerData, error) in
             guard error == nil else {
                 print(error!)

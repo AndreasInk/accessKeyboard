@@ -52,9 +52,7 @@ struct Home2: View {
                     time = 0.0
                     isKeyboardOpen = false
                     text = "Type Here"
-                    let defaults = UserDefaults.standard
-                     timeNew = defaults.double(forKey: "timeNew")
-                     timeReg = defaults.double(forKey: "timeReg")
+                    
                 }
                 .onAppear() {
                     self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
@@ -86,7 +84,7 @@ struct Home2: View {
                    } .onTapGesture {
                     isKeyboardOpen.toggle()
                      if text == "Type Here" {
-                    text = ""
+                    text = " "
                      } else {
                          text = "Type Here"
                      }
@@ -104,7 +102,7 @@ struct Home2: View {
                     }  .onTapGesture {
                         timeOn = false
                         
-                        if text != "" {
+                        if text != " " {
                         if text != "Type Here" {
                            
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
@@ -127,6 +125,8 @@ struct Home2: View {
                                 keysMistyped.removeAll()
                                 keysMistyped2.removeAll()
                                 keyTime.removeAll()
+                                keys.removeAll()
+                                
                             } else {
                                 time = 0.0
                                 keyNum = 0
@@ -138,6 +138,7 @@ struct Home2: View {
                                 keysMistyped.removeAll()
                                 keysMistyped2.removeAll()
                                 keyTime.removeAll()
+                                keys.removeAll()
                             }
                                             
                         
@@ -164,7 +165,7 @@ struct Home2: View {
                             }
                             if self.userData.step == 12 {
                                 self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What apps do you use most frequently?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
-                                self.userData.intentedWord = ""
+                                self.userData.intentedWord = " "
                               
                             }
                             if self.userData.step == 13 {
@@ -193,7 +194,7 @@ struct Home2: View {
                         }
                         
                         
-                            if text != "" {
+                            if text != " " {
                             if text != "Type Here" {
                             self.userData.step =  self.userData.step + 1
                             }

@@ -44,11 +44,11 @@ struct ContentView: View {
             if !userData.demoKeyboards {
                 Home(didTap1: $didTap1, didTap2: $didTap2)
                 .environmentObject(UserData.shared)
+                  
             } else {
                 Home2(didTap1: $didTap1, didTap2: $didTap2)
                     .environmentObject(UserData.shared)
                     .onAppear() {
-                        
                         keyNum = 0
                         keyNum2 = 0
                         x.removeAll()
@@ -58,6 +58,7 @@ struct ContentView: View {
                         keysMistyped.removeAll()
                         keysMistyped2.removeAll()
                         keyTime.removeAll()
+                        
                     }
             }
         } else {

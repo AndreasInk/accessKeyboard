@@ -38,8 +38,7 @@ struct ResultsView: View {
                     
                         
                 
-                        BarChartView(data: ChartData(values: [(keyStrings2[0], keyStringsCount[0]), (keyStrings2[1], keyStringsCount[1]), (keyStrings2[2], keyStringsCount[2])]), title: "Mistyped Keys", legend: "Quarterly", form: CGSize(width: 320, height: 320))
-                            .padding()
+                       
                         Text("Below are some of the community's accuracy data, the orange lines are the community's mistaps and the other lines are the x, y, and z accelerations")
                             .font(.headline)
                             .multilineTextAlignment(.center)
