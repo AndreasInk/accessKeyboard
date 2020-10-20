@@ -34,8 +34,8 @@ struct Home: View {
     @State var keysMistyped = [Double]()
     @State var keysMistyped2 = [String]()
     @State var intentedKeys = [String]()
-    @State var keyNum: Int = 0
-    @State var keyNum2: Int = 0
+    @State var keyNum: Int = -1
+    @State var keyNum2: Int = -1
     
     @Binding var didTap1: Bool
     
@@ -106,7 +106,7 @@ struct Home: View {
                         }
                         let keys = Array(text)
                         print(userData.intentedWord)
-                        intentedKeys = Array(arrayLiteral: userData.intentedWord)
+                     
                         for key in keys {
                            
                             //print(iKey)
@@ -117,17 +117,7 @@ struct Home: View {
                                 keyNum2 = 0
                             }
                             if userData.intentedWord != "" {
-                                let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
-                                
-                                if "\(key)" != String(userData.intentedWord[index]) {
-                            
-                            keysMistyped.append(0.5)
-                                    keysMistyped2.append("\(String(userData.intentedWord[index]))")
-                           print("mistype")
-                        
-                        
-                            }
-                                keyNum2 += 1
+                              
                                 
                         }
                             
@@ -135,10 +125,13 @@ struct Home: View {
                         
                         
                         if userData.canRememberConvo {
+                            if userData.step > 0 {
                                 let db = Firestore.firestore()
 
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
                             time = 0.0
+                            keyNum = 0
+                            keyNum2 = 0
                             x.removeAll()
                             y.removeAll()
                             z.removeAll()
@@ -146,6 +139,7 @@ struct Home: View {
                             keysMistyped.removeAll()
                             keysMistyped2.removeAll()
                             keyTime.removeAll()
+                        }
                         }
                                             
                         if text != "" {
@@ -199,7 +193,7 @@ struct Home: View {
                
                
                // Spacer(minLength: screenSize.height/2.5)
-                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn)
+                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }

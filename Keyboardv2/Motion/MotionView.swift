@@ -48,6 +48,7 @@ struct MotionView: View {
     @Binding var keysMistyped: [Double]
     @Binding var time: Double
     @Binding var timeOn: Bool
+    @Binding var keysMistyped2: [String]
     var body: some View {
         ZStack(alignment: .bottom) {
             Color(.white)
@@ -84,7 +85,7 @@ struct MotionView: View {
                     
                     keysMistyped.append(0)
                     
-                    print(motionManager.z)
+                    //print(motionManager.z)
                     if time == 10 {
                         let sumArray = z.reduce(0, +)
 
@@ -127,8 +128,28 @@ struct MotionView: View {
                                      }
                                  } else {
                                      text += item
-                                     keyNum += 1
+                                     
+                                    if userData.step > 0 {
+                                       print("\(userData.intentedWord[keyNum])")
+                                       
+                                        if "\(userData.intentedWord[keyNum])" != item {
+                                            keysMistyped.append(0.5)
+                                                    keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                            
+                                            if keyNum > -1 {
+                                            text.removeLast()
+                                            text.append(userData.intentedWord[keyNum])
+                                            
+                                        }
+                                        }
+                                        
+                                       
+                                        
                                  }
+                                    keyNum2 += 1
+                                    keyNum += 1
+                                 }
+                                 
                             }) {
                                
                             ZStack(alignment: .center) {
@@ -160,6 +181,26 @@ struct MotionView: View {
                     .padding()
                         Button(action: {
                             text += " "
+                            
+                           if userData.step > 0 {
+                              print("\(userData.intentedWord[keyNum])")
+                              
+                               if "\(userData.intentedWord[keyNum])" != " " {
+                                   keysMistyped.append(0.5)
+                                           keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                   
+                                   if keyNum > -1 {
+                                   text.removeLast()
+                                   text.append(userData.intentedWord[keyNum])
+                                   
+                               }
+                               }
+                               
+                              
+                               
+                        }
+                           keyNum2 += 1
+                           keyNum += 1
                         }) {
                         Color(.white)
                             .frame(width: screenSize.width/1.1, height: 50)

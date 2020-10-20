@@ -42,6 +42,8 @@ struct Home2: View {
     @Binding var didTap2: Bool
     
     @State var timeOn: Bool = false
+    
+   
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -100,57 +102,29 @@ struct Home2: View {
                            
                     }  .onTapGesture {
                         timeOn = false
+                        
                         if text != "" {
                         if text != "Type Here" {
+                           
                         userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
                         }
                         }
                         
                         let db = Firestore.firestore()
                        
-                        if userData.canRememberConvo {
-
-                                
-                            let keys = Array(text)
-                            print(userData.intentedWord)
-                            intentedKeys = Array(arrayLiteral: userData.intentedWord)
-                            for key in keys {
-                               
-                                //print(iKey)
-                                print(keyNum2)
-                        
-                              //  if keyNum == keyNum2 {
-                                if keyNum2 >= userData.intentedWord.count {
-                                    keyNum2 = 0
-                                }
-                                if userData.intentedWord != "" {
-                                    let index = userData.intentedWord.index(userData.intentedWord.startIndex, offsetBy: keyNum2)
-                                    
-                                    if "\(key)" != String(userData.intentedWord[index]) {
-                                
-                                keysMistyped.append(0.5)
-                                        keysMistyped2.append("\(String(userData.intentedWord[index]))")
-                               print("mistype")
-                            
-                            
-                                }
-                                    keyNum2 += 1
-                                    
-                            }
-                                
-                            }
-                        }
+                      
                     
                             if userData.canRememberConvo {
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
                                 time = 0.0
+                                keyNum = 0
+                                keyNum2 = 0
                                 x.removeAll()
                                 y.removeAll()
                                 z.removeAll()
                                 intentedKeys.removeAll()
                                 keysMistyped.removeAll()
                                 keysMistyped2.removeAll()
-                                keys.removeAll()
                                 keyTime.removeAll()
                             }
                                             
@@ -224,7 +198,7 @@ struct Home2: View {
                    
                 VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn)
+                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }

@@ -67,6 +67,7 @@ struct MotionView2: View {
     @State var calibrate: Bool = false
     @Binding var time: Double
     @Binding var timeOn: Bool
+    @Binding var keysMistyped2: [String]
     var body: some View {
         ZStack(alignment: .bottom) {
             if wait {
@@ -151,6 +152,7 @@ struct MotionView2: View {
                     ForEach(data, id: \.self) { item in
                         Button(action: {
                             timeOn = true
+                            key = item
                         }) {
                         ZStack {
                             
@@ -187,15 +189,35 @@ struct MotionView2: View {
                        if xPos > screenSize.width * 1/3 {
                            if xPos < screenSize.width * 2/3 {
                                print(1)
-                            if numberRange.contains(motionManager.z) {
-                                key = item
+                            if numberRange.contains(motionManager.z) == false {
+                               
                                
                                if item == "backspace" {
                                    if text.count > 0 {
                                text.removeLast()
                                    }
                                } else {
-                                   text += item
+                                text += item
+                                
+                               if userData.step > 0 {
+                                  print("\(userData.intentedWord[keyNum])")
+                                  
+                                   if "\(userData.intentedWord[keyNum])" != item {
+                                       keysMistyped.append(0.5)
+                                               keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                       
+                                       if keyNum > -1 {
+                                       text.removeLast()
+                                       text.append(userData.intentedWord[keyNum])
+                                       
+                                   }
+                                   }
+                                   
+                                  
+                                   
+                            }
+                               keyNum2 += 1
+                               keyNum += 1
                                }
                             } else {
                                zoom2.toggle()
@@ -206,14 +228,34 @@ struct MotionView2: View {
                                if xPos < screenSize.width {
                                    print(2)
                                 if numberRange.contains(motionManager.z) {
-                                    key = item
+                                    
                                    
                                    if item == "backspace" {
                                        if text.count > 0 {
                                    text.removeLast()
                                        }
                                    } else {
-                                       text += item
+                                    text += item
+                                    
+                                   if userData.step > 0 {
+                                      print("\(userData.intentedWord[keyNum])")
+                                      
+                                       if "\(userData.intentedWord[keyNum])" != item {
+                                           keysMistyped.append(0.5)
+                                                   keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                           
+                                           if keyNum > -1 {
+                                           text.removeLast()
+                                           text.append(userData.intentedWord[keyNum])
+                                           
+                                       }
+                                       }
+                                       
+                                      
+                                       
+                                }
+                                   keyNum2 += 1
+                                   keyNum += 1
                                    }
                                 } else {
                                    zoom3.toggle()
@@ -224,14 +266,34 @@ struct MotionView2: View {
                                if xPos < screenSize.width * 1/3 {
                                    print(0)
                                 if numberRange.contains(motionManager.z) {
-                                    key = item
+                                   
                                    
                                    if item == "backspace" {
                                        if text.count > 0 {
                                    text.removeLast()
                                        }
                                    } else {
-                                       text += item
+                                    text += item
+                                    
+                                   if userData.step > 0 {
+                                      print("\(userData.intentedWord[keyNum])")
+                                      
+                                       if "\(userData.intentedWord[keyNum])" != item {
+                                           keysMistyped.append(0.5)
+                                                   keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                           
+                                           if keyNum > -1 {
+                                           text.removeLast()
+                                           text.append(userData.intentedWord[keyNum])
+                                           
+                                       }
+                                       }
+                                       
+                                      
+                                       
+                                }
+                                   keyNum2 += 1
+                                   keyNum += 1
                                    }
                                 } else {
                                    zoom1.toggle()
@@ -250,6 +312,26 @@ struct MotionView2: View {
                 .padding()
                     Button(action: {
                         text += " "
+                        
+                       if userData.step > 0 {
+                          print("\(userData.intentedWord[keyNum])")
+                          
+                           if "\(userData.intentedWord[keyNum])" != " " {
+                               keysMistyped.append(0.5)
+                                       keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                               
+                               if keyNum > -1 {
+                               text.removeLast()
+                               text.append(userData.intentedWord[keyNum])
+                               
+                           }
+                           }
+                           
+                          
+                           
+                    }
+                       keyNum2 += 1
+                       keyNum += 1
                     }) {
                     Color(.white)
                         .frame(width: screenSize.width/1.1, height: 50)
@@ -258,17 +340,7 @@ struct MotionView2: View {
                     }
                 }
             } .padding(.bottom, 22)
-            .onTapGesture {
-                let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                    time += 0.1
-                    let defaults = UserDefaults.standard
-                    defaults.set(time, forKey: "timeHybrid")
-                    
-                    if text.contains("k") {
-                        timer.invalidate()
-                    }
-                }
-            }
+           
           
               
             }
@@ -287,9 +359,27 @@ struct MotionView2: View {
                             Button(action: {
                                 text += item
                                 
-                                x.append(motionManager.x)
-                                y.append(motionManager.y)
-                                z.append(motionManager.z)
+                               if userData.step > 0 {
+                                  print("\(userData.intentedWord[keyNum])")
+                                  
+                                   if "\(userData.intentedWord[keyNum])" != item {
+                                       keysMistyped.append(0.5)
+                                               keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                       
+                                       if keyNum > -1 {
+                                       text.removeLast()
+                                       text.append(userData.intentedWord[keyNum])
+                                       
+                                   }
+                                   }
+                                   
+                                  
+                                   
+                            }
+                               keyNum2 += 1
+                               keyNum += 1
+                                
+                              
                                 keys.append(item)
                                 print(keys)
                                 print(x)
@@ -297,11 +387,19 @@ struct MotionView2: View {
                             }) {
                             ZStack {
                                 
+                                if item == key {
+                                    Color(.systemBlue)
+                                    .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                    Text(item)
+                                        .font(.title)
+                                        .foregroundColor(.white)
+                                } else {
                                     Color(.white)
                                         .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
                                     Text(item)
                                         .font(.title)
                                         .foregroundColor(.black)
+                                }
                                 
                                 
                             }
@@ -331,12 +429,30 @@ struct MotionView2: View {
                         ForEach(horizontal2, id: \.self) { item in
                             Button(action: {
                                 text += item
+                                
+                               if userData.step > 0 {
+                                  print("\(userData.intentedWord[keyNum])")
+                                  
+                                   if "\(userData.intentedWord[keyNum])" != item {
+                                       keysMistyped.append(0.5)
+                                               keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                       
+                                       if keyNum > -1 {
+                                       text.removeLast()
+                                       text.append(userData.intentedWord[keyNum])
+                                       
+                                   }
+                                   }
+                                   
+                                  
+                                   
+                            }
+                               keyNum2 += 1
+                               keyNum += 1
                                
                                
                                
-                                x.append(motionManager.x)
-                                y.append(motionManager.y)
-                                z.append(motionManager.z)
+                               
                                 keys.append(item)
                                 print(keys)
                                 print(x)
@@ -344,11 +460,19 @@ struct MotionView2: View {
                             }) {
                             ZStack {
                                
+                                if item == key {
+                                    Color(.systemBlue)
+                                    .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                    Text(item)
+                                        .font(.title)
+                                        .foregroundColor(.white)
+                                } else {
                                     Color(.white)
                                         .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
                                     Text(item)
                                         .font(.title)
                                         .foregroundColor(.black)
+                                }
                                 
                                 
                             }
@@ -385,13 +509,31 @@ struct MotionView2: View {
                                     }
                                 } else {
                                     text += item
+                                    
+                                   if userData.step > 0 {
+                                      print("\(userData.intentedWord[keyNum])")
+                                      
+                                       if "\(userData.intentedWord[keyNum])" != item {
+                                           keysMistyped.append(0.5)
+                                                   keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                           
+                                           if keyNum > -1 {
+                                           text.removeLast()
+                                           text.append(userData.intentedWord[keyNum])
+                                           
+                                       }
+                                       }
+                                       
+                                      
+                                       
+                                }
+                                   keyNum2 += 1
+                                   keyNum += 1
                                 }
                                 
                                 
                                 
-                                x.append(motionManager.x)
-                                y.append(motionManager.y)
-                                z.append(motionManager.z)
+                               
                                 keys.append(item)
                                 print(keys)
                                 print(x)
@@ -399,11 +541,19 @@ struct MotionView2: View {
                             }) {
                             ZStack {
                                
+                                if item == key {
+                                    Color(.systemBlue)
+                                    .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                    Text(item)
+                                        .font(.title)
+                                        .foregroundColor(.white)
+                                } else {
                                     Color(.white)
                                         .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
                                     Text(item)
                                         .font(.title)
                                         .foregroundColor(.black)
+                                }
                                 
                                 
                                 
