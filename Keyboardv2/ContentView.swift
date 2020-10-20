@@ -47,6 +47,18 @@ struct ContentView: View {
             } else {
                 Home2(didTap1: $didTap1, didTap2: $didTap2)
                     .environmentObject(UserData.shared)
+                    .onAppear() {
+                        
+                        keyNum = 0
+                        keyNum2 = 0
+                        x.removeAll()
+                        y.removeAll()
+                        z.removeAll()
+                        intentedKeys.removeAll()
+                        keysMistyped.removeAll()
+                        keysMistyped2.removeAll()
+                        keyTime.removeAll()
+                    }
             }
         } else {
         Onboarding()

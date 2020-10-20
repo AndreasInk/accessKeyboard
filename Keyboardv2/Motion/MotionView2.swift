@@ -345,14 +345,30 @@ struct MotionView2: View {
               
             }
             if zoom1 {
-                Image("background")
-                    
+                BlurView(style: .systemThickMaterial)
+                  
                     .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
+                    .edgesIgnoringSafeArea(.all)
                     .onTapGesture() {
                         zoom1.toggle()
                     }
                 VStack {
-                    Spacer(minLength: screenSize.height/1.7)
+                    Spacer(minLength: screenSize.height/3)
+                    Text(text)
+                        
+                        .font(.headline)
+                        .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                    Button(action: {
+                        zoom1.toggle()
+                    }) {
+                        ZStack {
+                        Color(.white)
+                            .frame(width: screenSize.width/1.1, height: screenSize.width/5.5, alignment: .center)
+                        Text("Back")
+                            .font(.title)
+                            .foregroundColor(.black)
+                        }
+                    }
                        
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal1, id: \.self) { item in
@@ -380,7 +396,7 @@ struct MotionView2: View {
                                keyNum += 1
                                 
                               
-                                keys.append(item)
+                               
                                 print(keys)
                                 print(x)
                                 zoom1.toggle()
@@ -416,15 +432,30 @@ struct MotionView2: View {
             }
             }
             if zoom2 {
-                Image("background")
-                    
+                BlurView(style: .systemThickMaterial)
+                  
                     .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
+                    .edgesIgnoringSafeArea(.all)
                     .onTapGesture() {
                         zoom2.toggle()
                     }
                 VStack {
-                    Spacer(minLength: screenSize.height/1.7)
-                       
+                    Spacer(minLength: screenSize.height/3)
+                    Text(text)
+                        
+                        .font(.headline)
+                        .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                    Button(action: {
+                        zoom2.toggle()
+                    }) {
+                        ZStack {
+                        Color(.white)
+                            .frame(width: screenSize.width/1.1, height: screenSize.width/5.5, alignment: .center)
+                        Text("Back")
+                            .font(.title)
+                            .foregroundColor(.black)
+                        }
+                    }
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal2, id: \.self) { item in
                             Button(action: {
@@ -453,7 +484,7 @@ struct MotionView2: View {
                                
                                
                                
-                                keys.append(item)
+                           
                                 print(keys)
                                 print(x)
                                 zoom2.toggle()
@@ -491,15 +522,30 @@ struct MotionView2: View {
             }
             
             if zoom3 {
-                Image("background")
-                    
+                BlurView(style: .systemThickMaterial)
+                  
                     .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
+                    .edgesIgnoringSafeArea(.all)
                     .onTapGesture() {
                         zoom3.toggle()
                     }
                 VStack {
-                    Spacer(minLength: screenSize.height/1.7)
-                       
+                    Spacer(minLength: screenSize.height/3)
+                    Text(text)
+                        
+                        .font(.headline)
+                        .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                    Button(action: {
+                        zoom3.toggle()
+                    }) {
+                        ZStack {
+                        Color(.white)
+                            .frame(width: screenSize.width/1.1, height: screenSize.width/5.5, alignment: .center)
+                        Text("Back")
+                            .font(.title)
+                            .foregroundColor(.black)
+                        }
+                    }
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal3, id: \.self) { item in
                             Button(action: {
@@ -534,7 +580,7 @@ struct MotionView2: View {
                                 
                                 
                                
-                                keys.append(item)
+                               
                                 print(keys)
                                 print(x)
                                 zoom3.toggle()

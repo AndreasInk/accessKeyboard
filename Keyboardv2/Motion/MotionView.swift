@@ -131,7 +131,7 @@ struct MotionView: View {
                                      
                                     if userData.step > 0 {
                                        print("\(userData.intentedWord[keyNum])")
-                                       
+                                       print(keyNum)
                                         if "\(userData.intentedWord[keyNum])" != item {
                                             keysMistyped.append(0.5)
                                                     keysMistyped2.append("\(userData.intentedWord[keyNum])")

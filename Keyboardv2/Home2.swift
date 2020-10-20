@@ -49,6 +49,7 @@ struct Home2: View {
             Color(.white)
            
                 .onTapGesture {
+                    time = 0.0
                     isKeyboardOpen = false
                     text = "Type Here"
                     let defaults = UserDefaults.standard
@@ -116,6 +117,17 @@ struct Home2: View {
                     
                             if userData.canRememberConvo {
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
+                                time = 0.0
+                                keyNum = 0
+                                keyNum2 = 0
+                                x.removeAll()
+                                y.removeAll()
+                                z.removeAll()
+                                intentedKeys.removeAll()
+                                keysMistyped.removeAll()
+                                keysMistyped2.removeAll()
+                                keyTime.removeAll()
+                            } else {
                                 time = 0.0
                                 keyNum = 0
                                 keyNum2 = 0

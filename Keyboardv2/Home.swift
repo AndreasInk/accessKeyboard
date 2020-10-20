@@ -107,21 +107,7 @@ struct Home: View {
                         let keys = Array(text)
                         print(userData.intentedWord)
                      
-                        for key in keys {
-                           
-                            //print(iKey)
-                            print(keyNum2)
-                    
-                          //  if keyNum == keyNum2 {
-                            if keyNum2 >= userData.intentedWord.count {
-                                keyNum2 = 0
-                            }
-                            if userData.intentedWord != "" {
-                              
-                                
-                        }
-                            
-                        }
+                     
                         
                         
                         if userData.canRememberConvo {
@@ -139,9 +125,20 @@ struct Home: View {
                             keysMistyped.removeAll()
                             keysMistyped2.removeAll()
                             keyTime.removeAll()
+                        
+                        } else {
+                            time = 0.0
+                            keyNum = 0
+                            keyNum2 = 0
+                            x.removeAll()
+                            y.removeAll()
+                            z.removeAll()
+                            intentedKeys.removeAll()
+                            keysMistyped.removeAll()
+                            keysMistyped2.removeAll()
+                            keyTime.removeAll()
                         }
                         }
-                                            
                         if text != "" {
                         if text != "Type Here" {
                         self.userData.step =  self.userData.step + 1
