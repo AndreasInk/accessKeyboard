@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,6 +35,7 @@
 		E159FF36252941D400F7511C /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159FF35252941D400F7511C /* ContentView2.swift */; };
 		E159FF38252941D600F7511C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E159FF37252941D600F7511C /* Assets.xcassets */; };
 		E159FF3B252941D600F7511C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E159FF3A252941D600F7511C /* Preview Assets.xcassets */; };
+		E15A20EE25406952006E042E /* SigmaSwiftStatistics in Frameworks */ = {isa = PBXBuildFile; productRef = E15A20ED25406952006E042E /* SigmaSwiftStatistics */; };
 		E1817824252F9A0200724F23 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1006252E05EA00F347DA /* UserData.swift */; };
 		E18D0FF3252D2A6A00F347DA /* Keyboard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D0FF2252D2A6A00F347DA /* Keyboard2.swift */; };
 		E18D0FF7252D304B00F347DA /* Hybrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D0FF6252D304B00F347DA /* Hybrid.swift */; };
@@ -138,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				822D9DDCE7516470939E9F7A /* Pods_Keyboardv2.framework in Frameworks */,
+				E15A20EE25406952006E042E /* SigmaSwiftStatistics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +349,7 @@
 			);
 			name = Keyboardv2;
 			packageProductDependencies = (
+				E15A20ED25406952006E042E /* SigmaSwiftStatistics */,
 			);
 			productName = Keyboardv2;
 			productReference = E159FF30252941D400F7511C /* Keyboardv2.app */;
@@ -376,6 +379,7 @@
 			);
 			mainGroup = E159FF27252941D400F7511C;
 			packageReferences = (
+				E15A20EC25406952006E042E /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */,
 			);
 			productRefGroup = E159FF31252941D400F7511C /* Products */;
 			projectDirPath = "";
@@ -684,6 +688,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E15A20EC25406952006E042E /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/SigmaSwiftStatistics.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E15A20ED25406952006E042E /* SigmaSwiftStatistics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E15A20EC25406952006E042E /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */;
+			productName = SigmaSwiftStatistics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E159FF28252941D400F7511C /* Project object */;
 }

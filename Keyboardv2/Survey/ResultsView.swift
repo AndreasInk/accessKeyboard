@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Firebase
-
+import SigmaSwiftStatistics
 struct ResultsView: View {
     @State var data = [IndividualData]()
     @State var hasData: Bool = false
@@ -34,7 +34,7 @@ struct ResultsView: View {
             if hasData {
                 
                 ScrollView {
-                    VStack {
+                    LazyVStack {
                     
                         
                 
@@ -114,7 +114,7 @@ struct ResultsView: View {
         let db = Firestore.firestore()
       
         db.collection("interactions")
-            .limit(to: 4).whereField("type", isEqualTo: "Reg").getDocuments { (documents, error) in
+            .limit(to: 20).whereField("keysMistyped", arrayContains: 0.5).getDocuments { (documents, error) in
             if documents?.count ?? -1 > -1 {
             for document in documents!.documents{
                 print("add")
@@ -125,8 +125,70 @@ struct ResultsView: View {
                         
                        
                         keyStrings.append(key)
+                        
+                        
                     }
+                   
                 }
+                let startNumber = 0
+                let middleNumber = 200
+                let middleNumber2 = 300
+                let endNumber = 400
+                let numberRange = startNumber...middleNumber
+                let numberRange2 = middleNumber2...endNumber
+                for index in 0..<self.data.count {
+                    let avg1 = average(of: data[index].z[0...data[index].x.count - 1])
+                    print("average z " + "\(avg1)")
+                   
+                    for index2 in 0..<self.data[index].keysMistyped.count {
+                        if  data[index].keysMistyped[index2] == 0.5 {
+                            data[index].keysMistyped[index2] = -0.5
+                           // print("Mistype z: " + "\(data[index].z[index2])")
+                        }
+                        if  data[index].keysMistyped[index2] == 0.0 {
+                            data[index].keysMistyped[index2] = -1
+                        }
+                      
+                    }
+                    for index2 in 0..<self.data[index].x.count {
+                       
+                       
+                        //data[index].z[index2] =  data[index].z[index2] + 0.15
+                       
+                   // for index2 in 0..<self.data[index].y.count {
+                       
+                        //data[index].y[index2] =  data[index].y[index2] + 0.15
+                       // if numberRange.contains(index2) {
+                        //    data[index].y.remove(at: index2)
+                       // }
+                       // if numberRange2.contains(index2)  {
+                       //     data[index].y.remove(at: index2)
+                       // }
+                 //   }
+                   // for index2 in 0..<self.data[index].keysMistyped.count {
+                       
+                       // data[index].y[index2] =  data[index].y[index2] + 0.15
+                      //  if numberRange.contains(index2) {
+                           // data[index].keysMistyped.remove(at: index2)
+                       // }
+                      //  if numberRange2.contains(index2)  {
+                      //      data[index].keysMistyped.remove(at: index2)
+                      //  }
+                        if self.data[index].x[index2] ==  0.118560791015625 {
+                            print("Mistyped near 90% \(data[index].keysMistyped[index2 - 1])")
+                            print("Mistyped near 90% \(data[index].keysMistyped[index2 + 1])")
+                            print("Mistyped near 90% \(data[index].keysMistyped[index2 - 5])")
+                            print("Mistyped near 90% \(data[index].keysMistyped[index2 + 5])")
+                        }
+                    }
+                    print("Precentile value: " + "\(Sigma.percentile(data[index].x, percentile: 0.9))")
+                    
+                    
+                   
+                    }
+                   
+                    
+                
                         if self.data.count == documents?.count ?? -1 {
                             let sortedDictByValue = keyStrings.freq().sorted{ $0.value > $1.value }
                             print("sorted" + "\(sortedDictByValue)")
@@ -143,8 +205,9 @@ struct ResultsView: View {
                            
                         
                         }
+                
                     print(keyStrings.freq())
-                   
+               
               
                 
             }
@@ -197,6 +260,10 @@ struct ResultsView: View {
             }
             
         }
+    func average<C: Collection>(of c: C) -> Double where C.Element == Double {
+        precondition(!c.isEmpty, "Cannot compute average of empty collection")
+        return Double(c.reduce(0, +))/Double(c.count)
+    }
     }
 
 
@@ -211,3 +278,4 @@ extension Sequence where Self.Iterator.Element: Hashable {
         }
     }
 }
+

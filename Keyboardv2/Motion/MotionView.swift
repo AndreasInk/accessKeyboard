@@ -74,7 +74,7 @@ struct MotionView: View {
                 Color(.white)
             .onAppear() {
                 
-                _ = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
+                _ = Timer.scheduledTimer(withTimeInterval: 1.0 / 120, repeats: true) { timer in
                   
                   
                    //left and right

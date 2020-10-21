@@ -91,7 +91,7 @@ struct MotionView2: View {
                     }
                     .onAppear() {
                        
-                        var timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 60.0, repeats: true) { timer in
+                        var timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 120, repeats: true) { timer in
                             if timeOn {
                            //left and right
                                 time += 0.1
@@ -206,7 +206,7 @@ struct MotionView2: View {
                        if xPos > screenSize.width * 1/3 {
                            if xPos < screenSize.width * 2/3 {
                                print(1)
-                            if numberRange.contains(motionManager.z) == false {
+                            if numberRange.contains(motionManager.z) {
                                
                                
                                if item == "backspace" {
@@ -270,7 +270,7 @@ struct MotionView2: View {
                                        
                                       
                                        
-                                }
+                                    } 
                                    keyNum2 += 1
                                    keyNum += 1
                                    }

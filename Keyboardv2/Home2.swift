@@ -115,6 +115,23 @@ struct Home2: View {
                     
                             if userData.canRememberConvo {
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
+                                if self.userData.step == 12 {
+                                   
+                                   
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
+                                   
+                                }
+                                if self.userData.step == 14 {
+                                   
+                                    
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                                }
+                                if self.userData.step == 14 {
+                                    
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
+                                    
+                                   
+                                }
                                 time = 0.0
                                 keyNum = 0
                                 keyNum2 = 0
