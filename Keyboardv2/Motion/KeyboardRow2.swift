@@ -65,7 +65,7 @@ struct KeyboardRow2: View {
                     if item != "backspace" {
                         if item != "space" {
                             Color(.white)
-                                .frame(minWidth: 20, idealWidth: 30, maxWidth: 30, minHeight: 30, idealHeight: 40, maxHeight: 40, alignment: .center)
+                                .frame(minWidth: 20, idealWidth: 30, maxWidth: 30, minHeight: 35, idealHeight: 45, maxHeight: 50, alignment: .center)
                             Text(item)
                                 .font(.headline)
                                // .padding(5)
@@ -75,14 +75,16 @@ struct KeyboardRow2: View {
                         }
                     }
                     if item == "backspace" {
-                        Color(.white)
-                            .frame(width: screenSize.height/15, height: screenSize.height/14, alignment: .center)
+                        ZStack {
+                       
                             Image("backspace-arrow")
                                 .resizable()
-                                .scaledToFit()
-                                .padding(.leading)
-                            .frame(width: 50, height: 40, alignment: .center)
+                                .scaledToFill()
+                               
+                            .frame(width: 40, height: 30, alignment: .center)
                             .padding(.trailing)
+                               // .background(Color(.white))
+                    }
                     }
                 }
                 }          
