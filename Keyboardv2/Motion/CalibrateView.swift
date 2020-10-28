@@ -21,7 +21,7 @@ struct CalibrateView: View {
     
     @ObservedObject var motionManager = MotionManager()
     
-    @Binding var averageZ: Double
+    @Binding var averageX: Double
     
     @State var keysMistyped = [Double]()
     var body: some View {
@@ -79,9 +79,9 @@ struct CalibrateView: View {
                             if time < 6 {
                             print("ready")
                                 wait = false
-                            let sumArray = z.reduce(0, +)
+                            let sumArray = x.reduce(0, +)
 
-                            averageZ = sumArray / Double(z.count)
+                            averageX = sumArray / Double(x.count)
                             
                             time = 0
                                 timer.invalidate()

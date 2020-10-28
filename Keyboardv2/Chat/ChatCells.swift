@@ -35,7 +35,7 @@ struct ChatV2Cell: View {
                     .cornerRadius(10)
                 
                 
-            } .padding(.trailing, 12)
+            } .padding(.trailing, 22)
         } 
          
         
@@ -63,7 +63,7 @@ struct ChatV2Cell2: View {
                     .cornerRadius(10)
                 }
                 Spacer()
-            } .padding(.leading, 12)
+            } .padding(.leading, 22)
         }
             
            

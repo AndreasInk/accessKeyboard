@@ -118,9 +118,10 @@ struct ResultsView: View {
             if documents?.count ?? -1 > -1 {
             for document in documents!.documents{
                 print("add")
+                
                 data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: document.get("time") as! Double, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
                 for data in data {
-                    print(data)
+                  //  print(data)
                     for key in data.keysMistyped2 {
                         
                        
@@ -150,7 +151,7 @@ struct ResultsView: View {
                         }
                       
                     }
-                    for index2 in 0..<self.data[index].x.count {
+                    for index2 in 0..<self.data[index].z.count {
                        
                        
                         //data[index].z[index2] =  data[index].z[index2] + 0.15
@@ -174,14 +175,14 @@ struct ResultsView: View {
                       //  if numberRange2.contains(index2)  {
                       //      data[index].keysMistyped.remove(at: index2)
                       //  }
-                        if self.data[index].x[index2] ==  0.118560791015625 {
+                        if self.data[index].z[index2] ==  -0.5419075012207031 {
                             print("Mistyped near 90% \(data[index].keysMistyped[index2 - 1])")
                             print("Mistyped near 90% \(data[index].keysMistyped[index2 + 1])")
                             print("Mistyped near 90% \(data[index].keysMistyped[index2 - 5])")
                             print("Mistyped near 90% \(data[index].keysMistyped[index2 + 5])")
                         }
                     }
-                    print("Precentile value: " + "\(Sigma.percentile(data[index].x, percentile: 0.9))")
+                    print("Precentile value: " + "\(Sigma.percentile(data[index].z, percentile: 0.95))")
                     
                     
                    
@@ -207,9 +208,9 @@ struct ResultsView: View {
                         }
                 
                     print(keyStrings.freq())
-               
+               print(data)
               
-                
+             
             }
                
                

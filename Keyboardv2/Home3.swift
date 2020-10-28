@@ -1,20 +1,14 @@
 //
-//  Home.swift
+//  Home3.swift
 //  Keyboardv2
 //
-//  Created by Andreas Ink on 10/7/20.
+//  Created by Andreas Ink on 10/27/20.
 //
 
 import SwiftUI
 import Firebase
 import FirebaseStorage
-class Task: NSObject {
-    var x: Double = 0
-    var y: Double = 0
-    var z: Double = 0
-    var keysMistyped: Double = 0
-}
-struct Home: View {
+struct Home3: View {
     let screenSize = UIScreen.main.bounds
     @State var zoomed: Bool = false
     @State var isKeyboardOpen: Bool = false
@@ -97,12 +91,13 @@ struct Home: View {
                      }
                  }
                     ZStack {
-                        
-                        
-                        Image(systemName: "arrow.up.circle.fill")
+                        Ellipse()
                             .foregroundColor(Color(.systemPink))
+                            .frame(width: 100, height: 100)
+                        
+                        Text("ENTER")
+                            .foregroundColor(.white)
                             .font(.headline)
-                           
                             
                            
                     }  .onTapGesture {
@@ -222,12 +217,12 @@ struct Home: View {
                         
                         
                 }
-                } .padding(.horizontal, 22)
+                } .padding()
             if isKeyboardOpen {
                
                
                // Spacer(minLength: screenSize.height/2.5)
-                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                MotionView3(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }
@@ -236,7 +231,53 @@ struct Home: View {
               
             }
             }
-         
+    func shareButton2() {
+           let fileName = "testing.csv"
+           let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+           var csvText = "Int,Type\n"
+
+           for task in taskArr {
+            let newLine = "\(task.keysMistyped)\(task.x)\n"
+            csvText.append(newLine)
+           
+         //   csvText.append( "\(task.y)\n")
+          //  csvText.append( "\(task.z)\n")
+           }
+        var mailString = NSMutableString()
+        mailString.append("Mistypes, time\n")
+        i = 0
+        for x in x {
+        mailString.append("\(keysMistyped[i]),\(time)\n")
+            i += 1
+        }
+        // Converting it to NSData.
+      
+        
+           do {
+            try mailString.write(to: path!, atomically: true, encoding: String.Encoding.utf8.rawValue)
+           } catch {
+               print("Failed to create file")
+               print("\(error)")
+           }
+           print(path ?? "not found")
+
+           var filesToShare = [Any]()
+           filesToShare.append(path!)
+
+       
+        let data = mailString.data(using: String.Encoding.utf8.rawValue)!
+        let storageRef = Storage.storage().reference()
+        // Create a reference to the file you want to upload
+        let riversRef = storageRef.child("Zoom-\(userData.intentedWord)-\(UUID()).csv")
+
+        // Upload the file to the path "images/rivers.jpg"
+        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+          guard let metadata = metadata else {
+          print(error)
+            return
+          }
+       }
+    }
     func createCSV() {
         let fileName = "exportar_serv.csv"
 
@@ -279,7 +320,7 @@ struct Home: View {
         mailString.append("Mistypes, X, Z\n")
         i = 0
         for x in x {
-        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]), \(keysMistyped2[i]) \n")
+        mailString.append("\(keysMistyped[i]),\(x),\(z[i]) \n")
             i += 1
         }
         // Converting it to NSData.
@@ -302,53 +343,7 @@ struct Home: View {
 
            isShareSheetShowing.toggle()
        }
-    func shareButton2() {
-           let fileName = "testing.csv"
-           let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
-           var csvText = "Int,Type\n"
 
-           for task in taskArr {
-            let newLine = "\(task.keysMistyped)\(task.x)\n"
-            csvText.append(newLine)
-           
-         //   csvText.append( "\(task.y)\n")
-          //  csvText.append( "\(task.z)\n")
-           }
-        var mailString = NSMutableString()
-        mailString.append("Mistypes, X, Y, Z, time\n")
-        i = 0
-        for x in x {
-        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(time)\n")
-            i += 1
-        }
-        // Converting it to NSData.
-      
-        
-           do {
-            try mailString.write(to: path!, atomically: true, encoding: String.Encoding.utf8.rawValue)
-           } catch {
-               print("Failed to create file")
-               print("\(error)")
-           }
-           print(path ?? "not found")
-
-           var filesToShare = [Any]()
-           filesToShare.append(path!)
-
-       
-        let data = mailString.data(using: String.Encoding.utf8.rawValue)!
-        let storageRef = Storage.storage().reference()
-        // Create a reference to the file you want to upload
-        let riversRef = storageRef.child("Reg-\(userData.intentedWord)-\(UUID()).csv")
-
-        // Upload the file to the path "images/rivers.jpg"
-        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
-          guard let metadata = metadata else {
-          print(error)
-            return
-          }
-       }
-    }
    
     func createCSVX() {
     var csvString = "\("keys"),\("x"),\("y"),\("z")\n"
@@ -359,7 +354,7 @@ struct Home: View {
         for task in taskArr {
        
 
-            let newLine = "\(task.keysMistyped),\(task.x),\(task.y),\(task.z)\n"
+            let newLine = "\(task.keysMistyped),\(task.x),\(task.y), \(task.z)\n"
             csvString.append(newLine)
         } // for
     do {
@@ -373,10 +368,10 @@ struct Home: View {
 
     print("error creating file")
        
-    
+    }
 
     
-    }
+
     }
 
     private func getDocumentsDirectory() -> URL {
@@ -385,34 +380,3 @@ struct Home: View {
     }
   }
            
-        
-
-
-
-
-extension String {
-
-    var length: Int {
-        return count
-    }
-
-    subscript (i: Int) -> String {
-        return self[i ..< i + 1]
-    }
-
-    func substring(fromIndex: Int) -> String {
-        return self[min(fromIndex, length) ..< length]
-    }
-
-    func substring(toIndex: Int) -> String {
-        return self[0 ..< max(0, toIndex)]
-    }
-
-    subscript (r: Range<Int>) -> String {
-        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
-                                            upper: min(length, max(0, r.upperBound))))
-        let start = index(startIndex, offsetBy: range.lowerBound)
-        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return String(self[start ..< end])
-    }
-}

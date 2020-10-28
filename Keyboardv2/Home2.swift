@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
 struct Home2: View {
     let screenSize = UIScreen.main.bounds
     @State var zoomed: Bool = false
@@ -43,7 +44,10 @@ struct Home2: View {
     
     @State var timeOn: Bool = false
     
-   
+    @State  var taskArr = [Task]()
+    @State  var task: Task!
+    @State var i: Int = 0
+    
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -92,12 +96,12 @@ struct Home2: View {
                     ZStack {
                         Ellipse()
                             .foregroundColor(Color(.systemPink))
-                            .frame(width: 75, height: 75)
+                            .frame(width: 100, height: 100)
                         
                         Text("ENTER")
                             .foregroundColor(.white)
                             .font(.headline)
-                            .fontWeight(.bold)
+                          
                            
                     }  .onTapGesture {
                         timeOn = false
@@ -115,6 +119,7 @@ struct Home2: View {
                     
                             if userData.canRememberConvo {
                         db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
+                                shareButton2()
                                 if self.userData.step == 12 {
                                    
                                    
@@ -241,4 +246,51 @@ struct Home2: View {
         
            
         }
+    func shareButton2() {
+           let fileName = "testing.csv"
+           let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+           var csvText = "Int,Type\n"
+
+           for task in taskArr {
+            let newLine = "\(task.keysMistyped)\(task.x)\n"
+            csvText.append(newLine)
+           
+         //   csvText.append( "\(task.y)\n")
+          //  csvText.append( "\(task.z)\n")
+           }
+        var mailString = NSMutableString()
+        mailString.append("Mistypes, X, Y, Z, time\n")
+        i = 0
+        for key in keysMistyped {
+        mailString.append("\(key),\(x[i]),\(y[i]),\(z[i]),\(time)\n")
+            i += 1
+        }
+        // Converting it to NSData.
+      
+        
+           do {
+            try mailString.write(to: path!, atomically: true, encoding: String.Encoding.utf8.rawValue)
+           } catch {
+               print("Failed to create file")
+               print("\(error)")
+           }
+           print(path ?? "not found")
+
+           var filesToShare = [Any]()
+           filesToShare.append(path!)
+
+       
+        let data = mailString.data(using: String.Encoding.utf8.rawValue)!
+        let storageRef = Storage.storage().reference()
+        // Create a reference to the file you want to upload
+        let riversRef = storageRef.child("Hybrid-\(userData.intentedWord)-\(UUID()).csv")
+
+        // Upload the file to the path "images/rivers.jpg"
+        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+          guard let metadata = metadata else {
+          print(error)
+            return
+          }
+       }
+    }
     }
