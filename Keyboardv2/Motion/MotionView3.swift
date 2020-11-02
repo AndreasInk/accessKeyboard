@@ -29,19 +29,19 @@ struct MotionView3: View {
     
     @EnvironmentObject var userData: UserData
     let data = (["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
-    @State var horizontal1 = (["q", "w", "e", "r", "t", "y","u", "i", "o", "p" ]).map { "\($0)" }
-    @State var horizontal2 = (["a", "s", "d", "f", "g", "h", "j", "k", "l"]).map { "\($0)" }
-    @State var horizontal3 = (["z", "x", "c", "v", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
+    @State var horizontal1 = (["q", "w", "e", "a", "s", "d","z", "x", "c" ]).map { "\($0)" }
+    @State var horizontal2 = (["r", "t", "y", "u", "f", "g", "h", "v", "b"]).map { "\($0)" }
+    @State var horizontal3 = (["i", "o", "p", "j", "k", "l", "n", "m", "backspace"]).map { "\($0)" }
     
     @State var horizontal11 = (["q", "w", "e", "r", "t", "y","u", "i", "o", "p" ]).map { "\($0)" }
     @State var horizontal22 = (["a", "s", "d", "f", "g", "h", "j", "k", "l"]).map { "\($0)" }
-    @State var horizontal33 = (["z", "x", "c", "v", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
+    @State var horizontal33 = (["z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
     
     let screenSize = UIScreen.main.bounds
     @Binding var text: String
    @State var columns = [GridItem]()
     var columns1 = [
-        GridItem(.adaptive(minimum: 80))
+        GridItem(.adaptive(minimum: 100))
     ]
     
     @State var keyTime = [Double]()
@@ -132,7 +132,7 @@ struct MotionView3: View {
                     
                     BlurView(style: .systemThickMaterial)
                         .frame(width: screenSize.width, height: screenSize.height/2, alignment: .center)
-                   
+                  
                     VStack(alignment: .center) {
                         
                   
@@ -145,7 +145,7 @@ struct MotionView3: View {
                         
                         
                        
-                    } .padding(.horizontal, 6)
+                    } 
                     .padding(.bottom, 100)
 
                     
@@ -160,8 +160,8 @@ struct MotionView3: View {
                                            keysMistyped2.append("\(userData.intentedWord[keyNum])")
                                    
                                    if keyNum > -1 {
-                                   text.removeLast()
-                                   text.append(userData.intentedWord[keyNum])
+                                 //  text.removeLast()
+                                 //  text.append(userData.intentedWord[keyNum])
                                    
                                }
                                }
@@ -265,7 +265,7 @@ struct MotionView3: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 200)
+                } .padding(.bottom, 250)
             }
             }
             if zoom2 {
@@ -293,40 +293,40 @@ struct MotionView3: View {
                             .foregroundColor(.black)
                         }
                     }
+                       
                     LazyVGrid(columns: columns1, spacing: 5) {
                         ForEach(horizontal2, id: \.self) { item in
                             Button(action: {
                                 text += item
                                 
-                               if userData.step < 12 {
-                                  print("\(userData.intentedWord[keyNum])")
-                                  
-                                   if "\(userData.intentedWord[keyNum])" != item {
-                                       keysMistyped.append(0.5)
-                                               keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                       
-                                       if keyNum > -1 {
-                                       text.removeLast()
-                                       text.append(userData.intentedWord[keyNum])
-                                       
-                                   }
-                                   }
+                                if userData.step < 12 {
+                                   print("\(userData.intentedWord[keyNum])")
                                    
-                                  
+                                    if "\(userData.intentedWord[keyNum])" != item {
+                                        keysMistyped.append(0.5)
+                                                keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                        
+                                        if keyNum > -1 {
+                                       // text.removeLast()
+                                        //text.append(userData.intentedWord[keyNum])
+                                        
+                                    }
+                                    }
+                                    
                                    
-                            }
-                               keyNum2 += 1
-                               keyNum += 1
+                                    
+                             }
+                                keyNum2 += 1
+                                keyNum += 1
+                                
+                              
                                
-                               
-                               
-                               
-                           
-                               
+                             //   print(keys)
+                                
                                 zoom2.toggle()
                             }) {
                             ZStack {
-                               
+                                
                                 if item == key {
                                     Color(.systemBlue)
                                     .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
@@ -343,8 +343,6 @@ struct MotionView3: View {
                                 
                                 
                             }
-                            }
-                                
                             
                             .padding()
                         }
@@ -354,106 +352,113 @@ struct MotionView3: View {
                 }
                 .padding()
                    
-                } .padding(.bottom, 200)
+                } .padding(.bottom, 250)
             }
-            
-            if zoom3 {
-                BlurView(style: .systemThickMaterial)
-                  
-                    .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture() {
-                        zoom3.toggle()
-                    }
-                VStack {
-                    Spacer(minLength: screenSize.height/3)
-                    Text(text)
-                        
-                        .font(.headline)
-                        .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
-                    Button(action: {
-                        zoom3.toggle()
-                    }) {
-                        ZStack {
-                        Color(.white)
-                            .frame(width: screenSize.width/1.1, height: screenSize.width/5.5, alignment: .center)
-                        Text("Back")
-                            .font(.title)
-                            .foregroundColor(.black)
-                        }
-                    }
-                    LazyVGrid(columns: columns1, spacing: 5) {
-                        ForEach(horizontal3, id: \.self) { item in
-                            Button(action: {
-                                if item == "backspace" {
-                                    if text.count > 0 {
-                                text.removeLast()
-                                    }
-                                } else {
-                                    text += item
-                                    
-                                    if userData.step < 12 {
-                                      print("\(userData.intentedWord[keyNum])")
-                                      
-                                       if "\(userData.intentedWord[keyNum])" != item {
-                                           keysMistyped.append(0.5)
-                                                   keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                           
-                                           if keyNum > -1 {
-                                           text.removeLast()
-                                           text.append(userData.intentedWord[keyNum])
-                                           
-                                       }
-                                       }
-                                       
-                                      
-                                       
-                                }
-                                   keyNum2 += 1
-                                   keyNum += 1
-                                }
-                                
-                                
-                                
-                               
-                               
-                               
-                                zoom3.toggle()
-                            }) {
-                            ZStack {
-                               
-                                if item == key {
-                                    Color(.systemBlue)
-                                    .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
-                                    Text(item)
-                                        .font(.title)
-                                        .foregroundColor(.white)
-                                } else {
-                                    Color(.white)
-                                        .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
-                                    Text(item)
-                                        .font(.title)
-                                        .foregroundColor(.black)
-                                }
-                                
-                                
-                                
-                            }
-                                
-                            }
-                            .padding()
-                        }
-                        
-                    
-                   
+            }
+         
+    
+        
+        
+        if zoom3 {
+            BlurView(style: .systemThickMaterial)
+              
+                .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture() {
+                    zoom3.toggle()
                 }
-                .padding()
+            VStack {
+                Spacer(minLength: screenSize.height/3)
+                Text(text)
+                    
+                    .font(.headline)
+                    .frame(width: screenSize.width/1.4, height: 120, alignment: .leading)
+                Button(action: {
+                    zoom3.toggle()
+                }) {
+                    ZStack {
+                    Color(.white)
+                        .frame(width: screenSize.width/1.1, height: screenSize.width/5.5, alignment: .center)
+                    Text("Back")
+                        .font(.title)
+                        .foregroundColor(.black)
+                    }
+                }
                    
-                } .padding(.bottom, 200)
+                LazyVGrid(columns: columns1, spacing: 5) {
+                    ForEach(horizontal3, id: \.self) { item in
+                        Button(action: {
+                            if item == "backspace" {
+                                if text.count > 0 {
+                            text.removeLast()
+                                    keyNum -= 1
+                                }
+                            } else {
+                            text += item
+                            }
+                            if userData.step < 12 {
+                               print("\(userData.intentedWord[keyNum])")
+                               
+                                if "\(userData.intentedWord[keyNum])" != item {
+                                    keysMistyped.append(0.5)
+                                            keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                    
+                                    if keyNum > -1 {
+                                   // text.removeLast()
+                                    //text.append(userData.intentedWord[keyNum])
+                                    
+                                }
+                                }
+                                
+                               
+                                
+                         }
+                            keyNum2 += 1
+                            keyNum += 1
+                            
+                          
+                           
+                         //   print(keys)
+                            
+                            zoom3.toggle()
+                        }) {
+                        ZStack {
+                            
+                            if item == key {
+                                Color(.systemBlue)
+                                .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                Text(item)
+                                    .font(.title)
+                                    .foregroundColor(.white)
+                            } else {
+                                Color(.white)
+                                    .frame(width: screenSize.width/3.5, height: screenSize.width/5.5, alignment: .center)
+                                Text(item)
+                                    .font(.title)
+                                    .foregroundColor(.black)
+                            }
+                            
+                            
+                        }
+                        
+                        .padding()
+                    }
+                    
+                
+               
             }
+            .padding()
+               
+            }.padding(.bottom, 250)
+        }
+        }
+     
+
+    
+    }
     }
         
-        }
-    }
+
 
    
+}

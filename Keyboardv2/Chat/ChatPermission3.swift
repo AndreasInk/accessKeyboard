@@ -22,9 +22,14 @@ struct ChatPermission3: View {
     @Binding var isKeyboardOpen: Bool
    
     let motionManager = CMMotionManager()
-    @State var didTap1: Bool = false
+   
+    @Binding var didTap1: Bool
+    @Binding var didTap2: Bool
     
-    @State var didTap2: Bool = false
+    @State var one = false
+    @State var two = false
+    @Binding var demo: Bool
+    @Binding var chat: [ChatData]
     var body: some View {
         ZStack {
             BlurView(style: .systemChromeMaterial)
@@ -47,18 +52,18 @@ struct ChatPermission3: View {
                      
                         self.userData.canRememberMotion = true
                         self.userData.canRememberConvo = true
-                        didTap1.toggle()
+                        one.toggle()
                         self.userData.step += 1
                         print(self.userData.step )
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             if self.userData.step == 1 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data within the app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember where you've tapped?", step: 1))
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data within the app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember where you've tapped?", step: 1))
                                 
                                
                             }
                          
                             if self.userData.step == 2 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word: hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word: hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
                                 self.userData.intentedWord = "hello"
                             }
                         }
@@ -75,33 +80,33 @@ struct ChatPermission3: View {
                            
                           
                         }
-                        if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
-                            userData.demoKeyboards = true
+                        if chat.last?.viewTitle == "Try out demo keyboards?" {
+                           demo = true
                         }
-                        if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
+                        if chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
                             userData.survey = true
                         }
                     }) {
                         ZStack {
-                            Color(didTap1  ? .systemPink : .white)
+                            Color(one  ? .systemPink : .white)
                             Text("Yes")
-                                .foregroundColor(didTap1  ? .white : .black)
+                                .foregroundColor(one  ? .white : .black)
                                 .fontWeight(.bold)
                         }
                     } .frame(height: 50)
                     Button(action: {
-                        userData.demoKeyboards = false
+                      //  userData.demoKeyboards = false
                         isKeyboardOpen = false
-                        didTap2.toggle()
+                        two.toggle()
                         self.userData.step =  self.userData.step + 1
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Thank you for helping us make a difference!", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 1))
+                       chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Thank you for helping us make a difference!", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 1))
                         }
                     }) {
                         ZStack {
-                            Color( didTap2 ? .systemPink : .white)
+                            Color( two ? .systemPink : .white)
                             Text("No")
-                                .foregroundColor(didTap2 ? .white : .black)
+                                .foregroundColor(two ? .white : .black)
                                 .fontWeight(.bold)
                             
                            

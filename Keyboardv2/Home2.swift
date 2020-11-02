@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseStorage
+
 struct Home2: View {
     let screenSize = UIScreen.main.bounds
     @State var zoomed: Bool = false
@@ -48,6 +49,9 @@ struct Home2: View {
     @State  var task: Task!
     @State var i: Int = 0
     
+    @State var counter = 0
+    @Binding var demo: Bool
+    @State var chat = [ChatData(id: "\(UUID())", name: "Bot_Name", message: "Hey, I'm Bot_Name! What's your name?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: -1) ]
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -66,7 +70,7 @@ struct Home2: View {
            
             VStack {
               
-                ChatView(x: $x, y: $y, z: $z, keyTime: $keyTime, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap1, text: $text)
+                ChatView(x: $x, y: $y, z: $z, keyTime: $keyTime, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap1, text: $text, demo: $demo, chat: $chat)
                     .zIndex(1)
                         .onTapGesture {
                             isKeyboardOpen = false
@@ -94,14 +98,13 @@ struct Home2: View {
                      }
                  }
                     ZStack {
-                        Ellipse()
+                        Circle()
                             .foregroundColor(Color(.systemPink))
-                            .frame(width: 100, height: 100)
-                        
-                        Text("ENTER")
-                            .foregroundColor(.white)
+                            .frame(width: screenSize.width/7)
+                        Image(systemName: "arrow.up")
+                            .foregroundColor(Color(.white))
                             .font(.headline)
-                          
+                           
                            
                     }  .onTapGesture {
                         timeOn = false
@@ -109,16 +112,18 @@ struct Home2: View {
                         if text != " " {
                         if text != "Type Here" {
                            
-                        userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
+                        chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
                         }
                         }
                         
                         let db = Firestore.firestore()
                        
-                      
+                        if  self.userData.step == 0 {
+                            userData.step = 9
+                        }
                     
                             if userData.canRememberConvo {
-                        db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
+                      //  db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
                                 shareButton2()
                                 if self.userData.step == 12 {
                                    
@@ -140,6 +145,7 @@ struct Home2: View {
                                 time = 0.0
                                 keyNum = 0
                                 keyNum2 = 0
+                                counter = 0
                                 x.removeAll()
                                 y.removeAll()
                                 z.removeAll()
@@ -153,6 +159,7 @@ struct Home2: View {
                                 time = 0.0
                                 keyNum = 0
                                 keyNum2 = 0
+                                counter = 0
                                 x.removeAll()
                                 y.removeAll()
                                 z.removeAll()
@@ -227,13 +234,13 @@ struct Home2: View {
                     }
                     
                     
-                    
+                .frame(width: screenSize.width, height: screenSize.height/7, alignment: .center)
             if isKeyboardOpen {
                
                    
                 VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }
@@ -259,14 +266,17 @@ struct Home2: View {
           //  csvText.append( "\(task.z)\n")
            }
         var mailString = NSMutableString()
-        mailString.append("Mistypes, X, Y, Z, time\n")
+        mailString.append("Mistypes, X, Y, Z, Keys\n")
         i = 0
-        for key in keysMistyped {
-        mailString.append("\(key),\(x[i]),\(y[i]),\(z[i]),\(time)\n")
+        if text.isEmpty {
+            
+        } else {
+        for n in 0...counter - 1 {
+        mailString.append("\(keysMistyped[n]),\(x[n]),\(y[n]),\(z[n]),\(keysMistyped2)\n")
             i += 1
         }
         // Converting it to NSData.
-      
+        }
         
            do {
             try mailString.write(to: path!, atomically: true, encoding: String.Encoding.utf8.rawValue)

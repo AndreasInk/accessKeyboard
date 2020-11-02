@@ -38,17 +38,16 @@ struct ContentView: View {
     @State var didTap1: Bool = false
     
     @State var didTap2: Bool = false
+    
+    @State var demo: Bool = false
+    @State var chat = [ChatData(id: "\(UUID())", name: "Bot_Name", message: "Hey, I'm Bot_Name! What's your name?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: -1) ]
     var body: some View {
         ZStack {
         if userData.isOnboardingCompleted {
-            if !userData.demoKeyboards {
-                Home(didTap1: $didTap1, didTap2: $didTap2)
+            if !demo {
+                Home(didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
                 .environmentObject(UserData.shared)
-                  
-            } else {
-                Home2(didTap1: $didTap1, didTap2: $didTap2)
-                    .environmentObject(UserData.shared)
-                    .onAppear() {
+                    .onDisappear() {
                         keyNum = 0
                         keyNum2 = 0
                         x.removeAll()
@@ -59,6 +58,16 @@ struct ContentView: View {
                         keysMistyped2.removeAll()
                         keyTime.removeAll()
                         
+                    }
+                  
+            } else {
+                Home3(didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
+                    .environmentObject(UserData.shared)
+                    .onAppear() {
+                        print("here")
+                        chat.removeAll()
+                       chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
+                        self.userData.intentedWord = "hello"
                     }
             }
         } else {

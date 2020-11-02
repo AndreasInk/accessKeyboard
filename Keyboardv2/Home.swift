@@ -54,6 +54,12 @@ struct Home: View {
     @State var i: Int = 0
     @State private var isShareSheetShowing = false
    // @Environment(\.exportFiles) var exportAction
+    
+    @State var counter = 0
+    
+    @Binding var demo: Bool
+    
+    @Binding var chat: [ChatData]
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -69,7 +75,7 @@ struct Home: View {
            
             VStack {
               
-                ChatView(x: $x, y: $y, z: $z, keyTime: $keyTime, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap1, text: $text)
+                ChatView(x: $x, y: $y, z: $z, keyTime: $keyTime, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap1, text: $text, demo: $demo, chat: $chat)
                     .zIndex(1)
                         .onTapGesture {
                             isKeyboardOpen = false
@@ -98,9 +104,11 @@ struct Home: View {
                  }
                     ZStack {
                         
-                        
-                        Image(systemName: "arrow.up.circle.fill")
+                        Circle()
                             .foregroundColor(Color(.systemPink))
+                            .frame(width: screenSize.width/7)
+                        Image(systemName: "arrow.up")
+                            .foregroundColor(Color(.white))
                             .font(.headline)
                            
                             
@@ -110,7 +118,7 @@ struct Home: View {
                         
                         if text != " " {
                         if text != "Type Here" {
-                        userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
+                       chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
                         }
                         }
                         let keys = Array(text)
@@ -123,23 +131,14 @@ struct Home: View {
                             if userData.step > 0 {
                                 let db = Firestore.firestore()
 
-                        db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
-                                task = Task()
-                                for  x in x {
-                                    task.keysMistyped = keysMistyped[i]
-                                    task.x = x
-                                    task.y = y[i]
-                                    task.z = z[i]
-                                    taskArr.append(task!)
-                                    
-                                   
-                                }
+                      //  db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
 
                                 shareButton2()
                             
                             time = 0.0
                             keyNum = 0
                             keyNum2 = 0
+                                counter = 0
                             x.removeAll()
                             y.removeAll()
                             z.removeAll()
@@ -152,6 +151,7 @@ struct Home: View {
                             time = 0.0
                             keyNum = 0
                             keyNum2 = 0
+                            counter = 0
                             x.removeAll()
                             y.removeAll()
                             z.removeAll()
@@ -164,6 +164,7 @@ struct Home: View {
                             time = 0.0
                             keyNum = 0
                             keyNum2 = 0
+                            counter = 0
                             x.removeAll()
                             y.removeAll()
                             z.removeAll()
@@ -182,29 +183,29 @@ struct Home: View {
                             if self.userData.step == 1 {
                                 isKeyboardOpen = false
                                // self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "", isMe: false, isView: true, viewMessage: "keys: \(keys) " + "new \(timeNew) " + "reg \(timeReg) ", viewTitle: " x: \(x) " + "y: \(y) " + "z: \(z) ", step: 2))
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data and remember our conversation within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember your acceleration data and this conversation?", step: 1))
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data and remember our conversation within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember your acceleration data and this conversation?", step: 1))
                                 
                             }
                            
                             if self.userData.step == 2 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
+                                chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
                                 self.userData.intentedWord = "hello"
                             }
                             if self.userData.step == 3 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
+                            chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
                                 self.userData.intentedWord = "where are you"
                             }
                             if self.userData.step == 4 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                              chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "how are you"
                             }
                             if self.userData.step == 5 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
                                 self.userData.intentedWord = "thanks"
                                
                             }
                             if self.userData.step == 6 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: true, viewMessage: "", viewTitle: "Try out demo keyboards?", step: 6))
+                                chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: true, viewMessage: "", viewTitle: "Try out demo keyboards?", step: 6))
                                 self.userData.intentedWord = "thanks"
                                 isKeyboardOpen = false
                             }
@@ -223,13 +224,15 @@ struct Home: View {
                         
                 }
                 } .padding(.horizontal, 22)
+                .frame(width: screenSize.width, height: screenSize.height/7, alignment: .center)
             if isKeyboardOpen {
                
                
                // Spacer(minLength: screenSize.height/2.5)
-                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
+                    .padding(.top)
                 }
             
             }
@@ -276,10 +279,10 @@ struct Home: View {
           //  csvText.append( "\(task.z)\n")
            }
         var mailString = NSMutableString()
-        mailString.append("Mistypes, X, Z\n")
+        mailString.append("Mistypes, X, Y, Z, Keys\n")
         i = 0
-        for x in x {
-        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]), \(keysMistyped2[i]) \n")
+        for n in 0...counter {
+        mailString.append("\(keysMistyped[i]),\(x[i]),\(y[i]),\(z[i]),\(keysMistyped2)\n")
             i += 1
         }
         // Converting it to NSData.
@@ -303,7 +306,7 @@ struct Home: View {
            isShareSheetShowing.toggle()
        }
     func shareButton2() {
-           let fileName = "testing.csv"
+        let fileName = "Reg-\(userData.intentedWord)-\(UUID()).csv"
            let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
            var csvText = "Int,Type\n"
 
@@ -315,10 +318,10 @@ struct Home: View {
           //  csvText.append( "\(task.z)\n")
            }
         var mailString = NSMutableString()
-        mailString.append("Mistypes, X, Y, Z, time\n")
+        mailString.append("Mistypes, X, Y, Z, time, keys\n")
         i = 0
         for x in x {
-        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(time)\n")
+        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(time), \(keysMistyped2)\n")
             i += 1
         }
         // Converting it to NSData.

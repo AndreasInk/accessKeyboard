@@ -74,6 +74,10 @@ struct MotionView2: View {
     @Binding var keysMistyped2: [String]
     
     @State var columns = [GridItem]()
+    @Binding var counter: Int
+    
+    @State var prediction: Double = 0.0
+    @State var predictionZ: Double = 0.0
     var body: some View {
         ZStack(alignment: .bottom) {
             if wait {
@@ -98,6 +102,7 @@ struct MotionView2: View {
                     .onAppear() {
                        
                         var timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 120, repeats: true) { timer in
+                            calculateBedtime()
                             if timeOn {
                            //left and right
                                 time += 0.1
@@ -107,7 +112,7 @@ struct MotionView2: View {
                             //up and down
                             z.append(motionManager.z)
                             keysMistyped.append(0)
-                            
+                            counter += 1
                          
                                
                             }
@@ -133,7 +138,7 @@ struct MotionView2: View {
                        let xPos = dragGesture.location.x
                       let yPos = dragGesture.location.y
                         if x.last != nil {
-                        let equation = 0.102703567 * x.last!
+                        let equation = 1.002667789574 * x.last!
                         let startNumber = averageX - 0.17
                         let endNumber = averageX + 0.17
                         let numberRange = startNumber...endNumber
@@ -142,7 +147,8 @@ struct MotionView2: View {
                    if xPos > screenSize.width * 1/3 {
                        if xPos < screenSize.width * 2/3 {
                            print(1)
-                        if equation + 0.166815418 > 0.18 {
+                        //0.14 0.16
+                        if prediction > 0.07  {
                            zoom2.toggle()
                        
                        }
@@ -152,7 +158,7 @@ struct MotionView2: View {
                        if xPos > screenSize.width * 2/3 {
                            if xPos < screenSize.width {
                                print(2)
-                            if equation + 0.166815418 > 0.18 {
+                            if prediction > 0.07  {
                                 
                            
                                zoom3.toggle()
@@ -163,7 +169,8 @@ struct MotionView2: View {
                        if xPos > 0 {
                            if xPos < screenSize.width * 1/3 {
                                print(0)
-                            if equation + 0.166815418 > 0.18 {
+                            print("Equation  \(equation + -0.09861326805)")
+                            if prediction > 0.07  {
                                 
                            
                                zoom1.toggle()
@@ -177,10 +184,9 @@ struct MotionView2: View {
                 VStack {
                     
                     
-                    KeyboardRow(data: horizontal11, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $z, y: $y, z: $z, averageX: $averageX, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3)
-                    KeyboardRow(data: horizontal22, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $z, y: $y, z: $z, averageX: $averageX, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3)
-                    KeyboardRow(data: horizontal33, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $z, y: $y, z: $z, averageX: $averageX, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3)
-                        
+                    KeyboardRow(data: horizontal11, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, prediction: $prediction, predictionZ: $predictionZ, counter: $counter)
+                    KeyboardRow(data: horizontal22, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, prediction: $prediction, predictionZ: $predictionZ, counter: $counter)
+                    KeyboardRow(data: horizontal33, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, prediction: $prediction, predictionZ: $predictionZ, counter: $counter)
                 
                        
                        
@@ -190,7 +196,6 @@ struct MotionView2: View {
                     
                    
                 
-                .padding(.horizontal, 6)
                 .padding(.bottom, 100)
                     Button(action: {
                         text += " "
@@ -229,7 +234,7 @@ struct MotionView2: View {
             if zoom1 {
                 BlurView(style: .systemThickMaterial)
                   
-                    .frame(width: screenSize.width, height: screenSize.height, alignment: .center)
+                    .frame(width: screenSize.width, height: screenSize.height/2.5, alignment: .center)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture() {
                         zoom1.toggle()
@@ -501,4 +506,62 @@ struct MotionView2: View {
        
     }
     }
+    func calculateBedtime() {
+        let model = X()
+        
+        //this provides all the details of the current date
+        
+        
+        /*Datecomponents returns values formatted as seconds,
+        multiply those seconds by 60 to get minutes,
+        multiply those minutes by 60 to get hour*/
+      
+        
+        do {
+            let prediction = try
+                model.prediction(X: motionManager.x)
+            
+          
+            
+            //this converts the sleepTime Date var into a readable string
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            
+        
+            self.prediction = prediction.Mistypes
+           print(self.prediction)
+            
+        } catch {
+           
+        }
+        
+        let model2 = Zv2()
+        
+        //this provides all the details of the current date
+        
+        
+        /*Datecomponents returns values formatted as seconds,
+        multiply those seconds by 60 to get minutes,
+        multiply those minutes by 60 to get hour*/
+      
+        
+        do {
+            let prediction = try
+                model2.prediction(Z: motionManager.z)
+            
+           
+            
+            //this converts the sleepTime Date var into a readable string
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            
+        
+            self.predictionZ = prediction.Mistypes
+           // print(self.predictionZ)
+            
+        } catch {
+           
+        }
+    }
 }
+

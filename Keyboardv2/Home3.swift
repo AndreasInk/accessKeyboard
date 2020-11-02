@@ -47,7 +47,10 @@ struct Home3: View {
     @State  var task: Task!
     @State var i: Int = 0
     @State private var isShareSheetShowing = false
+    
+    @Binding var demo: Bool
    // @Environment(\.exportFiles) var exportAction
+    @Binding var chat: [ChatData]
     var body: some View {
         ZStack(alignment: .top) {
             Color(.white)
@@ -63,7 +66,7 @@ struct Home3: View {
            
             VStack {
               
-                ChatView(x: $x, y: $y, z: $z, keyTime: $keyTime, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap1, text: $text)
+                ChatView(x: $x, y: $y, z: $z, keyTime: $keyTime, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap1, text: $text, demo: $demo, chat: $chat)
                     .zIndex(1)
                         .onTapGesture {
                             isKeyboardOpen = false
@@ -91,133 +94,146 @@ struct Home3: View {
                      }
                  }
                     ZStack {
-                        Ellipse()
+                        Circle()
                             .foregroundColor(Color(.systemPink))
-                            .frame(width: 100, height: 100)
-                        
-                        Text("ENTER")
-                            .foregroundColor(.white)
+                            .frame(width: screenSize.width/7)
+                        Image(systemName: "arrow.up")
+                            .foregroundColor(Color(.white))
                             .font(.headline)
                             
                            
                     }  .onTapGesture {
-                        timeOn = false
+                       
+                            timeOn = false
+                            
+                            if text != " " {
+                            if text != "Type Here" {
+                               
+                            chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
+                            }
+                            }
+                            
+                            let db = Firestore.firestore()
+                           
+                            if  self.userData.step == 0 {
+                                userData.step = 9
+                            }
                         
-                        if text != " " {
-                        if text != "Type Here" {
-                        userData.chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
-                        }
-                        }
-                        let keys = Array(text)
-                        print(userData.intentedWord)
-                     
-                     
-                        
-                        
-                        if userData.canRememberConvo {
-                            if userData.step > 0 {
-                                let db = Firestore.firestore()
-
-                        db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
-                                task = Task()
-                                for  x in x {
-                                    task.keysMistyped = keysMistyped[i]
-                                    task.x = x
-                                    task.y = y[i]
-                                    task.z = z[i]
-                                    taskArr.append(task!)
+                                if userData.canRememberConvo {
+                        //    db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Zoom", "keysMistyped2": keysMistyped2])
+                                    shareButton2()
+                                    if self.userData.step == 10 {
+                                       
+                                       
+                                        db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
+                                       
+                                    }
+                                    if self.userData.step == 11 {
+                                       
+                                        
+                                        db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                                    }
+                                    if self.userData.step == 12 {
+                                        
+                                        db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
+                                        
+                                       
+                                    }
+                                    time = 0.0
+                                    keyNum = 0
+                                    keyNum2 = 0
+                                  
+                                    x.removeAll()
+                                    y.removeAll()
+                                    z.removeAll()
+                                    intentedKeys.removeAll()
+                                    keysMistyped.removeAll()
+                                    keysMistyped2.removeAll()
+                                    keyTime.removeAll()
+                                    keys.removeAll()
                                     
+                                } else {
+                                    time = 0.0
+                                    keyNum = 0
+                                    keyNum2 = 0
+                                   
+                                    x.removeAll()
+                                    y.removeAll()
+                                    z.removeAll()
+                                    intentedKeys.removeAll()
+                                    keysMistyped.removeAll()
+                                    keysMistyped2.removeAll()
+                                    keyTime.removeAll()
+                                    keys.removeAll()
+                                }
+                                                
+                            
+                           
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                if self.userData.step == 7 {
+                                   
+                                    
+                                   chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
+                                    self.userData.intentedWord = "where are you"
                                    
                                 }
-
-                                shareButton2()
-                            
-                            time = 0.0
-                            keyNum = 0
-                            keyNum2 = 0
-                            x.removeAll()
-                            y.removeAll()
-                            z.removeAll()
-                            intentedKeys.removeAll()
-                            keysMistyped.removeAll()
-                            keysMistyped2.removeAll()
-                            keyTime.removeAll()
-                        
-                        } else {
-                            time = 0.0
-                            keyNum = 0
-                            keyNum2 = 0
-                            x.removeAll()
-                            y.removeAll()
-                            z.removeAll()
-                            intentedKeys.removeAll()
-                            keysMistyped.removeAll()
-                            keysMistyped2.removeAll()
-                            keyTime.removeAll()
-                        }
-                         } else {
-                            time = 0.0
-                            keyNum = 0
-                            keyNum2 = 0
-                            x.removeAll()
-                            y.removeAll()
-                            z.removeAll()
-                            intentedKeys.removeAll()
-                            keysMistyped.removeAll()
-                            keysMistyped2.removeAll()
-                            keyTime.removeAll()
-                         }
-                        if text != " " {
-                        if text != "Type Here" {
-                        self.userData.step =  self.userData.step + 1
-                        }
-                        }
-                       
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            if self.userData.step == 1 {
-                                isKeyboardOpen = false
-                               // self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "", isMe: false, isView: true, viewMessage: "keys: \(keys) " + "new \(timeNew) " + "reg \(timeReg) ", viewTitle: " x: \(x) " + "y: \(y) " + "z: \(z) ", step: 2))
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data and remember our conversation within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember your acceleration data and this conversation?", step: 1))
-                                
-                            }
-                           
-                            if self.userData.step == 2 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
-                                self.userData.intentedWord = "hello"
-                            }
-                            if self.userData.step == 3 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
-                                self.userData.intentedWord = "where are you"
-                            }
-                            if self.userData.step == 4 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
-                                self.userData.intentedWord = "how are you"
-                            }
-                            if self.userData.step == 5 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
-                                self.userData.intentedWord = "thanks"
-                               
-                            }
-                            if self.userData.step == 6 {
-                                self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: true, viewMessage: "", viewTitle: "Try out demo keyboards?", step: 6))
-                                self.userData.intentedWord = "thanks"
-                                isKeyboardOpen = false
-                            }
-                            if userData.step == 7 {
+                              
+                                if self.userData.step == 8 {
+                                   chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                    self.userData.intentedWord = "how are you"
+                                    chat.removeFirst()
                              
+                                }
+                                if self.userData.step == 9 {
+                                   chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                    self.userData.intentedWord = "thanks"
+                                    chat.removeFirst()
+                                }
+                                if self.userData.step == 10 {
+                                  chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What apps do you use most frequently?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                    self.userData.intentedWord = " "
+                                    chat.removeFirst()
+                                }
+                                if self.userData.step == 11 {
+                                    chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What issues do you face when you type?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                   
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
+                                    chat.removeFirst()
+                                }
+                                if self.userData.step == 12 {
+                                    chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What specific keys do you have trouble tapping?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                    
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                                    chat.removeFirst()
+                                }
+                                if self.userData.step == 13 {
+                                  chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "How can we make your keyboard optimized to you?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
+                                    
+                                    chat.removeFirst()
+                                }
+                                if self.userData.step == 14 {
+                                  chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Take an additional survey to help us build a helpful keyboard?", isMe: false, isView: true, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "How can we make your keyboard optimized to you?" : self.text])
+                                    isKeyboardOpen = false
+                                    chat.removeFirst()
+                                }
+                              
                             }
-                            }
+                            
+                            
+                                if text != " " {
+                                if text != "Type Here" {
+                                self.userData.step =  self.userData.step + 1
+                                }
+                                }
+                           
                     
-                    
-                        if isKeyboardOpen {
-                       text = " "
-                        } else {
-                            text = "Type Here"
+                            
                         }
-                        
-                        
                 }
-                } .padding()
+                .frame(width: screenSize.width, height: screenSize.height/7, alignment: .center)
             if isKeyboardOpen {
                
                
@@ -244,10 +260,10 @@ struct Home3: View {
           //  csvText.append( "\(task.z)\n")
            }
         var mailString = NSMutableString()
-        mailString.append("Mistypes, time\n")
+        mailString.append("Mistypes, X, Y, time\n")
         i = 0
         for x in x {
-        mailString.append("\(keysMistyped[i]),\(time)\n")
+        mailString.append("\(keysMistyped[i]), \(x),\(y[i]),\(time)\n")
             i += 1
         }
         // Converting it to NSData.

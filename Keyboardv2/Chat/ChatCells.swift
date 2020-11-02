@@ -53,7 +53,7 @@ struct ChatV2Cell2: View {
                 .edgesIgnoringSafeArea(.horizontal)
             HStack() {
                 
-                ScrollView {
+               
                 Text(message)
                     .foregroundColor(.white)
                     .lineLimit(.none)
@@ -61,7 +61,7 @@ struct ChatV2Cell2: View {
                     .padding(12)
                     .background(Color(.gray))
                     .cornerRadius(10)
-                }
+                
                 Spacer()
             } .padding(.leading, 22)
         }

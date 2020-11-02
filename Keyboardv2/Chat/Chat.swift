@@ -9,7 +9,7 @@
 import SwiftUI
 struct ChatView: View {
     
-    @State var chat = [ChatData(id: "\(UUID())", name: "Bot_Name", message: "Hey, I'm Bot_Name! What's your name?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: -1)]
+   
     
     @EnvironmentObject var userData: UserData
     
@@ -36,6 +36,8 @@ struct ChatView: View {
     @Binding var didTap2: Bool
     
     @Binding var text: String
+    @Binding var demo: Bool
+    @Binding var chat: [ChatData]
     var body: some View {
         ZStack {
             Color(.white)
@@ -51,7 +53,7 @@ struct ChatView: View {
                             
                 VStack {
                     
-                    ForEach(self.userData.chat, id: \.id) { chatting in
+                    ForEach(self.chat, id: \.id) { chatting in
                         
                         
                         
@@ -64,12 +66,12 @@ struct ChatView: View {
                                
                             if chatting.isView {
                                 VStack {
-                                    if userData.chat.last?.viewTitle == "Allow ChatBot_Name to remember your acceleration data and this conversation?" {
-                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
+                                    if chat.last?.viewTitle == "Allow ChatBot_Name to remember your acceleration data and this conversation?" {
+                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
                                     
-                                    } else if userData.chat.last?.viewTitle == "Try out demo keyboards?" {
-                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
-                                    } else if userData.chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
+                                    } else if chat.last?.viewTitle == "Try out demo keyboards?" {
+                                        ChatPermission3(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen, didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
+                                    } else if chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
                                             ChatPermission4(title: chatting.viewTitle, message: chatting.viewMessage, isKeyboardOpen: $isKeyboardOpen)
                                     } else {
                                     ChatV2Cell2(name: chatting.name, message: chatting.message)
@@ -114,7 +116,7 @@ struct ChatView: View {
                         if isKeyboardOpen {
                             Color(.white)
                                 .onAppear() {
-                                    value.scrollTo(userData.chat.last, anchor: .top)
+                                    value.scrollTo(chat.last, anchor: .top)
                                     text = ""
                                 }
                         }

@@ -22,9 +22,12 @@ struct Keyboardv2App: App {
     @State var didTap1: Bool = false
     
     @State var didTap2: Bool = false
+    
+    @State var demo: Bool = false
+    @State var chat = [ChatData(id: "\(UUID())", name: "Bot_Name", message: "Hey, I'm Bot_Name! What's your name?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: -1) ]
     var body: some Scene {
         WindowGroup {
-            Home(didTap1: $didTap1, didTap2: $didTap2)
+            Home3(didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
             .environmentObject(UserData.shared)
         }
     }

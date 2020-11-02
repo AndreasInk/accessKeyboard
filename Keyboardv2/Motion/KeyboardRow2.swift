@@ -18,7 +18,13 @@ struct KeyboardRow2: View {
     @Binding var timeOn: Bool
     @Binding var keysMistyped2: [String]
     
- 
+    @Binding var x: [Double]
+    
+    @Binding var y: [Double]
+    
+    @Binding var z: [Double]
+    @ObservedObject var motionManager = MotionManager()
+    @Binding var counter: Int
     @EnvironmentObject var userData: UserData
     var body: some View {
         HStack() {
@@ -43,10 +49,16 @@ struct KeyboardRow2: View {
                             if "\(userData.intentedWord[keyNum])" != item {
                                 keysMistyped.append(0.2)
                                         keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                x.append(motionManager.x)
+                                //diagonal
+                                y.append(motionManager.y)
+                                //up and down
+                                z.append(motionManager.z)
                                 
+                                counter += 1
                                 if keyNum > -1 {
-                                text.removeLast()
-                                text.append(userData.intentedWord[keyNum])
+                              //  text.removeLast()
+                                    //  text.append(userData.intentedWord[keyNum])
                                 
                             }
                             }

@@ -114,7 +114,7 @@ struct ResultsView: View {
         let db = Firestore.firestore()
       
         db.collection("interactions")
-            .limit(to: 20).whereField("keysMistyped", arrayContains: 0.5).getDocuments { (documents, error) in
+            .limit(to: 3).whereField("keysMistyped", arrayContains: 0.2).getDocuments { (documents, error) in
             if documents?.count ?? -1 > -1 {
             for document in documents!.documents{
                 print("add")

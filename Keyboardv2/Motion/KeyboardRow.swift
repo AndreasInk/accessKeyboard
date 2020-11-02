@@ -24,18 +24,24 @@ struct KeyboardRow: View {
     
     @Binding var z: [Double]
     
-    @Binding var averageX: Double
+   
     
     @Binding var zoom1: Bool
     @Binding var zoom2: Bool
     @Binding var zoom3: Bool
     @EnvironmentObject var userData: UserData
+    @Binding var prediction: Double
+    @Binding var predictionZ: Double
+    
+   
+    @ObservedObject var motionManager = MotionManager()
+    @Binding var counter: Int
     var body: some View {
         HStack() {
             
       
             ForEach(data, id: \.self) { item in
-             Spacer()
+            // Spacer()
                 Button(action: {
                     timeOn = true
                    
@@ -53,7 +59,10 @@ struct KeyboardRow: View {
                             if "\(userData.intentedWord[keyNum])" != item {
                                 keysMistyped.append(0.2)
                                         keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                
+                                x.append(motionManager.x)
+                                y.append(motionManager.y)
+                                z.append(motionManager.z)
+                                counter += 1
                                 if keyNum > -1 {
                                 text.removeLast()
                                 text.append(userData.intentedWord[keyNum])
@@ -64,14 +73,11 @@ struct KeyboardRow: View {
                            
                             
                      }
-                        if item == "backspace" {
-                            keyNum2 -= 1
-                            keyNum -= 1
-                        } else {
+                        
                         keyNum2 += 1
                         keyNum += 1
                      }
-                     }
+                     
                      
                 }) {
                    
@@ -80,7 +86,7 @@ struct KeyboardRow: View {
                     if item != "backspace" {
                         if item != "space" {
                             Color(.white)
-                                .frame(minWidth: 20, idealWidth: 35, maxWidth: 45, minHeight: 25, idealHeight: 40, maxHeight: 50, alignment: .center)
+                                .frame(minWidth: 20, idealWidth: 30, maxWidth: 30, minHeight: 35, idealHeight: 45, maxHeight: 50, alignment: .center)
                             Text(item)
                                 .font(.headline)
                                // .padding(5)
@@ -106,16 +112,15 @@ struct KeyboardRow: View {
                    let xPos = dragGesture.location.x
                   let yPos = dragGesture.location.y
                     if x.last != nil {
-                    let equation = 0.102703567 * x.last!
-                    let startNumber = averageX - 0.17
-                    let endNumber = averageX + 0.17
-                    let numberRange = startNumber...endNumber
+                        let equation = 1.002667789574 * x.last!
+                  
+                   
                print(yPos)
                     if yPos < screenSize.height * 8/9 {
                if xPos > screenSize.width * 1/3 {
                    if xPos < screenSize.width * 2/3 {
                        print(1)
-                    if equation + 0.166815418 > 0.18 {
+                    if prediction > -0.09 {
                        zoom2.toggle()
                    
                    }
@@ -125,7 +130,7 @@ struct KeyboardRow: View {
                    if xPos > screenSize.width * 2/3 {
                        if xPos < screenSize.width {
                            print(2)
-                        if equation + 0.166815418 > 0.18 {
+                        if prediction > -0.09  {
                             
                        
                            zoom3.toggle()
@@ -136,7 +141,7 @@ struct KeyboardRow: View {
                    if xPos > 0 {
                        if xPos < screenSize.width * 1/3 {
                            print(0)
-                        if equation + 0.166815418 > 0.18 {
+                        if prediction > -0.09  {
                             
                        
                            zoom1.toggle()

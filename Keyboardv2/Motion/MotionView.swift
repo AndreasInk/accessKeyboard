@@ -49,6 +49,7 @@ struct MotionView: View {
     @Binding var time: Double
     @Binding var timeOn: Bool
     @Binding var keysMistyped2: [String]
+    @Binding var counter: Int
     var body: some View {
         ZStack(alignment: .bottom) {
             Color(.white)
@@ -88,7 +89,7 @@ struct MotionView: View {
                     z.append(motionManager.z)
                     
                         keysMistyped.append(-0.099)
-                    
+                    counter += 1
                     //print(motionManager.z)
                     if time == 10 {
                         let sumArray = z.reduce(0, +)
@@ -120,17 +121,16 @@ struct MotionView: View {
                 ZStack(alignment: .bottom) {
                     
                     BlurView(style: .systemThickMaterial)
-                        .frame(width: screenSize.width, height: screenSize.height/2, alignment: .center)
+                        .frame(width: screenSize.width, height: screenSize.height/2.5, alignment: .center)
                    
                     VStack(alignment: .center) {
                         Spacer()
-                        KeyboardRow2(data: horizontal1, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2 )
-                        Spacer()
-                        KeyboardRow2(data: horizontal2, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2 )
-                        Spacer()
-                        KeyboardRow2(data: horizontal3, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2 )
-                        Spacer()
+                        KeyboardRow2(data: horizontal1, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, counter: $counter)
                        
+                        KeyboardRow2(data: horizontal2, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, counter: $counter)
+                        KeyboardRow2(data: horizontal3, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, counter: $counter)
+                       
+                        Spacer()
                     }
                     
                     .padding(.bottom, 50)
@@ -145,8 +145,8 @@ struct MotionView: View {
                                            keysMistyped2.append("\(userData.intentedWord[keyNum])")
                                    
                                    if keyNum > -1 {
-                                   text.removeLast()
-                                   text.append(userData.intentedWord[keyNum])
+                                   //text.removeLast()
+                                  // text.append(userData.intentedWord[keyNum])
                                    
                                }
                                }
@@ -166,8 +166,8 @@ struct MotionView: View {
                 } 
                
                 }
-    }
-        }
+    } 
+        } 
     }
 
     public enum ButtonState {
