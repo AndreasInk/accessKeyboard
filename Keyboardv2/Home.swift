@@ -126,11 +126,11 @@ struct Home: View {
                     }  .onTapGesture {
                         timeOn = false
                         
-                        if text != " " {
+                        if text != "" {
                         if text != "Type Here" {
                        chat.append(ChatData(id: "\(UUID())", name: self.userData.name, message:  text, isMe: true, isView: false, viewMessage: "", viewTitle: "", step: step))
                         }
-                        }
+                        
                         let keys = Array(text)
                         print(userData.intentedWord)
                      
@@ -139,9 +139,9 @@ struct Home: View {
                         
                         if userData.canRememberConvo {
                             if userData.step > 0 {
-                              //  let db = Firestore.firestore()
+                                let db = Firestore.firestore()
 
-                      //  db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
+                       db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
 
                                 shareButton2()
                             
@@ -280,6 +280,7 @@ struct Home: View {
                         
                         
                 }
+                    }
                 } .padding(.horizontal, 22)
                 .frame(width: screenSize.width, height: screenSize.height/7, alignment: .center)
             if isKeyboardOpen {
