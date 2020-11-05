@@ -238,9 +238,9 @@ struct Home3: View {
                
                
                // Spacer(minLength: screenSize.height/2.5)
-                MotionView3(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
-                        .environmentObject(UserData.shared)
-                    .ignoresSafeArea()
+                //  MotionView3(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                     //   .environmentObject(UserData.shared)
+                  //  .ignoresSafeArea()
                 }
             
             }

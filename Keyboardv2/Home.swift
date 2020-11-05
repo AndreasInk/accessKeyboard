@@ -315,7 +315,7 @@ struct Home: View {
                     .ignoresSafeArea()
                     .padding(.top)
                 } else {
-                    MotionView3(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                    MotionView3(x: $x, y:$y, z:$z, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                     .padding(.top)

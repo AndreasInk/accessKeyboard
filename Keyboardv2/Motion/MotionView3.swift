@@ -17,6 +17,18 @@ struct MotionView3: View {
     
     @Binding var z: [Double]
     
+    @Binding var pitch: [Double]
+    
+    @Binding var roll: [Double]
+    
+    @Binding var yaw: [Double]
+    
+    @Binding var rotX: [Double]
+    
+    @Binding var rotY: [Double]
+    
+    @Binding var rotZ: [Double]
+    
     @ObservedObject var motionManager = MotionManager()
     
     
@@ -99,7 +111,17 @@ struct MotionView3: View {
                     //up and down
                     z.append(motionManager.z)
                     
-                       
+                        pitch.append(motionManager.pitch)
+                        //diagonal
+                        roll.append(motionManager.roll)
+                        //up and down
+                        yaw.append(motionManager.yaw)
+                        
+                        rotX.append(motionManager.rotX)
+                        //diagonal
+                        rotY.append(motionManager.rotY)
+                        //up and down
+                        rotZ.append(motionManager.rotZ)
                         
                         keysMistyped.append(-0.099)
                     
