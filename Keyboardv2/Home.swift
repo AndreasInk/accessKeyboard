@@ -69,9 +69,7 @@ struct Home: View {
                     text = "Type Here"
                    
                 }
-                .onAppear() {
-                   
-            }
+                
            
             VStack {
               
@@ -129,7 +127,7 @@ struct Home: View {
                         
                         if userData.canRememberConvo {
                             if userData.step > 0 {
-                                let db = Firestore.firestore()
+                              //  let db = Firestore.firestore()
 
                       //  db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
 
@@ -209,8 +207,55 @@ struct Home: View {
                                 self.userData.intentedWord = "thanks"
                                 isKeyboardOpen = false
                             }
-                            if userData.step == 7 {
-                             
+                            if self.userData.step == 7 {
+                               
+                                
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  where are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 4))
+                                self.userData.intentedWord = "where are you"
+                               
+                            }
+                          
+                            if self.userData.step == 8 {
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  how are you", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                self.userData.intentedWord = "how are you"
+                                chat.removeFirst()
+                         
+                            }
+                            if self.userData.step == 9 {
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this:  thanks", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                self.userData.intentedWord = "thanks"
+                                chat.removeFirst()
+                            }
+                            if self.userData.step == 10 {
+                              chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What apps do you use most frequently?", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 6))
+                                self.userData.intentedWord = " "
+                                chat.removeFirst()
+                            }
+                            if self.userData.step == 11 {
+                                chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What issues do you face when you type?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                let db = Firestore.firestore()
+                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
+                                chat.removeFirst()
+                            }
+                            if self.userData.step == 12 {
+                                chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What specific keys do you have trouble tapping?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                let db = Firestore.firestore()
+                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                                chat.removeFirst()
+                            }
+                            if self.userData.step == 13 {
+                              chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "How can we make your keyboard optimized to you?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                let db = Firestore.firestore()
+                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
+                                
+                                chat.removeFirst()
+                            }
+                            if self.userData.step == 14 {
+                              chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Take an additional survey to help us build a helpful keyboard?", isMe: false, isView: true, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
+                                let db = Firestore.firestore()
+                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "How can we make your keyboard optimized to you?" : self.text])
+                                isKeyboardOpen = false
+                                chat.removeFirst()
                             }
                             }
                     
@@ -226,14 +271,21 @@ struct Home: View {
                 } .padding(.horizontal, 22)
                 .frame(width: screenSize.width, height: screenSize.height/7, alignment: .center)
             if isKeyboardOpen {
-               
+                if !demo {
                
                // Spacer(minLength: screenSize.height/2.5)
                 MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                     .padding(.top)
+                } else {
+                    MotionView3(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                        .environmentObject(UserData.shared)
+                    .ignoresSafeArea()
+                    .padding(.top)
+                        
                 }
+            }
             
             }
               
@@ -306,6 +358,7 @@ struct Home: View {
            isShareSheetShowing.toggle()
        }
     func shareButton2() {
+        if !demo {
         let fileName = "Reg-\(userData.intentedWord)-\(UUID()).csv"
            let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
            var csvText = "Int,Type\n"
@@ -351,7 +404,55 @@ struct Home: View {
             return
           }
        }
-    }
+        } else {
+            let fileName = "Zoom-\(userData.intentedWord)-\(UUID()).csv"
+               let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+               var csvText = "Int,Type\n"
+
+               for task in taskArr {
+                let newLine = "\(task.keysMistyped)\(task.x)\n"
+                csvText.append(newLine)
+               
+             //   csvText.append( "\(task.y)\n")
+              //  csvText.append( "\(task.z)\n")
+               }
+            var mailString = NSMutableString()
+            mailString.append("Mistypes, X, Y, Z, time, keys\n")
+            i = 0
+            for x in x {
+            mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(time), \(keysMistyped2)\n")
+                i += 1
+            }
+            // Converting it to NSData.
+          
+            
+               do {
+                try mailString.write(to: path!, atomically: true, encoding: String.Encoding.utf8.rawValue)
+               } catch {
+                   print("Failed to create file")
+                   print("\(error)")
+               }
+               print(path ?? "not found")
+
+               var filesToShare = [Any]()
+               filesToShare.append(path!)
+
+           
+            let data = mailString.data(using: String.Encoding.utf8.rawValue)!
+            let storageRef = Storage.storage().reference()
+            // Create a reference to the file you want to upload
+            let riversRef = storageRef.child("Reg-\(userData.intentedWord)-\(UUID()).csv")
+
+            // Upload the file to the path "images/rivers.jpg"
+            let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
+              guard let metadata = metadata else {
+              print(error)
+                return
+              }
+           }
+        }
+        }
+    
    
     func createCSVX() {
     var csvString = "\("keys"),\("x"),\("y"),\("z")\n"

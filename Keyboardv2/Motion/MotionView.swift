@@ -66,6 +66,7 @@ struct MotionView: View {
                 
                 .onDisappear() {
                     columns.removeAll()
+                  
                 }
                 .onTapGesture {
                     isKeyboardOpen = false

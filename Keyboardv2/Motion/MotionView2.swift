@@ -98,6 +98,7 @@ struct MotionView2: View {
                     }
                     .onDisappear() {
                         columns.removeAll()
+                       
                     }
                     .onAppear() {
                        
@@ -507,7 +508,7 @@ struct MotionView2: View {
     }
     }
     func calculateBedtime() {
-        let model = X()
+        let model = Xv4()
         
         //this provides all the details of the current date
         
@@ -535,7 +536,7 @@ struct MotionView2: View {
            
         }
         
-        let model2 = Zv2()
+        let model2 = Zv3()
         
         //this provides all the details of the current date
         
@@ -557,7 +558,7 @@ struct MotionView2: View {
             
         
             self.predictionZ = prediction.Mistypes
-           // print(self.predictionZ)
+          //  print(self.predictionZ)
             
         } catch {
            

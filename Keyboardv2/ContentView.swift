@@ -44,7 +44,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
         if userData.isOnboardingCompleted {
-            if !demo {
+           
                 Home(didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
                 .environmentObject(UserData.shared)
                     .onDisappear() {
@@ -60,16 +60,7 @@ struct ContentView: View {
                         
                     }
                   
-            } else {
-                Home3(didTap1: $didTap1, didTap2: $didTap2, demo: $demo, chat: $chat)
-                    .environmentObject(UserData.shared)
-                    .onAppear() {
-                        print("here")
-                        chat.removeAll()
-                       chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
-                        self.userData.intentedWord = "hello"
-                    }
-            }
+         
         } else {
         Onboarding()
             .environmentObject(UserData.shared)

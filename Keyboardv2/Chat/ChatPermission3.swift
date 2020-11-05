@@ -82,6 +82,8 @@ struct ChatPermission3: View {
                         }
                         if chat.last?.viewTitle == "Try out demo keyboards?" {
                            demo = true
+                            chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can you please type this word:  hello", isMe: false, isView: false, viewMessage: "", viewTitle: "", step: 3))
+                            self.userData.intentedWord = "hello"
                         }
                         if chat.last?.viewTitle == "Take a survey to help us build a helpful keyboard?" {
                             userData.survey = true

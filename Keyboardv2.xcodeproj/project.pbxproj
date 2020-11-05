@@ -30,6 +30,8 @@
 		E1116EF8254CE27A00A08410 /* X.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E1116EF6254CE27A00A08410 /* X.mlmodel */; };
 		E1116F00254CE50000A08410 /* Zv2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E1116EFF254CE50000A08410 /* Zv2.mlmodel */; };
 		E1116F04254CE59900A08410 /* Xv2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E1116F03254CE59900A08410 /* Xv2.mlmodel */; };
+		E149ED552554798900270A30 /* Xv4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E149ED542554798900270A30 /* Xv4.mlmodel */; };
+		E149ED5825547A7400270A30 /* Zv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E149ED5725547A7400270A30 /* Zv3.mlmodel */; };
 		E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F6D2536248B00D2173B /* CalibrateView.swift */; };
 		E14B3F722536743200D2173B /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F712536743200D2173B /* Admin.swift */; };
 		E14B3F76253674E700D2173B /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14B3F75253674E700D2173B /* ChartView.swift */; };
@@ -109,6 +111,8 @@
 		E1116EF6254CE27A00A08410 /* X.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = X.mlmodel; sourceTree = "<group>"; };
 		E1116EFF254CE50000A08410 /* Zv2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Zv2.mlmodel; sourceTree = "<group>"; };
 		E1116F03254CE59900A08410 /* Xv2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Xv2.mlmodel; sourceTree = "<group>"; };
+		E149ED542554798900270A30 /* Xv4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Xv4.mlmodel; sourceTree = "<group>"; };
+		E149ED5725547A7400270A30 /* Zv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Zv3.mlmodel; sourceTree = "<group>"; };
 		E14B3F6D2536248B00D2173B /* CalibrateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateView.swift; sourceTree = "<group>"; };
 		E14B3F712536743200D2173B /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		E14B3F75253674E700D2173B /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -316,7 +320,9 @@
 				E1885D322548E964005911E6 /* MotionView3.swift */,
 				E1116EF6254CE27A00A08410 /* X.mlmodel */,
 				E1116EFF254CE50000A08410 /* Zv2.mlmodel */,
+				E149ED5725547A7400270A30 /* Zv3.mlmodel */,
 				E1116F03254CE59900A08410 /* Xv2.mlmodel */,
+				E149ED542554798900270A30 /* Xv4.mlmodel */,
 				E1885D9125490DB9005911E6 /* KeyboardRow3.swift */,
 				E1885D352548E9C1005911E6 /* KeyboardRow.swift */,
 				E1885D51254904B3005911E6 /* KeyboardRow2.swift */,
@@ -496,6 +502,7 @@
 				E18D100B252E05EB00F347DA /* SurveyData.swift in Sources */,
 				E1817824252F9A0200724F23 /* UserData.swift in Sources */,
 				E1AF32A425377C6600147E15 /* Home2.swift in Sources */,
+				E149ED5825547A7400270A30 /* Zv3.mlmodel in Sources */,
 				E10A64612537BFBE00069640 /* LineView.swift in Sources */,
 				E18D0FFB252D375D00F347DA /* CoreMotion.swift in Sources */,
 				E10A64602537BFBE00069640 /* IndicatorPoint.swift in Sources */,
@@ -521,6 +528,7 @@
 				E10A64672537BFBE00069640 /* Line.swift in Sources */,
 				E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */,
 				E10A64752537DE3800069640 /* PieChartRow.swift in Sources */,
+				E149ED552554798900270A30 /* Xv4.mlmodel in Sources */,
 				E159FF34252941D400F7511C /* Keyboardv2App.swift in Sources */,
 				E10A64762537DE3800069640 /* PieChartHelpers.swift in Sources */,
 				E1AF32AC253786D600147E15 /* ChatPermission3.swift in Sources */,
@@ -657,7 +665,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Keyboardv2/Preview Content\"";
 				DEVELOPMENT_TEAM = MC27HKM86M;
 				ENABLE_PREVIEWS = YES;
@@ -681,7 +689,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Keyboardv2/Preview Content\"";
 				DEVELOPMENT_TEAM = MC27HKM86M;
 				ENABLE_PREVIEWS = YES;
