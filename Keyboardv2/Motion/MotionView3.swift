@@ -99,6 +99,8 @@ struct MotionView3: View {
                     //up and down
                     z.append(motionManager.z)
                     
+                       
+                        
                         keysMistyped.append(-0.099)
                     
                     //print(motionManager.z)

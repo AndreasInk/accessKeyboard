@@ -20,6 +20,16 @@ class MotionManager: ObservableObject {
     @Published
     var z: Double = 0.0
 
+    @Published var pitch: Double = 0.0
+    @Published var roll: Double = 0.0
+    @Published var yaw: Double = 0.0
+    
+    @Published
+    var rotX: Double = 0.0
+    @Published
+    var rotY: Double = 0.0
+    @Published
+    var rotZ: Double = 0.0
 @Published
     var stop: Bool = false
     init() {
@@ -40,6 +50,33 @@ class MotionManager: ObservableObject {
             }
 
         }
+        self.motionManager.startDeviceMotionUpdates(to: .main) { [weak self] (magnetometerData, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            DispatchQueue.main.async {
+            if let magnetData = magnetometerData {
+                self?.pitch = magnetData.attitude.pitch
+                self?.roll = magnetData.attitude.roll
+                self?.yaw = magnetData.attitude.yaw
+            }
+            }
 
+        }
+        self.motionManager.startGyroUpdates(to: .main) { [weak self] (magnetometerData, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            DispatchQueue.main.async {
+            if let magnetData = magnetometerData {
+                self?.rotX = magnetData.rotationRate.x
+                self?.rotY = magnetData.rotationRate.y
+                self?.rotZ = magnetData.rotationRate.z
+            }
+            }
+
+        }
     }
 }

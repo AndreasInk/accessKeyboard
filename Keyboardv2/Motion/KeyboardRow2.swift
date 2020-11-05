@@ -26,6 +26,18 @@ struct KeyboardRow2: View {
     @ObservedObject var motionManager = MotionManager()
     @Binding var counter: Int
     @EnvironmentObject var userData: UserData
+    
+    @Binding var pitch: [Double]
+    
+    @Binding var roll: [Double]
+    
+    @Binding var yaw: [Double]
+    
+    @Binding var rotX: [Double]
+    
+    @Binding var rotY: [Double]
+    
+    @Binding var rotZ: [Double]
     var body: some View {
         HStack() {
             
@@ -55,6 +67,17 @@ struct KeyboardRow2: View {
                                 //up and down
                                 z.append(motionManager.z)
                                 
+                                pitch.append(motionManager.pitch)
+                                //diagonal
+                                roll.append(motionManager.roll)
+                                //up and down
+                                yaw.append(motionManager.yaw)
+                                
+                                rotX.append(motionManager.rotX)
+                                //diagonal
+                                rotY.append(motionManager.rotY)
+                                //up and down
+                                rotZ.append(motionManager.rotZ)
                                 counter += 1
                                 if keyNum > -1 {
                               //  text.removeLast()

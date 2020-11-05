@@ -34,6 +34,8 @@ struct KeyboardRow3: View {
     @State var horizontal1 = (["q", "w", "e", "a", "s", "d","z", "x", "c" ]).map { "\($0)" }
     @State var horizontal2 = (["r", "t", "y", "u", "f", "g", "h", "v", "b"]).map { "\($0)" }
     @State var horizontal3 = (["i", "o", "p", "j", "k", "l", "n", "m", "backspace"]).map { "\($0)" }
+    
+ 
     var body: some View {
         HStack(spacing: 0) {
             

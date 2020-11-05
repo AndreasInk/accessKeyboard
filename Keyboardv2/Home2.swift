@@ -24,6 +24,18 @@ struct Home2: View {
     
     @State var z = [Double]()
     
+    @State var pitch = [Double]()
+    
+    @State var roll = [Double]()
+    
+    @State var yaw = [Double]()
+    
+    @State var rotX = [Double]()
+    
+    @State var rotY = [Double]()
+    
+    @State var rotZ = [Double]()
+    
     @State var keys = [String]()
     @State var keyTime = [Double]()
     @State var time = 0.0
@@ -240,7 +252,7 @@ struct Home2: View {
                    
                 VStack {
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView2(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                    MotionView2(x: $x, y:$y, z:$z, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, wait: $wait, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                 }

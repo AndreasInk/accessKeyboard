@@ -29,6 +29,18 @@ struct Home: View {
     
     @State var z = [Double]()
     
+    @State var pitch = [Double]()
+    
+    @State var roll = [Double]()
+    
+    @State var yaw = [Double]()
+    
+    @State var rotX = [Double]()
+    
+    @State var rotY = [Double]()
+    
+    @State var rotZ = [Double]()
+    
     @State var keys = [String]()
     @State var keyTime = [Double]()
     @State var time = 0.0
@@ -274,7 +286,7 @@ struct Home: View {
                 if !demo {
                
                // Spacer(minLength: screenSize.height/2.5)
-                MotionView(x: $x, y:$y, z:$z, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                    MotionView(x: $x, y:$y, z:$z, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                     .padding(.top)
@@ -331,7 +343,7 @@ struct Home: View {
           //  csvText.append( "\(task.z)\n")
            }
         var mailString = NSMutableString()
-        mailString.append("Mistypes, X, Y, Z, Keys\n")
+        mailString.append("Mistypes, X, Y, Z, rotX, rotY, rotZ, Keys\n")
         i = 0
         for n in 0...counter {
         mailString.append("\(keysMistyped[i]),\(x[i]),\(y[i]),\(z[i]),\(keysMistyped2)\n")
@@ -371,10 +383,10 @@ struct Home: View {
           //  csvText.append( "\(task.z)\n")
            }
         var mailString = NSMutableString()
-        mailString.append("Mistypes, X, Y, Z, time, keys\n")
+        mailString.append("Mistypes, X, Y, Z, Pitch, Roll, Yaw, rotX, rotY, rotZ, keys\n")
         i = 0
         for x in x {
-        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(time), \(keysMistyped2)\n")
+        mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(pitch[i]),\(roll[i]), \(yaw[i]),\(rotX[i]), \(rotY[i]),\(rotZ[i]),\(keysMistyped2)\n")
             i += 1
         }
         // Converting it to NSData.
@@ -417,10 +429,10 @@ struct Home: View {
               //  csvText.append( "\(task.z)\n")
                }
             var mailString = NSMutableString()
-            mailString.append("Mistypes, X, Y, Z, time, keys\n")
+            mailString.append("Mistypes, X, Y, Z, Pitch, Roll, Yaw, rotX, rotY, rotZ, keys\n")
             i = 0
             for x in x {
-            mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(time), \(keysMistyped2)\n")
+            mailString.append("\(keysMistyped[i]),\(x),\(y[i]),\(z[i]),\(pitch[i]),\(roll[i]), \(yaw[i]),\(rotX[i]), \(rotY[i]),\(rotZ[i]),\(keysMistyped2)\n")
                 i += 1
             }
             // Converting it to NSData.
