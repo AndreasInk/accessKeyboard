@@ -152,6 +152,13 @@ struct Home: View {
                             x.removeAll()
                             y.removeAll()
                             z.removeAll()
+                                pitch.removeAll()
+                                roll.removeAll()
+                                yaw.removeAll()
+                                
+                                rotX.removeAll()
+                                rotY.removeAll()
+                                rotZ.removeAll()
                             intentedKeys.removeAll()
                             keysMistyped.removeAll()
                             keysMistyped2.removeAll()
@@ -169,6 +176,14 @@ struct Home: View {
                             keysMistyped.removeAll()
                             keysMistyped2.removeAll()
                             keyTime.removeAll()
+                            
+                            pitch.removeAll()
+                            roll.removeAll()
+                            yaw.removeAll()
+                            
+                            rotX.removeAll()
+                            rotY.removeAll()
+                            rotZ.removeAll()
                         }
                          } else {
                             time = 0.0
@@ -182,6 +197,14 @@ struct Home: View {
                             keysMistyped.removeAll()
                             keysMistyped2.removeAll()
                             keyTime.removeAll()
+                            
+                            pitch.removeAll()
+                            roll.removeAll()
+                            yaw.removeAll()
+                            
+                            rotX.removeAll()
+                            rotY.removeAll()
+                            rotZ.removeAll()
                          }
                         if text != " " {
                         if text != "Type Here" {
