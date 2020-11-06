@@ -237,18 +237,18 @@ struct MotionView3: View {
                             Button(action: {
                                 text += item
                                 
-                                if userData.step < 12 {
+                               
                                    print("\(userData.intentedWord[keyNum])")
                                    
                                     if "\(userData.intentedWord[keyNum])" != item {
-                                        keysMistyped.append(0.5)
+                                        keysMistyped.append(0.2)
                                                 keysMistyped2.append("\(userData.intentedWord[keyNum])")
                                         
                                         if keyNum > -1 {
                                        // text.removeLast()
                                         //text.append(userData.intentedWord[keyNum])
                                         
-                                    }
+                                    
                                     }
                                     
                                    
@@ -324,18 +324,18 @@ struct MotionView3: View {
                             Button(action: {
                                 text += item
                                 
-                                if userData.step < 12 {
+                              
                                    print("\(userData.intentedWord[keyNum])")
                                    
                                     if "\(userData.intentedWord[keyNum])" != item {
-                                        keysMistyped.append(0.5)
+                                        keysMistyped.append(0.2)
                                                 keysMistyped2.append("\(userData.intentedWord[keyNum])")
                                         
                                         if keyNum > -1 {
                                        // text.removeLast()
                                         //text.append(userData.intentedWord[keyNum])
                                         
-                                    }
+                                     
                                     }
                                     
                                    
@@ -421,11 +421,11 @@ struct MotionView3: View {
                             } else {
                             text += item
                             }
-                            if userData.step < 12 {
+                          
                                print("\(userData.intentedWord[keyNum])")
                                
                                 if "\(userData.intentedWord[keyNum])" != item {
-                                    keysMistyped.append(0.5)
+                                    keysMistyped.append(0.2)
                                             keysMistyped2.append("\(userData.intentedWord[keyNum])")
                                     
                                     if keyNum > -1 {
@@ -433,7 +433,7 @@ struct MotionView3: View {
                                     //text.append(userData.intentedWord[keyNum])
                                     
                                 }
-                                }
+                                
                                 
                                
                                 

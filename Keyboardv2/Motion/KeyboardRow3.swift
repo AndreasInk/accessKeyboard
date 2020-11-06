@@ -70,16 +70,7 @@ struct KeyboardRow3: View {
                         if userData.step > 0 {
                            print("\(userData.intentedWord[keyNum])")
                            print(keyNum)
-                            if "\(userData.intentedWord[keyNum])" != item {
-                                keysMistyped.append(0.2)
-                                        keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                
-                                if keyNum > -1 {
-                             //   text.removeLast()
-                               // text.append(userData.intentedWord[keyNum])
-                                
-                            }
-                            }
+                         
                             
                            
                             
@@ -88,8 +79,7 @@ struct KeyboardRow3: View {
                             keyNum2 -= 1
                             keyNum -= 1
                         } else {
-                        keyNum2 += 1
-                        keyNum += 1
+                       
                      }
                      }
                      
