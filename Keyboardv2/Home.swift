@@ -477,7 +477,7 @@ struct Home: View {
             let data = mailString.data(using: String.Encoding.utf8.rawValue)!
             let storageRef = Storage.storage().reference()
             // Create a reference to the file you want to upload
-            let riversRef = storageRef.child("Reg-\(userData.intentedWord)-\(UUID()).csv")
+            let riversRef = storageRef.child("Zoom-\(userData.intentedWord)-\(UUID()).csv")
 
             // Upload the file to the path "images/rivers.jpg"
             let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
