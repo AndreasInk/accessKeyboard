@@ -61,23 +61,23 @@ struct KeyboardRow2: View {
                             if "\(userData.intentedWord[keyNum])" != item {
                                 keysMistyped.append(0.2)
                                         keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                x.append(motionManager.x)
+                                x.append(x.last ?? motionManager.x)
                                 //diagonal
-                                y.append(motionManager.y)
+                                y.append(y.last ?? motionManager.y)
                                 //up and down
-                                z.append(motionManager.z)
+                                z.append(z.last ?? motionManager.z)
                                 
-                                pitch.append(motionManager.pitch)
+                                pitch.append(pitch.last ?? motionManager.pitch)
                                 //diagonal
-                                roll.append(motionManager.roll)
+                                roll.append(roll.last ?? motionManager.roll)
                                 //up and down
-                                yaw.append(motionManager.yaw)
+                                yaw.append(yaw.last ?? motionManager.yaw)
                                 
-                                rotX.append(motionManager.rotX)
+                                rotX.append(rotX.last ?? motionManager.rotZ)
                                 //diagonal
-                                rotY.append(motionManager.rotY)
+                                rotY.append(rotY.last ?? motionManager.rotY)
                                 //up and down
-                                rotZ.append(motionManager.rotZ)
+                                rotZ.append(rotZ.last ?? motionManager.rotZ)
                                 counter += 1
                                 if keyNum > -1 {
                               //  text.removeLast()

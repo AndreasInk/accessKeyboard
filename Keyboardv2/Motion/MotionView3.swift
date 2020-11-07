@@ -183,7 +183,17 @@ struct MotionView3: View {
                                if "\(userData.intentedWord[keyNum])" != " " {
                                    keysMistyped.append(0.2)
                                            keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                   
+                                pitch.append(pitch.last!)
+                                //diagonal
+                                roll.append(roll.last!)
+                                //up and down
+                                yaw.append(yaw.last!)
+                                
+                                rotX.append(rotX.last!)
+                                //diagonal
+                                rotY.append(rotY.last!)
+                                //up and down
+                                rotZ.append(rotZ.last!)
                                    if keyNum > -1 {
                                  //  text.removeLast()
                                  //  text.append(userData.intentedWord[keyNum])
@@ -243,7 +253,17 @@ struct MotionView3: View {
                                     if "\(userData.intentedWord[keyNum])" != item {
                                         keysMistyped.append(0.2)
                                                 keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                        pitch.append(pitch.last!)
+                                        //diagonal
+                                        roll.append(roll.last!)
+                                        //up and down
+                                        yaw.append(yaw.last!)
                                         
+                                        rotX.append(rotX.last!)
+                                        //diagonal
+                                        rotY.append(rotY.last!)
+                                        //up and down
+                                        rotZ.append(rotZ.last!)
                                         if keyNum > -1 {
                                        // text.removeLast()
                                         //text.append(userData.intentedWord[keyNum])
@@ -330,7 +350,17 @@ struct MotionView3: View {
                                     if "\(userData.intentedWord[keyNum])" != item {
                                         keysMistyped.append(0.2)
                                                 keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                        pitch.append(pitch.last!)
+                                        //diagonal
+                                        roll.append(roll.last!)
+                                        //up and down
+                                        yaw.append(yaw.last!)
                                         
+                                        rotX.append(rotX.last!)
+                                        //diagonal
+                                        rotY.append(rotY.last!)
+                                        //up and down
+                                        rotZ.append(rotZ.last!)
                                         if keyNum > -1 {
                                        // text.removeLast()
                                         //text.append(userData.intentedWord[keyNum])
@@ -427,7 +457,17 @@ struct MotionView3: View {
                                 if "\(userData.intentedWord[keyNum])" != item {
                                     keysMistyped.append(0.2)
                                             keysMistyped2.append("\(userData.intentedWord[keyNum])")
+                                    pitch.append(pitch.last!)
+                                    //diagonal
+                                    roll.append(roll.last!)
+                                    //up and down
+                                    yaw.append(yaw.last!)
                                     
+                                    rotX.append(rotX.last!)
+                                    //diagonal
+                                    rotY.append(rotY.last!)
+                                    //up and down
+                                    rotZ.append(rotZ.last!)
                                     if keyNum > -1 {
                                    // text.removeLast()
                                     //text.append(userData.intentedWord[keyNum])

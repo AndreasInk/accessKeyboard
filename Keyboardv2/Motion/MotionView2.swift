@@ -531,7 +531,7 @@ struct MotionView2: View {
     }
     }
     func calculateBedtime() {
-        let model = Xv4()
+        let model = xCombinedBool()
         
         //this provides all the details of the current date
         
@@ -552,8 +552,11 @@ struct MotionView2: View {
             formatter.timeStyle = .short
             
         
-            self.prediction = prediction.Mistypes
-           print(self.prediction)
+            for p in prediction.MistypesProbability.values {
+                print(p)
+                print(prediction.Mistypes)
+            }
+          // print(self.prediction)
             
         } catch {
            

@@ -42,6 +42,8 @@
 		E159FF3B252941D600F7511C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E159FF3A252941D600F7511C /* Preview Assets.xcassets */; };
 		E15A20EE25406952006E042E /* SigmaSwiftStatistics in Frameworks */ = {isa = PBXBuildFile; productRef = E15A20ED25406952006E042E /* SigmaSwiftStatistics */; };
 		E1817824252F9A0200724F23 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1006252E05EA00F347DA /* UserData.swift */; };
+		E1839F7925559FD7003DD3C6 /* boolX.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E1839F7825559FD7003DD3C6 /* boolX.mlmodel */; };
+		E1839F7C2555AA66003DD3C6 /* xCombinedBool.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E1839F7B2555AA65003DD3C6 /* xCombinedBool.mlmodel */; };
 		E1885D2A2548E77C005911E6 /* Home3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D292548E77C005911E6 /* Home3.swift */; };
 		E1885D332548E964005911E6 /* MotionView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D322548E964005911E6 /* MotionView3.swift */; };
 		E1885D362548E9C1005911E6 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D352548E9C1005911E6 /* KeyboardRow.swift */; };
@@ -123,6 +125,8 @@
 		E159FF37252941D600F7511C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E159FF3A252941D600F7511C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E159FF3C252941D600F7511C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1839F7825559FD7003DD3C6 /* boolX.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = boolX.mlmodel; sourceTree = "<group>"; };
+		E1839F7B2555AA65003DD3C6 /* xCombinedBool.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = xCombinedBool.mlmodel; sourceTree = "<group>"; };
 		E1885D292548E77C005911E6 /* Home3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home3.swift; sourceTree = "<group>"; };
 		E1885D322548E964005911E6 /* MotionView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionView3.swift; sourceTree = "<group>"; };
 		E1885D352548E9C1005911E6 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
@@ -323,6 +327,8 @@
 				E149ED5725547A7400270A30 /* Zv3.mlmodel */,
 				E1116F03254CE59900A08410 /* Xv2.mlmodel */,
 				E149ED542554798900270A30 /* Xv4.mlmodel */,
+				E1839F7825559FD7003DD3C6 /* boolX.mlmodel */,
+				E1839F7B2555AA65003DD3C6 /* xCombinedBool.mlmodel */,
 				E1885D9125490DB9005911E6 /* KeyboardRow3.swift */,
 				E1885D352548E9C1005911E6 /* KeyboardRow.swift */,
 				E1885D51254904B3005911E6 /* KeyboardRow2.swift */,
@@ -504,6 +510,7 @@
 				E1AF32A425377C6600147E15 /* Home2.swift in Sources */,
 				E149ED5825547A7400270A30 /* Zv3.mlmodel in Sources */,
 				E10A64612537BFBE00069640 /* LineView.swift in Sources */,
+				E1839F7C2555AA66003DD3C6 /* xCombinedBool.mlmodel in Sources */,
 				E18D0FFB252D375D00F347DA /* CoreMotion.swift in Sources */,
 				E10A64602537BFBE00069640 /* IndicatorPoint.swift in Sources */,
 				E1AF32B92537A73E00147E15 /* SurveyQuestion.swift in Sources */,
@@ -526,6 +533,7 @@
 				E1116EF8254CE27A00A08410 /* X.mlmodel in Sources */,
 				E14B3F7A253675A400D2173B /* IndividualData.swift in Sources */,
 				E10A64672537BFBE00069640 /* Line.swift in Sources */,
+				E1839F7925559FD7003DD3C6 /* boolX.mlmodel in Sources */,
 				E14B3F6E2536248B00D2173B /* CalibrateView.swift in Sources */,
 				E10A64752537DE3800069640 /* PieChartRow.swift in Sources */,
 				E149ED552554798900270A30 /* Xv4.mlmodel in Sources */,
@@ -665,7 +673,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Keyboardv2/Preview Content\"";
 				DEVELOPMENT_TEAM = MC27HKM86M;
 				ENABLE_PREVIEWS = YES;
@@ -689,7 +697,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"Keyboardv2/Preview Content\"";
 				DEVELOPMENT_TEAM = MC27HKM86M;
 				ENABLE_PREVIEWS = YES;
