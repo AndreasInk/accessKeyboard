@@ -20,28 +20,13 @@ struct Survey: View {
     var body: some View {
         ZStack {
             Color(.white)
+            
+            if next > 5 {
+                ResultsView()
                 
-        if next == 0 {
-            SurveyQuestion(next: $next)
-               
-                
-        } else if next == 1 {
-            SurveyQuestion(next: $next)
-                
-        } else if next == 2 {
-            SurveyQuestion(next: $next)
-                
-        } else if next == 3 {
-            SurveyQuestion(next: $next)
-                
-        }
-         else if next == 4 {
-            SurveyQuestion(next: $next)
-                
-        } else if next == 5 {
-           ResultsView()
-                
-        }
+            } else {
+                SurveyQuestion(next: $next)
+            }
         }
     }
 }

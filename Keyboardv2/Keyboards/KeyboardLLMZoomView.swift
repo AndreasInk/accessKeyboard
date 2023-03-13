@@ -7,32 +7,9 @@
 
 import SwiftUI
 
-import Firebase
 
-struct MotionView3: View {
-    
-    @Binding var x: [Double]
-    
-    @Binding var y: [Double]
-    
-    @Binding var z: [Double]
-    
-    @Binding var pitch: [Double]
-    
-    @Binding var roll: [Double]
-    
-    @Binding var yaw: [Double]
-    
-    @Binding var rotX: [Double]
-    
-    @Binding var rotY: [Double]
-    
-    @Binding var rotZ: [Double]
-    
-    @ObservedObject var motionManager = MotionManager()
-    
-    
-    
+struct KeyboardLLMZoomView: View {
+
     @State var keyMistyped: Int = 0
     @State var step: Int = 0
    
@@ -105,34 +82,12 @@ struct MotionView3: View {
                     if timeOn {
                         
                         time += 0.1
-                    x.append(motionManager.x)
-                    //diagonal
-                    y.append(motionManager.y)
-                    //up and down
-                    z.append(motionManager.z)
-                    
-                        pitch.append(motionManager.pitch)
-                        //diagonal
-                        roll.append(motionManager.roll)
-                        //up and down
-                        yaw.append(motionManager.yaw)
-                        
-                        rotX.append(motionManager.rotX)
-                        //diagonal
-                        rotY.append(motionManager.rotY)
-                        //up and down
-                        rotZ.append(motionManager.rotZ)
+                   
                         
                         keysMistyped.append(-0.099)
                     
                     //print(motionManager.z)
-                    if time == 10 {
-                        let sumArray = z.reduce(0, +)
-
-                        averageZ = sumArray / Double(z.count)
-                        
-                        
-                    }
+                   
                        
                 }
                     if userData.step == 6 {
@@ -161,9 +116,9 @@ struct MotionView3: View {
                     VStack(alignment: .center) {
                         
                   
-                        KeyboardRow3(data: horizontal11, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $z, y: $y, z: $z, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, key: $key)
-                        KeyboardRow3(data: horizontal22, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $z, y: $y, z: $z, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, key: $key)
-                        KeyboardRow3(data: horizontal33, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $z, y: $y, z: $z, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, key: $key)
+                        KeyboardRow3(data: horizontal11, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, key: $key)
+                        KeyboardRow3(data: horizontal22, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, key: $key)
+                        KeyboardRow3(data: horizontal33, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, zoom1: $zoom1, zoom2: $zoom2, zoom3: $zoom3, key: $key)
                         
                      
                          
@@ -183,17 +138,7 @@ struct MotionView3: View {
                                if "\(userData.intentedWord[keyNum])" != " " {
                                    keysMistyped.append(0.2)
                                            keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                pitch.append(pitch.last!)
-                                //diagonal
-                                roll.append(roll.last!)
-                                //up and down
-                                yaw.append(yaw.last!)
-                                
-                                rotX.append(rotX.last!)
-                                //diagonal
-                                rotY.append(rotY.last!)
-                                //up and down
-                                rotZ.append(rotZ.last!)
+                              
                                    if keyNum > -1 {
                                  //  text.removeLast()
                                  //  text.append(userData.intentedWord[keyNum])
@@ -253,17 +198,7 @@ struct MotionView3: View {
                                     if "\(userData.intentedWord[keyNum])" != item {
                                         keysMistyped.append(0.2)
                                                 keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                        pitch.append(pitch.last!)
-                                        //diagonal
-                                        roll.append(roll.last!)
-                                        //up and down
-                                        yaw.append(yaw.last!)
                                         
-                                        rotX.append(rotX.last!)
-                                        //diagonal
-                                        rotY.append(rotY.last!)
-                                        //up and down
-                                        rotZ.append(rotZ.last!)
                                         if keyNum > -1 {
                                        // text.removeLast()
                                         //text.append(userData.intentedWord[keyNum])
@@ -350,17 +285,7 @@ struct MotionView3: View {
                                     if "\(userData.intentedWord[keyNum])" != item {
                                         keysMistyped.append(0.2)
                                                 keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                        pitch.append(pitch.last!)
-                                        //diagonal
-                                        roll.append(roll.last!)
-                                        //up and down
-                                        yaw.append(yaw.last!)
-                                        
-                                        rotX.append(rotX.last!)
-                                        //diagonal
-                                        rotY.append(rotY.last!)
-                                        //up and down
-                                        rotZ.append(rotZ.last!)
+                                     
                                         if keyNum > -1 {
                                        // text.removeLast()
                                         //text.append(userData.intentedWord[keyNum])
@@ -457,17 +382,7 @@ struct MotionView3: View {
                                 if "\(userData.intentedWord[keyNum])" != item {
                                     keysMistyped.append(0.2)
                                             keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                    pitch.append(pitch.last!)
-                                    //diagonal
-                                    roll.append(roll.last!)
-                                    //up and down
-                                    yaw.append(yaw.last!)
-                                    
-                                    rotX.append(rotX.last!)
-                                    //diagonal
-                                    rotY.append(rotY.last!)
-                                    //up and down
-                                    rotZ.append(rotZ.last!)
+                                   
                                     if keyNum > -1 {
                                    // text.removeLast()
                                     //text.append(userData.intentedWord[keyNum])

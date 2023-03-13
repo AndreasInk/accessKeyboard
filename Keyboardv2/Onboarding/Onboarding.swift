@@ -27,12 +27,15 @@ struct Onboarding: View {
                     animate.toggle()
                 }
                 }
+                .transition(.opacity)
         } else if next == 1 {
             Ob2(next: $next)
                 .padding(.bottom, 40)
+                .transition(.opacity)
         } else if next == 2 {
             Ob3(next: $next)
                 .padding(.bottom, 40)
+                .transition(.opacity)
                 .onDisappear() {
                     userData.isOnboardingCompleted = true
                 }

@@ -92,11 +92,6 @@ struct MotionView2: View {
     @State var predictionZ: Double = 0.0
     var body: some View {
         ZStack(alignment: .bottom) {
-            if wait {
-                CalibrateView(wait: $wait, time: $time, x: $x, y: $y, z: $z, averageX: $averageX)
-                    
-                
-            } else {
          
                 Color(.white)
                     .onAppear() {
@@ -252,9 +247,6 @@ struct MotionView2: View {
                 }
             } .padding(.bottom, 22)
            
-          
-              
-            }
             if zoom1 {
                 BlurView(style: .systemThickMaterial)
                   

@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "openaikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MarcoDotIO/OpenAIKit.git",
+      "state" : {
+        "revision" : "9e718bc33f10bc0c0524ae140be6a89651c4ea3d",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "sigmaswiftstatistics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/SigmaSwiftStatistics.git",
+      "state" : {
+        "revision" : "d36db09f97a1739edc8c63897220c7ecbb5de684",
+        "version" : "9.0.2"
+      }
+    }
+  ],
+  "version" : 2
+}

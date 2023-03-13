@@ -7,29 +7,8 @@
 
 import SwiftUI
 
-import Firebase
 
-struct MotionView: View {
-    
-    @Binding var x: [Double]
-    
-    @Binding var y: [Double]
-    
-    @Binding var z: [Double]
-    
-    @Binding var pitch: [Double]
-    
-    @Binding var roll: [Double]
-    
-    @Binding var yaw: [Double]
-    
-    @Binding var rotX: [Double]
-    
-    @Binding var rotY: [Double]
-    
-    @Binding var rotZ: [Double]
-    
-    @ObservedObject var motionManager = MotionManager()
+struct KeyboardLLMView: View {
     
     
     
@@ -95,30 +74,11 @@ struct MotionView: View {
                     if timeOn {
                         
                         time += 0.1
-                    x.append(motionManager.x)
-                    //diagonal
-                    y.append(motionManager.y)
-                    //up and down
-                    z.append(motionManager.z)
-                    
-                        pitch.append(motionManager.pitch)
-                        //diagonal
-                        roll.append(motionManager.roll)
-                        //up and down
-                        yaw.append(motionManager.yaw)
-                        
-                        rotX.append(motionManager.rotX)
-                        //diagonal
-                        rotY.append(motionManager.rotY)
-                        //up and down
-                        rotZ.append(motionManager.rotZ)
+                   
                         keysMistyped.append(-0.099)
                     counter += 1
                     //print(motionManager.z)
                     if time == 10 {
-                        let sumArray = z.reduce(0, +)
-
-                        averageZ = sumArray / Double(z.count)
                         
                         
                     }
@@ -149,10 +109,10 @@ struct MotionView: View {
                    
                     VStack(alignment: .center) {
                         Spacer()
-                        KeyboardRow2(data: horizontal1, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, counter: $counter, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ)
+                        KeyboardRow2(data: horizontal1, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                        
-                        KeyboardRow2(data: horizontal2, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, counter: $counter, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ)
-                        KeyboardRow2(data: horizontal3, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, x: $x, y: $y, z: $z, counter: $counter, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ)
+                        KeyboardRow2(data: horizontal2, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                        KeyboardRow2(data: horizontal3, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                        
                         Spacer()
                     }

@@ -18,11 +18,6 @@ struct KeyboardRow3: View {
     @Binding var timeOn: Bool
     @Binding var keysMistyped2: [String]
     
-    @Binding var x: [Double]
-    
-    @Binding var y: [Double]
-    
-    @Binding var z: [Double]
    
     
     @Binding var zoom1: Bool

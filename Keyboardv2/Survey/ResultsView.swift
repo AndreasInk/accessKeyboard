@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+
 import SigmaSwiftStatistics
 struct ResultsView: View {
     @State var data = [IndividualData]()
@@ -20,35 +20,19 @@ struct ResultsView: View {
         ZStack {
         
             Color(.white)
-                .onAppear() {
-                    //getItems2()
-                    getItems()
-                    
-                   
-                  
-                    
-                    
-                    
-                }
+               
             if hasThanked {
             if hasData {
                 
                 ScrollView {
                     LazyVStack {
-                    
                         
-                
-                       
                         Text("Below are some of the community's accuracy data, the orange lines are the community's mistaps and the other lines are the x, y, and z accelerations")
                             .font(.headline)
                             .multilineTextAlignment(.center)
                             .padding()
                         ForEach(data){ data in
-                            
-                           // Text("Time: \(data.time)")
-                               // .font(.subheadline)
-                          //  Text("Type: \(data.type)")
-                             //   .font(.subheadline)
+                    
                             MultiLineChartView(data: [(data.x, GradientColors.green), (data.keysMistyped, GradientColors.orngPink)], title: "X Acceleration")
                                 .padding()
                             MultiLineChartView(data: [(data.y, GradientColors.blu), (data.keysMistyped, GradientColors.orngPink)], title: "Y Acceleration")
@@ -75,7 +59,7 @@ struct ResultsView: View {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                     .padding()
-                    Text("We are using your contribution to build a digital keyboard to help people with neurological diseases communicate more easily")
+                    Text("We are using your contribution to build a digital keyboard to help people with issues typing communicate more easily")
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -107,160 +91,7 @@ struct ResultsView: View {
             }
         }
     }
-    
-    func getItems() {
-        
-        
-        let db = Firestore.firestore()
-      
-        db.collection("interactions")
-            .limit(to: 3).whereField("keysMistyped", arrayContains: 0.2).getDocuments { (documents, error) in
-            if documents?.count ?? -1 > -1 {
-            for document in documents!.documents{
-                print("add")
-                
-                data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: document.get("time") as! Double, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
-                for data in data {
-                  //  print(data)
-                    for key in data.keysMistyped2 {
-                        
-                       
-                        keyStrings.append(key)
-                        
-                        
-                    }
-                   
-                }
-                let startNumber = 0
-                let middleNumber = 200
-                let middleNumber2 = 300
-                let endNumber = 400
-                let numberRange = startNumber...middleNumber
-                let numberRange2 = middleNumber2...endNumber
-                for index in 0..<self.data.count {
-                    let avg1 = average(of: data[index].z[0...data[index].x.count - 1])
-                    print("average z " + "\(avg1)")
-                   
-                    for index2 in 0..<self.data[index].keysMistyped.count {
-                        if  data[index].keysMistyped[index2] == 0.5 {
-                            data[index].keysMistyped[index2] = -0.5
-                           // print("Mistype z: " + "\(data[index].z[index2])")
-                        }
-                        if  data[index].keysMistyped[index2] == 0.0 {
-                            data[index].keysMistyped[index2] = -1
-                        }
-                      
-                    }
-                    for index2 in 0..<self.data[index].z.count {
-                       
-                       
-                        //data[index].z[index2] =  data[index].z[index2] + 0.15
-                       
-                   // for index2 in 0..<self.data[index].y.count {
-                       
-                        //data[index].y[index2] =  data[index].y[index2] + 0.15
-                       // if numberRange.contains(index2) {
-                        //    data[index].y.remove(at: index2)
-                       // }
-                       // if numberRange2.contains(index2)  {
-                       //     data[index].y.remove(at: index2)
-                       // }
-                 //   }
-                   // for index2 in 0..<self.data[index].keysMistyped.count {
-                       
-                       // data[index].y[index2] =  data[index].y[index2] + 0.15
-                      //  if numberRange.contains(index2) {
-                           // data[index].keysMistyped.remove(at: index2)
-                       // }
-                      //  if numberRange2.contains(index2)  {
-                      //      data[index].keysMistyped.remove(at: index2)
-                      //  }
-                        if self.data[index].z[index2] ==  -0.5419075012207031 {
-                            print("Mistyped near 90% \(data[index].keysMistyped[index2 - 1])")
-                            print("Mistyped near 90% \(data[index].keysMistyped[index2 + 1])")
-                            print("Mistyped near 90% \(data[index].keysMistyped[index2 - 5])")
-                            print("Mistyped near 90% \(data[index].keysMistyped[index2 + 5])")
-                        }
-                    }
-                    print("Precentile value: " + "\(Sigma.percentile(data[index].z, percentile: 0.95))")
-                    
-                    
-                   
-                    }
-                   
-                    
-                
-                        if self.data.count == documents?.count ?? -1 {
-                            let sortedDictByValue = keyStrings.freq().sorted{ $0.value > $1.value }
-                            print("sorted" + "\(sortedDictByValue)")
-                            print(keyStrings.freq().sorted { $0.1 < $1.1 })
-                            for key in sortedDictByValue {
-                                keyStrings2.append(key.key)
-                        
-                            
-                                keyStringsCount.append(key.value)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                hasData = true
-                                }
-                        }
-                           
-                        
-                        }
-                
-                    print(keyStrings.freq())
-               print(data)
-              
-             
-            }
-               
-               
-            }
-            }
-            
-        }
-    func getItems2() {
-        
-        
-        let db = Firestore.firestore()
-      
-        db.collection("interactions")
-            .limit(to: 2).whereField("type", isEqualTo: "Zoom").getDocuments { (documents, error) in
-            if documents?.count ?? -1 > -1 {
-            for document in documents!.documents{
-                print("add")
-                data.append(IndividualData(id: document.get("id") as! String, x: document.get("x") as! [Double], y: document.get("y") as! [Double], z: document.get("z") as! [Double], keysMistyped: document.get("keysMistyped") as! [Double], time: document.get("time") as! Double, type: document.get("type") as! String, keysMistyped2: document.get("keysMistyped2") as! [String]))
-                for data in data {
-                    print(data)
-                    for key in data.keysMistyped2 {
-                        
-                       
-                        keyStrings.append(key)
-                    }
-                }
-                        if self.data.count == documents?.count ?? -1 {
-                            let sortedDictByValue = keyStrings.freq().sorted{ $0.value > $1.value }
-                            print("sorted" + "\(sortedDictByValue)")
-                            print(keyStrings.freq().sorted { $0.1 < $1.1 })
-                            for key in sortedDictByValue {
-                                keyStrings2.append(key.key)
-                        
-                            
-                                keyStringsCount.append(key.value)
-                        }
-                           
-                        
-                        }
-                    print(keyStrings.freq())
-                   
-                    
-                
-            }
-               
-               
-            }
-            }
-            
-        }
+
     func average<C: Collection>(of c: C) -> Double where C.Element == Double {
         precondition(!c.isEmpty, "Cannot compute average of empty collection")
         return Double(c.reduce(0, +))/Double(c.count)

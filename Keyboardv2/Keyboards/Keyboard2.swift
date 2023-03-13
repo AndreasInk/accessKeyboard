@@ -40,10 +40,15 @@ struct Keyboard2: View {
                             
                             if item != "backspace" {
                                 if item != "space" {
-                                    Color(.white)
-                                        .frame(width: screenSize.width/11, height: screenSize.width/8, alignment: .center)
+                                   
+                                       
                                     Text(item)
                                         .font(.headline)
+                                        .padding()
+                                        .scaledToFill()
+                                        .background {
+                                            Color(.white)
+                                        }
                                 }
                             }
                             if item == "backspace" {

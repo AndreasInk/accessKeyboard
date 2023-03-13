@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseStorage
+
 class Task: NSObject {
     var x: Double = 0
     var y: Double = 0
@@ -139,9 +138,6 @@ struct Home: View {
                         
                         if userData.canRememberConvo {
                             if userData.step > 0 {
-                                let db = Firestore.firestore()
-
-                       db.collection("interactions").document(UUID().uuidString).setData(["id": UUID().uuidString, "x": x, "y": y, "z": z, "keysMistyped": keysMistyped, "time": time, "type": "Reg", "keysMistyped2": keysMistyped2])
 
                                 shareButton2()
                             
@@ -216,7 +212,7 @@ struct Home: View {
                             if self.userData.step == 1 {
                                 isKeyboardOpen = false
                                // self.userData.chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "", isMe: false, isView: true, viewMessage: "keys: \(keys) " + "new \(timeNew) " + "reg \(timeReg) ", viewTitle: " x: \(x) " + "y: \(y) " + "z: \(z) ", step: 2))
-                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember your acceleration data and remember our conversation within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember your acceleration data and this conversation?", step: 1))
+                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Can I remember our conversation within this app?", isMe: false, isView: true, viewMessage: "We do this to determine mistaps and analyze any patterns that arise so we can help you type more accurately.", viewTitle: "Allow ChatBot_Name to remember this conversation?", step: 1))
                                 
                             }
                            
@@ -268,27 +264,23 @@ struct Home: View {
                             }
                             if self.userData.step == 11 {
                                 chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What issues do you face when you type?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
-                                let db = Firestore.firestore()
-                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
+                               
                                 chat.removeFirst()
                             }
                             if self.userData.step == 12 {
                                 chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What specific keys do you have trouble tapping?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
-                                let db = Firestore.firestore()
-                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                              
                                 chat.removeFirst()
                             }
                             if self.userData.step == 13 {
                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "How can we make your keyboard optimized to you?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
-                                let db = Firestore.firestore()
-                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
+                               
                                 
                                 chat.removeFirst()
                             }
                             if self.userData.step == 14 {
                               chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Take an additional survey to help us build a helpful keyboard?", isMe: false, isView: true, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
-                                let db = Firestore.firestore()
-                                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "How can we make your keyboard optimized to you?" : self.text])
+                                
                                 isKeyboardOpen = false
                                 chat.removeFirst()
                             }
@@ -310,12 +302,12 @@ struct Home: View {
                 if !demo {
                
                // Spacer(minLength: screenSize.height/2.5)
-                    MotionView(x: $x, y:$y, z:$z, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                    KeyboardLLMView(text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                     .padding(.top)
                 } else {
-                    MotionView3(x: $x, y:$y, z:$z, pitch: $pitch, roll: $roll, yaw: $yaw, rotX: $rotX, rotY: $rotY, rotZ: $rotZ, text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
+                    KeyboardLLMZoomView(text: $text, isKeyboardOpen: $isKeyboardOpen, keyNum: $keyNum, keyNum2: $keyNum2, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2)
                         .environmentObject(UserData.shared)
                     .ignoresSafeArea()
                     .padding(.top)
@@ -429,17 +421,7 @@ struct Home: View {
 
        
         let data = mailString.data(using: String.Encoding.utf8.rawValue)!
-        let storageRef = Storage.storage().reference()
-        // Create a reference to the file you want to upload
-        let riversRef = storageRef.child("Reg-\(userData.intentedWord)-\(UUID()).csv")
-
-        // Upload the file to the path "images/rivers.jpg"
-        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
-          guard let metadata = metadata else {
-          print(error)
-            return
-          }
-       }
+       
         } else {
             let fileName = "Zoom-\(userData.intentedWord)-\(UUID()).csv"
                let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
@@ -475,17 +457,7 @@ struct Home: View {
 
            
             let data = mailString.data(using: String.Encoding.utf8.rawValue)!
-            let storageRef = Storage.storage().reference()
-            // Create a reference to the file you want to upload
-            let riversRef = storageRef.child("Zoom-\(userData.intentedWord)-\(UUID()).csv")
-
-            // Upload the file to the path "images/rivers.jpg"
-            let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
-              guard let metadata = metadata else {
-              print(error)
-                return
-              }
-           }
+        
         }
         }
     

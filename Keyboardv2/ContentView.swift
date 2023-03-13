@@ -16,12 +16,7 @@ struct ContentView: View {
     @State var zoom3: Bool = false
     @State var text: String = "Type Here"
     @State var key: String = ""
-    @State var x = [Double]()
-    
-    @State var y = [Double]()
-    
-    @State var z = [Double]()
-    
+  
     @State var keys = [String]()
     @State var keyTime = [Double]()
     @State var time = [String]()
@@ -50,9 +45,7 @@ struct ContentView: View {
                     .onDisappear() {
                         keyNum = 0
                         keyNum2 = 0
-                        x.removeAll()
-                        y.removeAll()
-                        z.removeAll()
+                        
                         intentedKeys.removeAll()
                         keysMistyped.removeAll()
                         keysMistyped2.removeAll()

@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseStorage
+
 struct Home3: View {
     let screenSize = UIScreen.main.bounds
     @State var zoomed: Bool = false
@@ -113,7 +112,7 @@ struct Home3: View {
                             }
                             }
                             
-                            let db = Firestore.firestore()
+                           
                            
                             if  self.userData.step == 0 {
                                 userData.step = 9
@@ -125,18 +124,12 @@ struct Home3: View {
                                     if self.userData.step == 10 {
                                        
                                        
-                                        db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
                                        
                                     }
                                     if self.userData.step == 11 {
-                                       
-                                        
-                                        db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                                    
                                     }
                                     if self.userData.step == 12 {
-                                        
-                                        db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
-                                        
                                        
                                     }
                                     time = 0.0
@@ -198,24 +191,24 @@ struct Home3: View {
                                 if self.userData.step == 11 {
                                     chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What issues do you face when you type?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                    
-                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What apps do you use most frequently?" : self.text])
+                                   
                                     chat.removeFirst()
                                 }
                                 if self.userData.step == 12 {
                                     chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "What specific keys do you have trouble tapping?", isMe: false, isView: false, viewMessage: "What specific keys do you have trouble tapping?", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
                                     
-                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What issues do you face when you type?" : self.text])
+                                   
                                     chat.removeFirst()
                                 }
                                 if self.userData.step == 13 {
                                   chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "How can we make your keyboard optimized to you?", isMe: false, isView: false, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
-                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "What specific keys do you have trouble tapping?" : self.text])
+                                  
                                     
                                     chat.removeFirst()
                                 }
                                 if self.userData.step == 14 {
                                   chat.append(ChatData(id: "\(UUID())", name: "Bot_Name", message: "Take an additional survey to help us build a helpful keyboard?", isMe: false, isView: true, viewMessage: "", viewTitle: "Take a survey to help us build a helpful keyboard?", step: 6))
-                                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, "How can we make your keyboard optimized to you?" : self.text])
+                                 
                                     isKeyboardOpen = false
                                     chat.removeFirst()
                                 }
@@ -282,17 +275,7 @@ struct Home3: View {
 
        
         let data = mailString.data(using: String.Encoding.utf8.rawValue)!
-        let storageRef = Storage.storage().reference()
-        // Create a reference to the file you want to upload
-        let riversRef = storageRef.child("Zoom-\(userData.intentedWord)-\(UUID()).csv")
-
-        // Upload the file to the path "images/rivers.jpg"
-        let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
-          guard let metadata = metadata else {
-          print(error)
-            return
-          }
-       }
+        
     }
     func createCSV() {
         let fileName = "exportar_serv.csv"

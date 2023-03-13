@@ -37,8 +37,8 @@ struct Ob1: View {
             VStack {
                 Spacer()
                 if animate {
-            Text("Accell Access")
-                .font(.largeTitle)
+            Text("Access AI")
+                        .font(.largeTitle).bold()
                 .foregroundColor(.white)
                 .offset(x: 0, y: 30)
                 .transition(.opacity)
@@ -64,8 +64,6 @@ struct Ob1: View {
                             Text("Welcome")
                                 .font(.headline)
                                 .foregroundColor(Color(.systemPink))
-                                .opacity(0.5)
-                                
                                 .multilineTextAlignment(.center)
                                 
                         

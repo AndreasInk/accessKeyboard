@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+
 
 struct SurveyQuestion: View {
     @State var question: String = "How would you rate your overall experience with this app?"
@@ -85,16 +85,8 @@ struct SurveyQuestion: View {
             } .padding()
             
             if hasSelected {
-            Button(action:{
-                let db = Firestore.firestore()
-                if isRow1 {
-                db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, surveyData.questions[next] : row1[num].rating])
-                   next += 1
-                } else {
-                    db.collection("surveyData").document(UUID().uuidString).setData(["id": UUID().uuidString, surveyData.questions[next] : row2[num].rating])
-                    next += 1
-                }
-                
+            Button(action: {
+                next += 1
             }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
