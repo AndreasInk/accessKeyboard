@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class Task: NSObject {
+class TaskData: NSObject {
     var x: Double = 0
     var y: Double = 0
     var z: Double = 0
@@ -60,8 +60,8 @@ struct Home: View {
     
     @State var timeOn: Bool = false
     
-    @State  var taskArr = [Task]()
-    @State  var task: Task!
+    @State  var taskArr = [TaskData]()
+    @State  var task: TaskData!
     @State var i: Int = 0
     @State private var isShareSheetShowing = false
    // @Environment(\.exportFiles) var exportAction

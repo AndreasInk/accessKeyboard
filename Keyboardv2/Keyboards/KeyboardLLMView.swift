@@ -10,12 +10,9 @@ import SwiftUI
 
 struct KeyboardLLMView: View {
     
-    
-    
     @State var keyMistyped: Int = 0
     @State var step: Int = 0
    
-    
     @State var averageZ = 0.0
     
     @EnvironmentObject var userData: UserData
@@ -47,7 +44,7 @@ struct KeyboardLLMView: View {
                 .onAppear() {
                     print(screenSize.height)
                     if screenSize.height > 812 {
-                    self.columns =  [GridItem(.adaptive(minimum: 35))]
+                    self.columns = [GridItem(.adaptive(minimum: 35))]
                        
                       
                     } else {
@@ -74,15 +71,15 @@ struct KeyboardLLMView: View {
                     if timeOn {
                         
                         time += 0.1
-                   
+                        
                         keysMistyped.append(-0.099)
-                    counter += 1
-                    //print(motionManager.z)
-                    if time == 10 {
+                        counter += 1
+                        //print(motionManager.z)
+                        if time == 10 {
+                            
+                            
+                        }
                         
-                        
-                    }
-                       
                 }
                     if userData.step == 6 {
                         timer.invalidate()
@@ -150,7 +147,16 @@ struct KeyboardLLMView: View {
                 } 
                
                 }
-    } 
+    }
+        .onChange(of: text) { newValue in
+            Task {
+            do {
+                try await MagicManager.generateSuggestions(text)
+            } catch {
+                
+            }
+            }
+        }
         } 
     }
 

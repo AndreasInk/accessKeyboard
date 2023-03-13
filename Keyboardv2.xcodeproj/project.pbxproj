@@ -36,6 +36,8 @@
 		E15A20EE25406952006E042E /* SigmaSwiftStatistics in Frameworks */ = {isa = PBXBuildFile; productRef = E15A20ED25406952006E042E /* SigmaSwiftStatistics */; };
 		E1817824252F9A0200724F23 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1006252E05EA00F347DA /* UserData.swift */; };
 		E18514C729BFE458005754D1 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514C629BFE458005754D1 /* BlurView.swift */; };
+		E18514C929BFE784005754D1 /* MagicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514C829BFE784005754D1 /* MagicManager.swift */; };
+		E18514CB29BFE810005754D1 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514CA29BFE810005754D1 /* APIKey.swift */; };
 		E1885D332548E964005911E6 /* KeyboardLLMZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D322548E964005911E6 /* KeyboardLLMZoomView.swift */; };
 		E1885D362548E9C1005911E6 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D352548E9C1005911E6 /* KeyboardRow.swift */; };
 		E1885D52254904B4005911E6 /* KeyboardRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D51254904B3005911E6 /* KeyboardRow2.swift */; };
@@ -101,6 +103,8 @@
 		E159FF3A252941D600F7511C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E159FF3C252941D600F7511C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E18514C629BFE458005754D1 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = Keyboard/BlurView.swift; sourceTree = SOURCE_ROOT; };
+		E18514C829BFE784005754D1 /* MagicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicManager.swift; sourceTree = "<group>"; };
+		E18514CA29BFE810005754D1 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		E1885D322548E964005911E6 /* KeyboardLLMZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLLMZoomView.swift; sourceTree = "<group>"; };
 		E1885D352548E9C1005911E6 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
 		E1885D51254904B3005911E6 /* KeyboardRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow2.swift; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 		E1B453D725367B8F00670BE3 /* Keyboards */ = {
 			isa = PBXGroup;
 			children = (
+				E18514C829BFE784005754D1 /* MagicManager.swift */,
+				E18514CA29BFE810005754D1 /* APIKey.swift */,
 				E1ABD77C253512460067C3C4 /* KeyboardLLMView.swift */,
 				E1885D322548E964005911E6 /* KeyboardLLMZoomView.swift */,
 				E1885D9125490DB9005911E6 /* KeyboardRow3.swift */,
@@ -384,6 +390,7 @@
 			files = (
 				E10A64832537DEF200069640 /* BarChartCell.swift in Sources */,
 				E18514C729BFE458005754D1 /* BlurView.swift in Sources */,
+				E18514CB29BFE810005754D1 /* APIKey.swift in Sources */,
 				E10A64782537DE3800069640 /* PieChartView.swift in Sources */,
 				E18D1002252E05DF00F347DA /* ChatCells.swift in Sources */,
 				E18D1001252E05DF00F347DA /* ChatPermission.swift in Sources */,
@@ -394,6 +401,7 @@
 				E10A64642537BFBE00069640 /* MagnifierRect.swift in Sources */,
 				E10A64662537BFBE00069640 /* MultiLineChartView.swift in Sources */,
 				E18D100A252E05EB00F347DA /* ChatData.swift in Sources */,
+				E18514C929BFE784005754D1 /* MagicManager.swift in Sources */,
 				E10A646D2537CB2500069640 /* ChatPermission4.swift in Sources */,
 				E10A64772537DE3800069640 /* PieChartCell.swift in Sources */,
 				E1B4540125374F9F00670BE3 /* Ob2.swift in Sources */,
