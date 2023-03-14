@@ -1,27 +1,27 @@
 //
-//  MotionView.swift
-//  Keyboardv2
+//  Keyboard.swift
+//  AIKeyboard
 //
-//  Created by Andreas Ink on 10/12/20.
+//  Created by Andreas Ink on 3/13/23.
 //
 
 import SwiftUI
 
 
-struct KeyboardLLMView: View {
-    
+struct KeyboardView: View {
+    var viewController: KeyboardViewController
     @State var keyMistyped: Int = 0
     @State var step: Int = 0
    
     @State var averageZ = 0.0
     
-    @EnvironmentObject var userData: UserData
+
     let data = (["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
     @State var horizontal1 = (["q", "w", "e", "r", "t", "y","u", "i", "o", "p" ]).map { "\($0)" }
     @State var horizontal2 = (["a", "s", "d", "f", "g", "h", "j", "k", "l"]).map { "\($0)" }
     @State var horizontal3 = (["z", "x", "c", "v", "v", "b", "n", "m", "backspace"]).map { "\($0)" }
     let screenSize = UIScreen.main.bounds
-    @Binding var text: String 
+    @State var text: String = ""
    @State var columns = [GridItem]()
     var columns1 = [
         GridItem(.adaptive(minimum: 80))
@@ -31,20 +31,21 @@ struct KeyboardLLMView: View {
     
     @State var suggestions = [String]()
     
-    @Binding var isKeyboardOpen: Bool
+    @State var isKeyboardOpen: Bool = true
     
-    @Binding var keyNum: Int
-    @Binding var keyNum2: Int
-    @Binding var keysMistyped: [Double]
-    @Binding var time: Double
-    @Binding var timeOn: Bool
-    @Binding var keysMistyped2: [String]
-    @Binding var counter: Int
+    @State var keyNum: Int = 0
+    @State var keyNum2: Int = 0
+    @State var keysMistyped: [Double] = []
+    @State var time: Double = 0.0
+    @State var timeOn: Bool = false
+    @State var keysMistyped2: [String] = []
+    @State var counter: Int = 0
     var body: some View {
         ZStack(alignment: .bottom) {
-            Color(.white)
+            Rectangle()
+                .fill(Material.thick)
                 .onAppear() {
-                    print(screenSize.height)
+                   
                     if screenSize.height > 812 {
                         self.columns = [GridItem(.adaptive(minimum: 35))]
                         
@@ -62,39 +63,9 @@ struct KeyboardLLMView: View {
                     isKeyboardOpen = false
                     text = "Type Here"
                 }
-            if userData.canRememberMotion {
-                Color(.white)
-                    .onAppear() {
-                        
-                        _ = Timer.scheduledTimer(withTimeInterval: 1.0 / 120, repeats: true) { timer in
-                            
-                            
-                            //left and right
-                            if timeOn {
-                                
-                                time += 0.1
-                                
-                                keysMistyped.append(-0.099)
-                                counter += 1
-                                //print(motionManager.z)
-                                if time == 10 {
-                                    
-                                    
-                                }
-                                
-                            }
-                            if userData.step == 6 {
-                                timer.invalidate()
-                            }
-                        }
-                    }
-            } else {
-                Color(.white)
-                    .onAppear() {
-                        
-                        print("NOPE")
-                    }
-            }
+            
+            
+            
             
             
             
@@ -103,16 +74,15 @@ struct KeyboardLLMView: View {
                 
                 ZStack(alignment: .bottom) {
                     
-                    BlurView(style: .systemThickMaterial)
-                        .frame(width: screenSize.width, height: screenSize.height/2.5, alignment: .center)
+                    
                     
                     VStack(alignment: .center) {
-                        SuggestionsView(text: $text, suggestions: suggestions)
+                        SuggestionsView(viewController: viewController, text: $text, suggestions: suggestions)
                         Spacer()
-                        KeyboardRow2(data: horizontal1, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                        KeyboardRow2(viewController: viewController, data: horizontal1, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         
-                        KeyboardRow2(data: horizontal2, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
-                        KeyboardRow2(data: horizontal3, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                        KeyboardRow2(viewController: viewController, data: horizontal2, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
+                        KeyboardRow2(viewController: viewController, data: horizontal3, keyNum: $keyNum, keyNum2: $keyNum2, text: $text, keysMistyped: $keysMistyped, time: $time, timeOn: $timeOn, keysMistyped2: $keysMistyped2, counter: $counter)
                         
                         Spacer()
                     }
@@ -120,24 +90,7 @@ struct KeyboardLLMView: View {
                     .padding(.bottom, 50)
                     Button(action: {
                         text += " "
-                        
-                        if userData.step > 0 {
-                            print("\(userData.intentedWord[keyNum])")
-                            
-                            if "\(userData.intentedWord[keyNum])" != " " {
-                                keysMistyped.append(0.2)
-                                keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                                
-                                if keyNum > -1 {
-                                    //text.removeLast()
-                                    // text.append(userData.intentedWord[keyNum])
-                                    
-                                }
-                            }
-                            
-                            
-                            
-                        }
+                       
                         keyNum2 += 1
                         keyNum += 1
                     }) {
@@ -151,12 +104,17 @@ struct KeyboardLLMView: View {
                 
             }
         }
+        
         .onChange(of: text) { newValue in
-            Task {
-                do {
-                    suggestions = try await MagicManager.generateSuggestions(text)
-                } catch {
-                    
+            if let text = text.last {
+                
+                Task {
+                    do {
+                        suggestions = try await MagicManager.generateSuggestions(self.text)
+                        
+                    } catch {
+                        
+                    }
                 }
             }
         }

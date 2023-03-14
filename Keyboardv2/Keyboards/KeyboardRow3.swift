@@ -63,7 +63,7 @@ struct KeyboardRow3: View {
                        //  text += item
                          
                         if userData.step > 0 {
-                           print("\(userData.intentedWord[keyNum])")
+                           
                            print(keyNum)
                          
                             

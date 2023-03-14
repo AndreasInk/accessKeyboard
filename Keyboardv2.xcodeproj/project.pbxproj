@@ -38,6 +38,19 @@
 		E18514C729BFE458005754D1 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514C629BFE458005754D1 /* BlurView.swift */; };
 		E18514C929BFE784005754D1 /* MagicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514C829BFE784005754D1 /* MagicManager.swift */; };
 		E18514CB29BFE810005754D1 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514CA29BFE810005754D1 /* APIKey.swift */; };
+		E18514CD29BFEE59005754D1 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514CC29BFEE59005754D1 /* SuggestionsView.swift */; };
+		E18514D529BFF166005754D1 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514D429BFF166005754D1 /* KeyboardViewController.swift */; };
+		E18514D929BFF166005754D1 /* AIKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E18514D229BFF166005754D1 /* AIKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E18514E129BFF199005754D1 /* KeyboardRow3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D9125490DB9005911E6 /* KeyboardRow3.swift */; };
+		E18514E229BFF199005754D1 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D352548E9C1005911E6 /* KeyboardRow.swift */; };
+		E18514E329BFF199005754D1 /* MagicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514C829BFE784005754D1 /* MagicManager.swift */; };
+		E18514E429BFF199005754D1 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514CA29BFE810005754D1 /* APIKey.swift */; };
+		E18514E629BFF1AD005754D1 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514E529BFF1AD005754D1 /* KeyboardView.swift */; };
+		E18514E729BFF2FE005754D1 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1006252E05EA00F347DA /* UserData.swift */; };
+		E18514E829BFF30C005754D1 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18D1007252E05EB00F347DA /* ChatData.swift */; };
+		E18514EA29BFF3A8005754D1 /* OpenAIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E18514E929BFF3A8005754D1 /* OpenAIKit */; };
+		E18514EC29BFF5A4005754D1 /* KeyboardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514EB29BFF5A4005754D1 /* KeyboardRowView.swift */; };
+		E18514EE29BFF63B005754D1 /* SugestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18514ED29BFF63B005754D1 /* SugestionsView.swift */; };
 		E1885D332548E964005911E6 /* KeyboardLLMZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D322548E964005911E6 /* KeyboardLLMZoomView.swift */; };
 		E1885D362548E9C1005911E6 /* KeyboardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D352548E9C1005911E6 /* KeyboardRow.swift */; };
 		E1885D52254904B4005911E6 /* KeyboardRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1885D51254904B3005911E6 /* KeyboardRow2.swift */; };
@@ -59,6 +72,16 @@
 		E1B4540425374F9F00670BE3 /* Ob1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B4540025374F9E00670BE3 /* Ob1.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E18514D729BFF166005754D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E159FF28252941D400F7511C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E18514D129BFF166005754D1;
+			remoteInfo = AIKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		E159FF52252941FD00F7511C /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -66,6 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				E18514D929BFF166005754D1 /* AIKeyboard.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +129,13 @@
 		E18514C629BFE458005754D1 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurView.swift; path = Keyboard/BlurView.swift; sourceTree = SOURCE_ROOT; };
 		E18514C829BFE784005754D1 /* MagicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicManager.swift; sourceTree = "<group>"; };
 		E18514CA29BFE810005754D1 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		E18514CC29BFEE59005754D1 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
+		E18514D229BFF166005754D1 /* AIKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AIKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E18514D429BFF166005754D1 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		E18514D629BFF166005754D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E18514E529BFF1AD005754D1 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		E18514EB29BFF5A4005754D1 /* KeyboardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRowView.swift; sourceTree = "<group>"; };
+		E18514ED29BFF63B005754D1 /* SugestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SugestionsView.swift; sourceTree = "<group>"; };
 		E1885D322548E964005911E6 /* KeyboardLLMZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLLMZoomView.swift; sourceTree = "<group>"; };
 		E1885D352548E9C1005911E6 /* KeyboardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow.swift; sourceTree = "<group>"; };
 		E1885D51254904B3005911E6 /* KeyboardRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardRow2.swift; sourceTree = "<group>"; };
@@ -134,6 +165,14 @@
 			files = (
 				E15A20EE25406952006E042E /* SigmaSwiftStatistics in Frameworks */,
 				E141372429BFDE720045AB0C /* OpenAIKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E18514CF29BFF166005754D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E18514EA29BFF3A8005754D1 /* OpenAIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				E159FF32252941D400F7511C /* Keyboardv2 */,
+				E18514D329BFF166005754D1 /* AIKeyboard */,
 				E159FF31252941D400F7511C /* Products */,
 				82E570541A7DFCC86A630F80 /* Frameworks */,
 			);
@@ -210,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				E159FF30252941D400F7511C /* Keyboardv2.app */,
+				E18514D229BFF166005754D1 /* AIKeyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +282,18 @@
 				E159FF3A252941D600F7511C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E18514D329BFF166005754D1 /* AIKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				E18514D429BFF166005754D1 /* KeyboardViewController.swift */,
+				E18514E529BFF1AD005754D1 /* KeyboardView.swift */,
+				E18514ED29BFF63B005754D1 /* SugestionsView.swift */,
+				E18514EB29BFF5A4005754D1 /* KeyboardRowView.swift */,
+				E18514D629BFF166005754D1 /* Info.plist */,
+			);
+			path = AIKeyboard;
 			sourceTree = "<group>";
 		};
 		E18D100E252E05EF00F347DA /* Chat */ = {
@@ -284,6 +337,7 @@
 				E18514C829BFE784005754D1 /* MagicManager.swift */,
 				E18514CA29BFE810005754D1 /* APIKey.swift */,
 				E1ABD77C253512460067C3C4 /* KeyboardLLMView.swift */,
+				E18514CC29BFEE59005754D1 /* SuggestionsView.swift */,
 				E1885D322548E964005911E6 /* KeyboardLLMZoomView.swift */,
 				E1885D9125490DB9005911E6 /* KeyboardRow3.swift */,
 				E1885D352548E9C1005911E6 /* KeyboardRow.swift */,
@@ -325,6 +379,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E18514D829BFF166005754D1 /* PBXTargetDependency */,
 			);
 			name = Keyboardv2;
 			packageProductDependencies = (
@@ -335,17 +390,40 @@
 			productReference = E159FF30252941D400F7511C /* Keyboardv2.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E18514D129BFF166005754D1 /* AIKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E18514DA29BFF166005754D1 /* Build configuration list for PBXNativeTarget "AIKeyboard" */;
+			buildPhases = (
+				E18514CE29BFF166005754D1 /* Sources */,
+				E18514CF29BFF166005754D1 /* Frameworks */,
+				E18514D029BFF166005754D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AIKeyboard;
+			packageProductDependencies = (
+				E18514E929BFF3A8005754D1 /* OpenAIKit */,
+			);
+			productName = AIKeyboard;
+			productReference = E18514D229BFF166005754D1 /* AIKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E159FF28252941D400F7511C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					E159FF2F252941D400F7511C = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					E18514D129BFF166005754D1 = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
@@ -367,6 +445,7 @@
 			projectRoot = "";
 			targets = (
 				E159FF2F252941D400F7511C /* Keyboardv2 */,
+				E18514D129BFF166005754D1 /* AIKeyboard */,
 			);
 		};
 /* End PBXProject section */
@@ -381,6 +460,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E18514D029BFF166005754D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -392,6 +478,7 @@
 				E18514C729BFE458005754D1 /* BlurView.swift in Sources */,
 				E18514CB29BFE810005754D1 /* APIKey.swift in Sources */,
 				E10A64782537DE3800069640 /* PieChartView.swift in Sources */,
+				E18514CD29BFEE59005754D1 /* SuggestionsView.swift in Sources */,
 				E18D1002252E05DF00F347DA /* ChatCells.swift in Sources */,
 				E18D1001252E05DF00F347DA /* ChatPermission.swift in Sources */,
 				E10A64632537BFBE00069640 /* LineChartView.swift in Sources */,
@@ -437,7 +524,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E18514CE29BFF166005754D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E18514E329BFF199005754D1 /* MagicManager.swift in Sources */,
+				E18514E629BFF1AD005754D1 /* KeyboardView.swift in Sources */,
+				E18514EE29BFF63B005754D1 /* SugestionsView.swift in Sources */,
+				E18514E829BFF30C005754D1 /* ChatData.swift in Sources */,
+				E18514E729BFF2FE005754D1 /* UserData.swift in Sources */,
+				E18514E229BFF199005754D1 /* KeyboardRow.swift in Sources */,
+				E18514D529BFF166005754D1 /* KeyboardViewController.swift in Sources */,
+				E18514E429BFF199005754D1 /* APIKey.swift in Sources */,
+				E18514EC29BFF5A4005754D1 /* KeyboardRowView.swift in Sources */,
+				E18514E129BFF199005754D1 /* KeyboardRow3.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E18514D829BFF166005754D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E18514D129BFF166005754D1 /* AIKeyboard */;
+			targetProxy = E18514D729BFF166005754D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E159FF3D252941D600F7511C /* Debug */ = {
@@ -559,6 +671,7 @@
 		E159FF40252941D600F7511C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -582,6 +695,7 @@
 		E159FF41252941D600F7511C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -602,6 +716,60 @@
 			};
 			name = Release;
 		};
+		E18514DB29BFF166005754D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9NG3C5HP77;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AIKeyboard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AIKeyboard;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ai.AccessKeyboard.AIKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E18514DC29BFF166005754D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9NG3C5HP77;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AIKeyboard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AIKeyboard;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ai.AccessKeyboard.AIKeyboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -619,6 +787,15 @@
 			buildConfigurations = (
 				E159FF40252941D600F7511C /* Debug */,
 				E159FF41252941D600F7511C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E18514DA29BFF166005754D1 /* Build configuration list for PBXNativeTarget "AIKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E18514DB29BFF166005754D1 /* Debug */,
+				E18514DC29BFF166005754D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -654,6 +831,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E15A20EC25406952006E042E /* XCRemoteSwiftPackageReference "SigmaSwiftStatistics" */;
 			productName = SigmaSwiftStatistics;
+		};
+		E18514E929BFF3A8005754D1 /* OpenAIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E141372229BFDE720045AB0C /* XCRemoteSwiftPackageReference "OpenAIKit" */;
+			productName = OpenAIKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

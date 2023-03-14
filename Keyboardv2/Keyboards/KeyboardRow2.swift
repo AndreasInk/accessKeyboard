@@ -37,23 +37,7 @@ struct KeyboardRow2: View {
                          }
                      } else {
                          text += item
-                         
-                        if userData.step > 0 {
-                           print("\(userData.intentedWord[keyNum])")
-                           print(keyNum)
-                            if "\(userData.intentedWord[keyNum])" != item {
-                                keysMistyped.append(0.2)
-                                        keysMistyped2.append("\(userData.intentedWord[keyNum])")
-                              
-                                counter += 1
-                                if keyNum > -1 {
-                        
-                            }
-                            }
-                            
-                           
-                            
-                     }
+                      
                         keyNum2 += 1
                         keyNum += 1
                      }
@@ -65,7 +49,7 @@ struct KeyboardRow2: View {
                     if item != "backspace" {
                         if item != "space" {
                             Color(.white)
-                                .frame(minWidth: 20, idealWidth: 30, maxWidth: 30, minHeight: 35, idealHeight: 45, maxHeight: 50, alignment: .center)
+                                .frame(minWidth: 20, idealWidth: 30, maxWidth: 30, minHeight: 35, idealHeight: 45, maxHeight: 45, alignment: .center)
                             Text(item)
                                 .font(.headline)
                                // .padding(5)
@@ -77,7 +61,7 @@ struct KeyboardRow2: View {
                     if item == "backspace" {
                         ZStack {
                        
-                            Image("backspace-arrow")
+                            Image(systemName: "delete.backward.fill")
                                 .resizable()
                                 .scaledToFill()
                                
